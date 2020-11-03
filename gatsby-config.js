@@ -1,22 +1,43 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    siteTitle: `Polite Investor`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Antony Holmes`,
+      summary: `who lives and works in New York building useful things.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    description: `Polite Investor finance web site.`,
+    siteUrl: `https://www.politeinvestor.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `politeinvestor`,
+    },
+    header: {
+      links: [
+        ["Posts", "/posts"],
+        ["Credit Cards", "/credit-cards"],
+        ["Portfolio", "/portfolio"],
+        ["About", "/about"],
+      ],
+    },
+    footer: {
+      links: [
+        { name: "Start Here", urls: [] },
+        {
+          name: "Recommendations",
+          urls: [
+            ["Credit Cards", "/credit-cards"],
+            ["Web Sites", "/websites"],
+          ],
+        },
+        { name: "Resources", urls: [["Disclaimer", "/disclaimer"]] },
+      ],
     },
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
+        path: `${__dirname}/content/posts`,
+        name: `posts`,
       },
     },
     {
@@ -24,6 +45,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/content/assets/images`,
       },
     },
     {
@@ -51,25 +79,53 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-background-image",
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        // add your own characters to escape, replacing the default ':/'
+        specialChars: "/:",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingId: `UA-121311307-2`,
       },
     },
     `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Polite Investor`,
+        short_name: `polite-investor`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/favicon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
+        ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: "/assets/",
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-build-date`,
+      options: {
+        formatAsDateString: true, // boolean, defaults to true - if false API will return unformatted string from new Date()
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

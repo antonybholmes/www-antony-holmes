@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black-2;
+}
+
+h1 {
+  @apply text-4xl font-semibold;
+}
+
+h2 {
+  @apply text-3xl font-semibold;
+}
+
+h3 {
+  @apply text-2xl font-semibold;
+}
+
+h4 {
+  @apply text-xl font-semibold;
+}
+
+h5 {
+  @apply text-lg font-semibold;
+}
+
+.ani-t {
+  @apply ease-in-out duration-300;
+}
+
+.trans-ani {
+  @apply transition ani-t;
+}
+
+.slider {
+  @apply outline-none rounded-full w-full bg-gray-300 opacity-70 trans-ani;
+  -webkit-appearance: none;
+  height: 15px;
+}
+
+.slider:hover {
+  @apply opacity-100;
+}
+
+.slider::-webkit-slider-thumb {
+  @apply rounded-full cursor-pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 25px;
+  height: 25px;
+  background: #4caf50;
+}
+
+.slider::-moz-range-thumb {
+  @apply rounded-full cursor-pointer bg-blue-500;
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 25px;
+  height: 25px;
+}

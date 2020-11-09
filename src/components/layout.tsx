@@ -3,6 +3,11 @@ import Footer from "./footer"
 import Header from "./header/header"
 import SEO from "./seo"
 
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { faCalculator } from "@fortawesome/free-solid-svg-icons"
+
+library.add(faCalculator)
+
 type LayoutProps = {
   title: string
 }

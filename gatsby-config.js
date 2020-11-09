@@ -14,13 +14,20 @@ module.exports = {
       links: [
         ["Posts", "/posts"],
         ["Credit Cards", "/credit-cards"],
+        ["Calculators", "/calculators"],
         ["Portfolio", "/portfolio"],
         ["About", "/about"],
       ],
     },
     footer: {
       links: [
-        { name: "Start Here", urls: [] },
+        {
+          name: "Start Here",
+          urls: [
+            ["Blog", "/posts"],
+            ["Calculators", "/calculators"],
+          ],
+        },
         {
           name: "Recommendations",
           urls: [

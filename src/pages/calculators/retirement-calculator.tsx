@@ -3,15 +3,13 @@ import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
 import Column from "../../components/column"
 import Container from "../../components/container"
-import LineGraph from "../../components/dashboard/linegraph"
+import RetirementGraph from "../../components/dashboard/retirementgraph"
 import FlatCard from "../../components/flatcard"
 import FullDiv from "../../components/fulldiv"
 import Layout from "../../components/layout"
 import MainColumn from "../../components/maincolumn"
 import RangeSlider from "../../components/rangeslider"
 import SideColumn from "../../components/sidecolumn"
-import Img from "gatsby-image"
-import Row from "../../components/row"
 import TextBox from "../../components/textbox"
 
 type DataProps = {
@@ -24,29 +22,29 @@ const heading = (text: string) => {
 
 const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [arr, setARR] = useState(8)
-  const [er, setER] = useState(20)
-  const [frontLoad, setFrontLoad] = useState(5)
+  const [spendingRate, setSpendingRate] = useState(10)
+  const [er, setER] = useState(2)
   const [startingBalance, setStartingBalance] = useState(10000)
-  const [years, setYears] = useState(40)
+  const [contributionYears, setContributionYears] = useState(40)
+  const [drawDownYears, setDrawDownYears] = useState(30)
   const [savings, setSavings] = useState(10000)
   const [data1, setData1] = useState<Array<number>>([])
-  const [data2, setData2] = useState<Array<number>>([])
 
   const createData = () => {
     const d1: Array<number> = []
-    const d2: Array<number> = []
-    let b1 = startingBalance
-    let b2 = startingBalance * (1 - frontLoad / 100)
+    let b1 = startingBalance / 1000000
 
-    for (var i = 0; i < years; ++i) {
+    for (var i = 0; i < contributionYears; ++i) {
       d1.push(b1)
-      d2.push(b2)
-      b1 = b1 * (1 + arr / 100) + savings
-      b2 = b2 * (1 + arr / 100) * (1 - er / 2000) + savings
+      b1 = b1 * (1 + arr / 100) * (1 - er / 2000) + savings / 1000000
+    }
+
+    for (var i = 0; i < drawDownYears; ++i) {
+      d1.push(b1)
+      b1 = b1 * (1 - spendingRate / 100) * (1 + arr / 100) * (1 - er / 2000)
     }
 
     setData1(d1)
-    setData2(d2)
   }
 
   // useEffect(() => {
@@ -56,7 +54,15 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   useEffect(() => {
     createData()
-  }, [arr, er, startingBalance, frontLoad, savings, years])
+  }, [
+    arr,
+    er,
+    startingBalance,
+    savings,
+    contributionYears,
+    drawDownYears,
+    spendingRate,
+  ])
 
   const handleARRChange = (text: string) => {
     let v = parseInt(text)
@@ -71,14 +77,6 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
 
     if (!isNaN(v)) {
       setER((v / 100) * 2000)
-    }
-  }
-
-  const handleFrontEndChange = (text: string) => {
-    let v = parseInt(text)
-
-    if (!isNaN(v)) {
-      setFrontLoad(v)
     }
   }
 
@@ -98,16 +96,32 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
     }
   }
 
-  const handleYearsChange = (text: string) => {
+  const handleContributionYearsChange = (text: string) => {
     let v = parseInt(text)
 
     if (!isNaN(v)) {
-      setYears(v)
+      setContributionYears(v)
+    }
+  }
+
+  const handleDrawDownYearsChange = (text: string) => {
+    let v = parseInt(text)
+
+    if (!isNaN(v)) {
+      setDrawDownYears(v)
+    }
+  }
+
+  const handleSpendingRate = (text: string) => {
+    let v = parseFloat(text)
+
+    if (!isNaN(v)) {
+      setSpendingRate(v)
     }
   }
 
   return (
-    <Layout title="Fee Calculator">
+    <Layout title="Retirement Calculator">
       <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -115,11 +129,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
       />
 
       <Container className="mt-8">
-        <h2>Retirement Fee Calculator</h2>
+        <h2>Retirement Calculator</h2>
         <div className="text-lg">
-          Want to understand how fees affect your retirement savings? Play
-          around with our interactive tool to see just how much can you lose
-          over your investment lifetime, even when the fees seem small.
+          Our simple calculator yets you easily plot if you are on target for
+          retirement and shows you on an interactive graph how long your money
+          is likely to last. We built this because similar calculators on other
+          sites are often cumbersome and ask for too much information. This
+          calculator does not store any information about you.
         </div>
 
         <Column className="mt-8">
@@ -158,21 +174,6 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
               </div>
               <div className="mt-8">
-                {heading("Front-End Load")}
-                <TextBox
-                  value={frontLoad}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleFrontEndChange}
-                />
-                <RangeSlider
-                  value={frontLoad}
-                  onChange={(v: number) => setFrontLoad(v)}
-                  className="mt-4"
-                />
-              </div>
-              <div className="mt-8">
                 {heading("Starting Balance")}
                 <TextBox
                   value={startingBalance}
@@ -205,19 +206,53 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
               </div>
               <div className="mt-8">
-                {heading("Years")}
+                {heading("Constribution Years")}
                 <TextBox
-                  value={years}
+                  value={contributionYears}
                   prefix="years"
                   prefixLeft={false}
                   alignLeft={false}
-                  onChange={handleYearsChange}
+                  onChange={handleContributionYearsChange}
                 />
                 <RangeSlider
-                  value={years}
+                  value={contributionYears}
                   min={1}
                   max={100}
-                  onChange={(v: number) => setYears(v)}
+                  onChange={(v: number) => setContributionYears(v)}
+                  className="mt-4"
+                />
+              </div>
+              <div className="mt-8">
+                {heading("Draw Down Years")}
+                <TextBox
+                  value={drawDownYears}
+                  prefix="years"
+                  prefixLeft={false}
+                  alignLeft={false}
+                  onChange={handleDrawDownYearsChange}
+                />
+                <RangeSlider
+                  value={drawDownYears}
+                  min={1}
+                  max={100}
+                  onChange={(v: number) => setDrawDownYears(v)}
+                  className="mt-4"
+                />
+              </div>
+              <div className="mt-8">
+                {heading("Spending Rate")}
+                <TextBox
+                  value={spendingRate}
+                  onChange={handleSpendingRate}
+                  prefix="%"
+                  prefixLeft={false}
+                  alignLeft={false}
+                />
+                <RangeSlider
+                  min={0}
+                  max={100}
+                  value={spendingRate}
+                  onChange={(v: number) => setSpendingRate(v)}
                   className="mt-4"
                 />
               </div>
@@ -226,17 +261,8 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
           <MainColumn w="w-17/20">
             <FullDiv>
               <FlatCard className="w-full">
-                <LineGraph data1={data1} data2={data2} />
+                <RetirementGraph data1={data1} />
               </FlatCard>
-              <div className="mt-8 text-center">
-                <h4>
-                  Fees could cost you $
-                  {Math.round(
-                    data1[data1.length - 1] - data2[data2.length - 1]
-                  ).toLocaleString()}{" "}
-                  over a ${years} year period.
-                </h4>
-              </div>
             </FullDiv>
           </MainColumn>
         </Column>

@@ -12,8 +12,6 @@ const useCurrentBuild = () => {
     `
   )
 
-  console.log("aaaa", currentBuildDate)
-
   return dayjs(currentBuildDate.currentDate)
 }
 

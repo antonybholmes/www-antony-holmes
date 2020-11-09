@@ -43,15 +43,15 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout title="Posts">
-      <Container>
-        <FlatCard>
-          <Bio />
-          <ol style={{ listStyle: `none` }}>
-            {posts.map(post => {
-              const title = post.frontmatter.title || post.fields.slug
+      <Container className="mt-16">
+        <Bio />
+        <ol style={{ listStyle: `none` }}>
+          {posts.map(post => {
+            const title = post.frontmatter.title || post.fields.slug
 
-              return (
-                <li key={post.fields.slug}>
+            return (
+              <li key={post.fields.slug}>
+                <FlatCard className="mt-8">
                   <article
                     className="post-list-item"
                     itemScope
@@ -74,11 +74,11 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                       />
                     </section>
                   </article>
-                </li>
-              )
-            })}
-          </ol>
-        </FlatCard>
+                </FlatCard>
+              </li>
+            )
+          })}
+        </ol>
       </Container>
     </Layout>
   )

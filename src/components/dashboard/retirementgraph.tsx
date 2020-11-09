@@ -3,19 +3,13 @@ import Chart from "chart.js"
 
 type GraphProps = {
   data1?: Array<number>
-  data2?: Array<number>
 }
 
-const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
+const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
   const chartRef = useRef(null)
 
   const createGraph = () => {
-    if (
-      !chartRef ||
-      !chartRef.current ||
-      data1.length === 0 ||
-      data2.length === 0
-    ) {
+    if (!chartRef || !chartRef.current || data1.length === 0) {
       return
     }
 
@@ -34,22 +28,16 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
         //Bring in data
         datasets: [
           {
-            label: "Wihout Fees",
+            label: "Retirement",
             data: data1,
             backgroundColor: "rgba(0,0,255,0.1)",
             borderColor: "rgba(0,0,255,0.5)",
-          },
-          {
-            label: "With Fees",
-            data: data2,
-            backgroundColor: "rgba(255,0,0,0.1)",
-            borderColor: "rgba(255,0,0,0.5)",
           },
         ],
       },
       options: {
         legend: {
-          display: true,
+          display: false,
         },
         title: {
           display: false,
@@ -70,7 +58,7 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Dollars",
+                labelString: "Dollars (millions)",
               },
               gridLines: {
                 display: true,
@@ -88,7 +76,7 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
 
   useEffect(() => {
     createGraph()
-  }, [data1, data2, chartRef])
+  }, [data1, chartRef])
 
   return (
     <div>
@@ -97,9 +85,8 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
   )
 }
 
-LineGraph.defaultProps = {
+RetirementGraph.defaultProps = {
   data1: [],
-  data2: [],
 }
 
-export default LineGraph
+export default RetirementGraph

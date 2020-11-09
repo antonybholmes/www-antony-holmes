@@ -29,8 +29,6 @@ const TextBox: React.FC<TextBoxProps> = ({
   const handleInput = (e: any) => {
     //_setValue(e.target.value)
 
-    console.log(e.key)
-
     if (e.key === "Enter" && onChange !== null) {
       onChange(e.target.value)
     }

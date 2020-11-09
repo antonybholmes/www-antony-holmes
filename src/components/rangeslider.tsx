@@ -23,7 +23,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     //_setValue(e.target.value)
 
     if (onChange !== null) {
-      onChange(e.target.value)
+      onChange(parseInt(e.target.value))
     }
   }
 

@@ -32,7 +32,7 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout title="Home">
-      <Container>
+      <Container className="mt-16">
         <Row isVCentered={false}>
           <div className="w-8/12 mr-8">
             <Post post={posts[0]} />

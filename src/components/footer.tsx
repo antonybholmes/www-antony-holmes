@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <div className="mt-8 py-8 border-t border-solid border-black-8 text-sm text-gray-600">
+        <div className="mt-16 py-8 border-t border-solid border-black-8 text-sm text-gray-600">
           <Row isVCentered={false}>
             {links.map((linkGroup: any, linkGroupIndex: number) => {
               return (

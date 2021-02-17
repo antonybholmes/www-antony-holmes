@@ -1,11 +1,26 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const dayjs = require("dayjs")
+
+const usePostId = post => {
+  const name = post.frontmatter.title
+    .toLowerCase()
+    .replace(" ", "-")
+    .replace(/[^0-9a-z_\-]/g, "")
+  const date = dayjs(post.frontmatter.date)
+
+  return `${date.format("YYYY-MM-DD")}-${name}`
+}
+
+const usePostUrl = post => {
+  return `/posts/${post.frontmatter.id}`
+}
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  const blogPost = path.resolve(`./src/templates/posttemplate.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -16,9 +31,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           limit: 1000
         ) {
           nodes {
-            id
-            fields {
-              slug
+            frontmatter {
+              id
+              title
+              author
+              date
+              description
+              categories
             }
           }
         }
@@ -42,14 +61,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const previousPostId =
+        index === 0 ? null : posts[index - 1].frontmatter.id
+      const nextPostId =
+        index === posts.length - 1 ? null : posts[index + 1].frontmatter.id
 
       createPage({
-        path: post.fields.slug,
+        path: usePostUrl(post),
         component: blogPost,
         context: {
-          id: post.id,
+          id: post.frontmatter.id,
+          authorId: post.frontmatter.author,
           previousPostId,
           nextPostId,
         },
@@ -104,6 +126,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Frontmatter {
       title: String
+      author: String
       description: String
       date: Date @dateformat
     }

@@ -8,6 +8,12 @@ import Row from "../components/row"
 import FlatCard from "../components/flatcard"
 import Post from "../components/posts/post"
 import Posts from "../components/posts/posts"
+import MainSideCol from "../components/mainsidecol"
+import FullDiv from "../components/fulldiv"
+import useImageMap from "../hooks/imagemap"
+import FlHdDiv from "../components/flhddiv"
+import HeadPost from "../components/posts/headpost"
+import SubHeadingPost from "../components/posts/subheadingpost"
 
 type DataProps = {
   allMarkdownRemark: {
@@ -17,9 +23,10 @@ type DataProps = {
         slug: string
       }
       frontmatter: {
-        date: string
+        date: Date
         title: string
         description: string
+        categories: Array<string>
       }
     }>
   }
@@ -28,30 +35,44 @@ type DataProps = {
 const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const { siteTitle } = useSiteMetadata()
 
+  const imageMap = useImageMap(data)
+
   const posts = data.allMarkdownRemark.nodes
 
   return (
     <Layout title="Home">
-      <Container className="mt-16">
-        <Row isVCentered={false}>
-          <div className="w-8/12 mr-8">
-            <Post post={posts[0]} />
+      <FlHdDiv>
+        <Container>
+          <div>
+            <HeadPost post={posts[0]} imageMap={imageMap} />
           </div>
-          <div className="w-4/12">
-            <FlatCard padding="p-4 mb-4">
-              <Row className="justify-between">
-                <div>
-                  <h2>Latest</h2>
-                </div>
-                <div>
-                  <Link to="/posts">See All Posts</Link>
-                </div>
-              </Row>
-            </FlatCard>
-            <Posts posts={posts} />
-          </div>
-        </Row>
-      </Container>
+
+          <Row className="mt-16" isVCentered={false}>
+            <div className="w-1/3 pr-4">
+              <SubHeadingPost post={posts[1]} imageMap={imageMap} />
+            </div>
+            <div className="w-1/3 px-2">
+              <SubHeadingPost post={posts[2]} imageMap={imageMap} />
+            </div>
+            <div className="w-1/3 pl-4">
+              <SubHeadingPost post={posts[3]} imageMap={imageMap} />
+            </div>
+          </Row>
+
+          <ul className="mt-16">
+            {posts.slice(4).map((post: any, index: number) => {
+              return (
+                <li
+                  className="mt-8 border-t border-solid border-gray-200"
+                  key={index}
+                >
+                  <Post post={posts[0]} imageMap={imageMap} />
+                </li>
+              )
+            })}
+          </ul>
+        </Container>
+      </FlHdDiv>
     </Layout>
   )
 }
@@ -63,13 +84,29 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
-        fields {
-          slug
-        }
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          id
+          date
           title
           description
+          categories
+        }
+      }
+    }
+
+    postImages: allFile(
+      filter: { absolutePath: { regex: "/posts/" }, ext: { regex: "/jpg/" } }
+    ) {
+      edges {
+        node {
+          name
+          ext
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 1920) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }

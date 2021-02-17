@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 
 const Header = (props: Props) => {
   return (
-    <header className="w-full py-6 bg-white-99 border-b border-solid border-black-8">
+    <header className="w-full bg-white">
       <Container>
         <Row>
           <Link to="/">

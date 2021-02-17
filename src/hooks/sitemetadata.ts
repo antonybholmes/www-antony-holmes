@@ -22,6 +22,7 @@ const useSiteMetadata = () => {
                 name
                 urls
               }
+              infoLinks
             }
           }
         }

@@ -37,6 +37,11 @@ module.exports = {
         },
         { name: "Resources", urls: [["Disclaimer", "/disclaimer"]] },
       ],
+      infoLinks: [
+        ["Site Map", "/sitemap"],
+        ["Privacy", "/privacy"],
+        ["Terms of Use", "/terms"],
+      ],
     },
   },
   plugins: [
@@ -50,15 +55,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`,
+        name: `images`,
+        path: `${__dirname}/content/images`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/content/assets/images`,
+        name: `content`,
+        path: `${__dirname}/content`,
       },
     },
     {
@@ -85,6 +90,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-json`,
     {
       resolve: "gatsby-background-image",
       options: {
@@ -106,7 +112,7 @@ module.exports = {
         short_name: `polite-investor`,
         start_url: `/`,
         background_color: `#ffffff`,
-        icon: `content/assets/favicon.png`,
+        icon: `content/images/favicon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -123,7 +129,7 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: "/assets/",
+          include: "/content/images/svg",
         },
       },
     },

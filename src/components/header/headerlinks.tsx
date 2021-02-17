@@ -8,19 +8,24 @@ const HeaderLinks = ({ title }) => {
   const { links } = header
 
   return (
-    <Row className="pl-8">
+    <ul className="inline-block pl-8">
       {links.map((link: [string, string], index: number) => {
         return (
-          <div className="pl-8" key={index}>
-            <Link to={link[1]}>
-              <a className={`${title == link[0] ? "text-blue-400" : ""}`}>
-                {link[0]}
-              </a>
+          <li className="inline-block pl-8" key={index}>
+            <Link
+              to={link[1]}
+              className={`inline-block border-b-4 border-solid py-6 trans-ani ${
+                title == link[0]
+                  ? "text-black border-blue-700"
+                  : "text-gray-500 hover:text-black border-transparent"
+              }`}
+            >
+              {link[0]}
             </Link>
-          </div>
+          </li>
         )
       })}
-    </Row>
+    </ul>
   )
 }
 

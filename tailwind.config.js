@@ -16,7 +16,20 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ["Inter"],
+      sans: ["Poppins", "Helvetica", "Arial", "sans-serif"],
+    },
+    fontWeight: {
+      hairline: 100,
+      "extra-light": 100,
+      thin: 200,
+      light: 300,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+      "extra-bold": 800,
+      black: 900,
     },
     extend: {
       width: {
@@ -117,6 +130,7 @@ module.exports = {
         "black-80": "rgba(0, 0, 0, 0.8)",
         "black-90": "rgba(0, 0, 0, 0.9)",
         "black-95": "rgba(0, 0, 0, 0.95)",
+        footer: "rgb(250, 250, 250)",
       },
       boxShadow: {
         "flat-card": "0 0 20px rgba(0, 0, 0, 0.02)",

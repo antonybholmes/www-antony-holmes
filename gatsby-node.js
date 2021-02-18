@@ -2,6 +2,12 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const dayjs = require("dayjs")
 
+// Define a template for blog post
+const postTemplate = path.resolve(`./src/templates/posttemplate.tsx`)
+const postsTemplate = path.resolve(`./src/templates/poststemplate.tsx`)
+
+const RECORDS_PER_PAGE = 10
+
 const usePostId = post => {
   const name = post.frontmatter.title
     .toLowerCase()
@@ -18,9 +24,6 @@ const usePostUrl = post => {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-
-  // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/posttemplate.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -68,7 +71,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       createPage({
         path: usePostUrl(post),
-        component: blogPost,
+        component: postTemplate,
         context: {
           id: post.frontmatter.id,
           authorId: post.frontmatter.author,
@@ -77,22 +80,46 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       })
     })
+
+    const pages = Math.floor(
+      (posts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+    )
+
+    let start = 0
+
+    console.log("pag", pages)
+
+    for (let page = 0; page < pages; ++page) {
+      console.log("aja", `/posts/pages/${page + 1}`)
+      createPage({
+        path: `/posts/pages/${page + 1}`,
+        component: postsTemplate,
+        context: {
+          page: page,
+          start: start,
+          limit: RECORDS_PER_PAGE,
+          pages: pages,
+        },
+      })
+
+      start += RECORDS_PER_PAGE
+    }
   }
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+// exports.onCreateNode = ({ node, actions, getNode }) => {
+//   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const path = createFilePath({ node, getNode })
+//   if (node.internal.type === `MarkdownRemark`) {
+//     const path = createFilePath({ node, getNode })
 
-    createNodeField({
-      name: `slug`,
-      node,
-      value: `/posts${path}`,
-    })
-  }
-}
+//     createNodeField({
+//       name: `slug`,
+//       node,
+//       value: `/posts${path}`,
+//     })
+//   }
+// }
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions

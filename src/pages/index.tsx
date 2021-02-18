@@ -60,15 +60,8 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
           </Row>
 
           <ul className="mt-16">
-            {posts.slice(4).map((post: any, index: number) => {
-              return (
-                <li
-                  className="mt-8 border-t border-solid border-gray-200"
-                  key={index}
-                >
-                  <Post post={posts[0]} imageMap={imageMap} />
-                </li>
-              )
+            {posts.slice(4, 14).map((post: any, index: number) => {
+              return <Post post={posts[0]} imageMap={imageMap} key={index} />
             })}
           </ul>
         </Container>

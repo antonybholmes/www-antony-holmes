@@ -17,10 +17,11 @@ import useCategoryUrl from "../hooks/categoryurl"
 import ColorLink from "../components/links/colorlink"
 
 type PostTemplateProps = {
+  pageContext: any
   data: any
 }
 
-const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
+const PostTemplate: React.FC<PostTemplateProps> = ({ pageContext, data }) => {
   const post = data.markdownRemark
   const { previous, next } = data
   const date = dayjs(post.frontmatter.date)

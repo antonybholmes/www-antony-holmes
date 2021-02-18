@@ -5,18 +5,19 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import useSiteMetadata from "../hooks/sitemetadata"
 import Container from "../components/container"
-import FlatCard from "../components/flatcard"
 import usePostUrl from "../hooks/posturl"
 import FlHdDiv from "../components/flhddiv"
 import MainSideCol from "../components/mainsidecol"
+import Pagination from "../components/pagination"
+import Row from "../components/row"
+import { navigate } from "gatsby"
+import Post from "../components/posts/post"
+import useImageMap from "../hooks/imagemap"
 
 type DataProps = {
   allMarkdownRemark: {
     nodes: Array<{
       excerpt: string
-      fields: {
-        slug: string
-      }
       frontmatter: {
         date: string
         title: string
@@ -26,10 +27,23 @@ type DataProps = {
   }
 }
 
-const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
+const PostsTemplate: React.FC<PageProps<DataProps>> = ({
+  pageContext,
+  data,
+}) => {
+  const handlePageChanged = (data: any) => {
+    console.log(data)
+
+    navigate(`/posts/pages/${data.page}`)
+  }
+
   const { siteTitle } = useSiteMetadata()
 
+  const { page, pages } = pageContext
+
   const posts = data.allMarkdownRemark.nodes
+
+  const imageMap = useImageMap(data)
 
   if (posts.length === 0) {
     return (
@@ -50,40 +64,21 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
         <Container>
           <MainSideCol>
             <>
-              <Bio />
+              <h1>All Posts</h1>
               <ol style={{ listStyle: `none` }}>
                 {posts.map((post: any, index: number) => {
-                  const title = post.frontmatter.title
-
-                  return (
-                    <li key={index} className="mt-8">
-                      <article
-                        className="post-list-item"
-                        itemScope
-                        itemType="http://schema.org/Article"
-                      >
-                        <header>
-                          <h2>
-                            <Link to={usePostUrl(post)} itemProp="url">
-                              <span itemProp="headline">{title}</span>
-                            </Link>
-                          </h2>
-                          <small>{post.frontmatter.date}</small>
-                        </header>
-                        <section>
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                post.frontmatter.description || post.excerpt,
-                            }}
-                            itemProp="description"
-                          />
-                        </section>
-                      </article>
-                    </li>
-                  )
+                  return <Post post={post} imageMap={imageMap} key={index} />
                 })}
               </ol>
+
+              <Row isCentered={true} className="mt-32">
+                <Pagination
+                  page={page + 1}
+                  pages={pages}
+                  recordsPerPage={10}
+                  onPageChanged={handlePageChanged}
+                />
+              </Row>
             </>
             <></>
           </MainSideCol>
@@ -93,18 +88,40 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   )
 }
 
-export default Page
+export default PostsTemplate
 
 export const pageQuery = graphql`
-  query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+  query PostsQuery($start: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      skip: $start
+      limit: $limit
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       nodes {
         excerpt
         frontmatter {
           id
-          date(formatString: "MMMM DD, YYYY")
+          date
           title
           description
+          categories
+        }
+      }
+    }
+
+    postImages: allFile(
+      filter: { absolutePath: { regex: "/posts/" }, ext: { regex: "/jpg/" } }
+    ) {
+      edges {
+        node {
+          name
+          ext
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 1920) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }

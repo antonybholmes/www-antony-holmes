@@ -12,7 +12,7 @@ module.exports = {
     },
     header: {
       links: [
-        ["Posts", "/posts"],
+        ["Posts", "/posts/pages/1"],
         ["Credit Cards", "/credit-cards"],
         ["Calculators", "/calculators"],
         ["Portfolio", "/portfolio"],

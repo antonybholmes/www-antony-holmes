@@ -1,17 +1,12 @@
 import { graphql, PageProps } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
-import Column from "../../components/column"
 import Container from "../../components/container"
-import RetirementGraph from "../../components/dashboard/retirementgraph"
-import FlatCard from "../../components/flatcard"
+import MillionGraph from "../../components/dashboard/milliongraph"
 import FlHdDiv from "../../components/flhddiv"
-import FullDiv from "../../components/fulldiv"
 import Layout from "../../components/layout"
-import MainColumn from "../../components/maincolumn"
 import MainSideCol from "../../components/mainsidecol"
 import RangeSlider from "../../components/rangeslider"
-import SideColumn from "../../components/sidecolumn"
 import TextBox from "../../components/textbox"
 
 type DataProps = {
@@ -23,30 +18,55 @@ const heading = (text: string) => {
 }
 
 const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
-  const [arr, setARR] = useState(8)
-  const [spendingRate, setSpendingRate] = useState(4)
-  const [er, setER] = useState(2)
-  const [startingBalance, setStartingBalance] = useState(10000)
-  const [contributionYears, setContributionYears] = useState(40)
-  const [drawDownYears, setDrawDownYears] = useState(30)
-  const [savings, setSavings] = useState(10000)
+  const [startAge, setStartAge] = useState(30)
+  const [targetAge, setTargetAge] = useState(65)
+  const [startingBalance, setStartingBalance] = useState(100000)
+  const [savings, setSavings] = useState(2000)
+  const [arr, setARR] = useState(7)
+  const [inflation, setInflation] = useState(2.9)
+  const [minAge, setMinAge] = useState(-1)
+
   const [data1, setData1] = useState<Array<number>>([])
+  const [data2, setData2] = useState<Array<number>>([])
 
   const createData = () => {
     const d1: Array<number> = []
-    let b1 = startingBalance / 1000000
+    const d2: Array<number> = []
+    let b1 = startingBalance
+    let b2 = b1
 
-    for (var i = 0; i < contributionYears; ++i) {
+    const years = targetAge - startAge + 1
+
+    const inc = savings * 12
+    let age = startAge
+
+    let mAge = -1
+
+    for (var i = 0; i < years; ++i) {
       d1.push(b1)
-      b1 = b1 * (1 + arr / 100) * (1 - er / 2000) + savings / 1000000
+
+      if (b1 >= 1000000 && mAge === -1) {
+        mAge = age
+      }
+
+      b1 = b1 * (1 + arr / 100) + inc
+      d2.push(b2)
+      b2 = b2 * (1 + (arr - inflation) / 100) + inc
+
+      ++age
     }
 
-    for (var i = 0; i < drawDownYears; ++i) {
-      d1.push(b1)
-      b1 = b1 * (1 - spendingRate / 100) * (1 + arr / 100) * (1 - er / 2000)
-    }
-
-    setData1(d1)
+    setData1(
+      d1.map(x => {
+        return x / 1000000
+      })
+    )
+    setData2(
+      d2.map(x => {
+        return x / 1000000
+      })
+    )
+    setMinAge(mAge)
   }
 
   // useEffect(() => {
@@ -56,29 +76,21 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   useEffect(() => {
     createData()
-  }, [
-    arr,
-    er,
-    startingBalance,
-    savings,
-    contributionYears,
-    drawDownYears,
-    spendingRate,
-  ])
+  }, [startAge, targetAge, startingBalance, savings, arr, inflation])
 
   const handleARRChange = (text: string) => {
-    let v = parseInt(text)
+    let v = parseFloat(text)
 
     if (!isNaN(v)) {
       setARR(v)
     }
   }
 
-  const handleERChange = (text: string) => {
+  const handleInflationChange = (text: string) => {
     let v = parseFloat(text)
 
     if (!isNaN(v)) {
-      setER((v / 100) * 2000)
+      setInflation(v)
     }
   }
 
@@ -98,32 +110,24 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
     }
   }
 
-  const handleContributionYearsChange = (text: string) => {
+  const handleAgeChange = (text: string) => {
     let v = parseInt(text)
 
     if (!isNaN(v)) {
-      setContributionYears(v)
+      setStartAge(v)
     }
   }
 
-  const handleDrawDownYearsChange = (text: string) => {
+  const handleTargetAgeChange = (text: string) => {
     let v = parseInt(text)
 
     if (!isNaN(v)) {
-      setDrawDownYears(v)
-    }
-  }
-
-  const handleSpendingRate = (text: string) => {
-    let v = parseFloat(text)
-
-    if (!isNaN(v)) {
-      setSpendingRate(v)
+      setTargetAge(v)
     }
   }
 
   return (
-    <Layout title="Retirement Calculator">
+    <Layout title="Save A Million Calculator">
       {/* <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -134,48 +138,53 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
         <Container>
           <MainSideCol>
             <div>
-              <h2>Retirement Calculator</h2>
+              <h2>Save A Million Dollars Calculator</h2>
               <div className="mb-8">
-                Our simple calculator yets you easily plot if you are on target
-                for retirement and shows you on an interactive graph how long
-                your money is likely to last. We built this because similar
-                calculators on other sites are often cumbersome and ask for too
-                much information. This calculator does not store any information
-                about you.
+                Figure out how long it will take you to save a million dollars
+                with this simple calculator.
+                {minAge != -1 && (
+                  <h3 className="text-center mt-8">
+                    You could be a millionaire by age {minAge}!
+                  </h3>
+                )}
               </div>
-              <RetirementGraph data1={data1} />
+              <MillionGraph age={startAge} data1={data1} data2={data2} />
             </div>
 
             <div className="ml-8">
               <div>
-                {heading("Annual Rate Of Return")}
+                {heading("Age")}
                 <TextBox
-                  value={arr}
-                  prefix="%"
+                  value={startAge}
+                  prefix="years"
                   prefixLeft={false}
                   alignLeft={false}
-                  onChange={handleARRChange}
+                  onChange={handleAgeChange}
                 />
                 <RangeSlider
-                  value={arr}
-                  onChange={(v: number) => setARR(v)}
+                  min={1}
+                  max={100}
+                  step={1}
+                  value={startAge}
+                  onChange={(v: number) => setStartAge(v)}
                   className="mt-4"
                 />
               </div>
               <div className="mt-8">
-                {heading("Expense Ratio")}
+                {heading("Target Age")}
                 <TextBox
-                  value={((er / 2000) * 100).toFixed(2)}
-                  onChange={handleERChange}
-                  prefix="%"
+                  value={targetAge}
+                  prefix="years"
                   prefixLeft={false}
                   alignLeft={false}
+                  onChange={handleAgeChange}
                 />
                 <RangeSlider
-                  min={0}
-                  max={2000}
-                  value={er}
-                  onChange={(v: number) => setER(v)}
+                  min={1}
+                  max={100}
+                  step={1}
+                  value={startAge}
+                  onChange={(v: number) => setTargetAge(v)}
                   className="mt-4"
                 />
               </div>
@@ -196,7 +205,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
               </div>
               <div className="mt-8">
-                {heading("Savings Per Year")}
+                {heading("Savings Per Month")}
                 <TextBox
                   value={savings}
                   prefix="$"
@@ -212,53 +221,32 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
               </div>
               <div className="mt-8">
-                {heading("Contribution Years")}
+                {heading("Annual Rate Of Return")}
                 <TextBox
-                  value={contributionYears}
-                  prefix="years"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleContributionYearsChange}
-                />
-                <RangeSlider
-                  value={contributionYears}
-                  min={1}
-                  max={100}
-                  onChange={(v: number) => setContributionYears(v)}
-                  className="mt-4"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Draw Down Years")}
-                <TextBox
-                  value={drawDownYears}
-                  prefix="years"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleDrawDownYearsChange}
-                />
-                <RangeSlider
-                  value={drawDownYears}
-                  min={1}
-                  max={100}
-                  onChange={(v: number) => setDrawDownYears(v)}
-                  className="mt-4"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Spending Rate")}
-                <TextBox
-                  value={spendingRate}
-                  onChange={handleSpendingRate}
+                  value={arr}
                   prefix="%"
                   prefixLeft={false}
                   alignLeft={false}
+                  onChange={handleARRChange}
                 />
                 <RangeSlider
-                  min={0}
-                  max={100}
-                  value={spendingRate}
-                  onChange={(v: number) => setSpendingRate(v)}
+                  value={arr}
+                  onChange={(v: number) => setARR(v)}
+                  className="mt-4"
+                />
+              </div>
+              <div className="mt-8">
+                {heading("Inflation")}
+                <TextBox
+                  value={inflation}
+                  prefix="%"
+                  prefixLeft={false}
+                  alignLeft={false}
+                  onChange={handleInflationChange}
+                />
+                <RangeSlider
+                  value={arr}
+                  onChange={(v: number) => setInflation(v)}
                   className="mt-4"
                 />
               </div>

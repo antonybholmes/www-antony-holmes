@@ -46,16 +46,17 @@ const Terms = () => {
               <p></p>The content, courses and materials The {siteTitle} provides
               is published generally and DOES NOT constitute financial, legal,
               or tax advice. The content and materials are not personal to you
-              and does not take into account your personal circumstances. The {siteTitle}
+              and does not take into account your personal circumstances. The{" "}
+              {siteTitle}
               does not assess the suitability or appropriateness of any
               investment in light of your personal circumstances, including your
               knowledge and understanding, financial strength, tax liability or
               appetite for risk.
               <p>
-                The {siteTitle} does not act as an investment advisor or advocate the
-                purchase or sale of any security or investment. If you need
-                guidance on interpreting the materials and content on the
-                Website given your personal circumstances, you should seek
+                The {siteTitle} does not act as an investment advisor or
+                advocate the purchase or sale of any security or investment. If
+                you need guidance on interpreting the materials and content on
+                the Website given your personal circumstances, you should seek
                 independent advice from appropriate qualified professionals.{" "}
               </p>
               <p>
@@ -74,13 +75,13 @@ const Terms = () => {
                 constitute recommendations, solicitations, or offers to buy or
                 sell any securities, options, other financial instruments or
                 other assets, or provide any investment advice or service. The
-                content and materials The {siteTitle} provides is for general information
-                only and is not intended to be relied upon by users in making
-                (or not making) certain investment decisions. The {siteTitle} tries to
-                ensure that the content and materials are up to date and
-                accurate, but the {siteTitle} does not guarantee the accuracy of the
-                information. Users are encouraged to perform their own research,
-                investigation and due diligence.
+                content and materials The {siteTitle} provides is for general
+                information only and is not intended to be relied upon by users
+                in making (or not making) certain investment decisions. The{" "}
+                {siteTitle} tries to ensure that the content and materials are
+                up to date and accurate, but the {siteTitle} does not guarantee
+                the accuracy of the information. Users are encouraged to perform
+                their own research, investigation and due diligence.
               </p>
               <h2 className="mt-8 uppercase">Content</h2>
               <p>

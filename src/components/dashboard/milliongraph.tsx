@@ -1,35 +1,53 @@
 import React from "react"
-import { defaults, Line } from "react-chartjs-2"
+import { Bar, defaults } from "react-chartjs-2"
 
 
 type GraphProps = {
+  age: number
   data1: Array<number>
+  data2: Array<number>
 }
 
-const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
+const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
   const labels = []
 
   for (var i = 0; i < data1.length; ++i) {
-    labels.push(i)
+    labels.push(age + i)
   }
 
   return (
-    <Line
+    <Bar
       data={{
         labels: labels,
         //Bring in data
         datasets: [
           {
-            label: "Retirement",
+            label: "Balance",
             data: data1,
-            backgroundColor: "rgba(0,0,255,0.1)",
+            backgroundColor: "rgba(0,0,255,0.5)",
             borderColor: "rgba(0,0,255,0.5)",
+          },
+          {
+            label: "Balance After Inflation",
+            data: data2,
+            backgroundColor: "rgba(255,0,0,0.5)",
+            borderColor: "rgba(255,0,0,0.5)",
           },
         ],
       }}
       options={{
+        tooltips: {
+          enabled: true,
+          callbacks: {
+            label: (tooltipItem:any, data) => {
+              return (
+                "$" + Math.round(tooltipItem.yLabel * 1000000).toLocaleString()
+              )
+            },
+          },
+        },
         legend: {
-          display: false,
+          display: true,
         },
         title: {
           display: false,
@@ -65,8 +83,9 @@ const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
   )
 }
 
-RetirementGraph.defaultProps = {
+MillionGraph.defaultProps = {
   data1: [],
+  data2: [],
 }
 
-export default RetirementGraph
+export default MillionGraph

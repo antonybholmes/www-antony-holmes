@@ -36,7 +36,7 @@ const TextBox: React.FC<TextBoxProps> = ({
 
   return (
     <Row className="w-full bg-white rounded-md border border-solid border-gray-400 p-2">
-      {prefix !== "" && prefixLeft && <div className="pr-2">{prefix}</div>}
+      {prefix !== "" && prefixLeft && <div className="mr-1">{prefix}</div>}
       <div className={`w-full`}>
         <input
           type="text"
@@ -45,7 +45,7 @@ const TextBox: React.FC<TextBoxProps> = ({
           ref={textRef}
         />
       </div>
-      {prefix !== "" && !prefixLeft && <div className="ml-2">{prefix}</div>}
+      {prefix !== "" && !prefixLeft && <div className="ml-1">{prefix}</div>}
     </Row>
   )
 }

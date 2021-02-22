@@ -42,6 +42,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
             "Retirement Calculator",
             "/calculators/retirement-calculator"
           )}
+          {calcLink(
+            "Save A Million Calculator",
+            "/calculators/save-million-calculator"
+          )}
         </Row>
       </Container>
     </Layout>

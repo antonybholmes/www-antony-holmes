@@ -3,15 +3,15 @@ import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
 import Column from "../../components/column"
 import Container from "../../components/container"
-import LineGraph from "../../components/dashboard/linegraph"
+import FeeGraph from "../../components/dashboard/feegraph"
 import FlatCard from "../../components/flatcard"
+import FlHdDiv from "../../components/flhddiv"
 import FullDiv from "../../components/fulldiv"
 import Layout from "../../components/layout"
 import MainColumn from "../../components/maincolumn"
+import MainSideCol from "../../components/mainsidecol"
 import RangeSlider from "../../components/rangeslider"
 import SideColumn from "../../components/sidecolumn"
-import Img from "gatsby-image"
-import Row from "../../components/row"
 import TextBox from "../../components/textbox"
 
 type DataProps = {
@@ -24,11 +24,11 @@ const heading = (text: string) => {
 
 const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [arr, setARR] = useState(8)
-  const [er, setER] = useState(20)
+  const [er, setER] = useState(1)
   const [frontLoad, setFrontLoad] = useState(5)
   const [startingBalance, setStartingBalance] = useState(10000)
   const [years, setYears] = useState(40)
-  const [savings, setSavings] = useState(10000)
+  const [savings, setSavings] = useState(1000)
   const [data1, setData1] = useState<Array<number>>([])
   const [data2, setData2] = useState<Array<number>>([])
 
@@ -38,15 +38,27 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
     let b1 = startingBalance
     let b2 = startingBalance * (1 - frontLoad / 100)
 
+    const inc = savings * 12
+
+    console.log(arr, er)
+
     for (var i = 0; i < years; ++i) {
       d1.push(b1)
       d2.push(b2)
-      b1 = b1 * (1 + arr / 100) + savings
-      b2 = b2 * (1 + arr / 100) * (1 - er / 2000) + savings
+      b1 = b1 * (1 + arr / 100) + inc
+      b2 = b2 * (1 + (arr - er) / 100) + inc
     }
 
-    setData1(d1)
-    setData2(d2)
+    setData1(
+      d1.map(x => {
+        return x / 1000
+      })
+    )
+    setData2(
+      d2.map(x => {
+        return x / 1000
+      })
+    )
   }
 
   // useEffect(() => {
@@ -70,7 +82,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
     let v = parseFloat(text)
 
     if (!isNaN(v)) {
-      setER((v / 100) * 2000)
+      setER(v)
     }
   }
 
@@ -108,23 +120,36 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout title="Fee Calculator">
-      <BackgroundImage
+      {/* <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
         className="w-full h-60"
-      />
+      /> */}
 
-      <Container className="mt-8">
-        <h2>Retirement Fee Calculator</h2>
-        <div className="text-lg">
-          Want to understand how fees affect your retirement savings? Play
-          around with our interactive tool to see just how much can you lose
-          over your investment lifetime, even when the fees seem small.
-        </div>
+      <FlHdDiv>
+        <Container>
+          <MainSideCol>
+            <div>
+              <h2>Retirement Fee Calculator</h2>
+              <div className="text-lg">
+                Want to understand how fees affect your retirement savings? Play
+                around with our interactive tool to see just how much can you
+                lose over your investment lifetime, even when the fees seem
+                small.
+              </div>
 
-        <Column className="mt-8">
-          <SideColumn className="mr-8" w="w-3/20">
-            <FullDiv>
+              <h4 className="my-8 text-center">
+                Fees could cost you $
+                {Math.round(
+                  (data1[data1.length - 1] - data2[data2.length - 1]) * 1000
+                ).toLocaleString()}{" "}
+                over a {years} year period!
+              </h4>
+
+              <FeeGraph data1={data1} data2={data2} />
+            </div>
+
+            <div className="ml-8">
               <div>
                 {heading("Annual Rate Of Return")}
                 <TextBox
@@ -143,7 +168,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
               <div className="mt-8">
                 {heading("Expense Ratio")}
                 <TextBox
-                  value={((er / 2000) * 100).toFixed(2)}
+                  value={er}
                   onChange={handleERChange}
                   prefix="%"
                   prefixLeft={false}
@@ -151,7 +176,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
                 <RangeSlider
                   min={0}
-                  max={2000}
+                  max={100}
                   value={er}
                   onChange={(v: number) => setER(v)}
                   className="mt-4"
@@ -189,7 +214,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                 />
               </div>
               <div className="mt-8">
-                {heading("Savings Per Year")}
+                {heading("Savings Per Month")}
                 <TextBox
                   value={savings}
                   prefix="$"
@@ -221,26 +246,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   className="mt-4"
                 />
               </div>
-            </FullDiv>
-          </SideColumn>
-          <MainColumn w="w-17/20">
-            <FullDiv>
-              <FlatCard className="w-full">
-                <LineGraph data1={data1} data2={data2} />
-              </FlatCard>
-              <div className="mt-8 text-center">
-                <h4>
-                  Fees could cost you $
-                  {Math.round(
-                    data1[data1.length - 1] - data2[data2.length - 1]
-                  ).toLocaleString()}{" "}
-                  over a ${years} year period.
-                </h4>
-              </div>
-            </FullDiv>
-          </MainColumn>
-        </Column>
-      </Container>
+            </div>
+          </MainSideCol>
+        </Container>
+      </FlHdDiv>
     </Layout>
   )
 }

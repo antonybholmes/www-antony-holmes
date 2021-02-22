@@ -1,40 +1,29 @@
-import React, { useEffect, useRef } from "react"
-import Chart from "chart.js"
+import React from "react"
+import { defaults, Line } from "react-chartjs-2"
+
 
 type GraphProps = {
-  data1?: Array<number>
-  data2?: Array<number>
+  data1: Array<number>
+  data2: Array<number>
 }
 
-const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
-  const chartRef = useRef(null)
+const FeeGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
+ 
 
-  const createGraph = () => {
-    if (
-      !chartRef ||
-      !chartRef.current ||
-      data1.length === 0 ||
-      data2.length === 0
-    ) {
-      return
-    }
+  const labels = []
 
-    const myChartRef = chartRef.current.getContext("2d")
+  for (var i = 0; i < data1.length; ++i) {
+    labels.push(i + 1)
+  }
 
-    const labels = []
-
-    for (var i = 0; i < data1.length; ++i) {
-      labels.push(i + 1)
-    }
-
-    new Chart(myChartRef, {
-      type: "line",
-      data: {
+  return (
+    <Line
+      data={{
         labels: labels,
         //Bring in data
         datasets: [
           {
-            label: "Wihout Fees",
+            label: "Without Fees",
             data: data1,
             backgroundColor: "rgba(0,0,255,0.1)",
             borderColor: "rgba(0,0,255,0.5)",
@@ -46,8 +35,8 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
             borderColor: "rgba(255,0,0,0.5)",
           },
         ],
-      },
-      options: {
+      }}
+      options={{
         legend: {
           display: true,
         },
@@ -60,6 +49,7 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
               scaleLabel: {
                 display: true,
                 labelString: "Years",
+                fontStyle: "bold",
               },
               gridLines: {
                 display: false,
@@ -70,7 +60,8 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Dollars",
+                labelString: "Dollars (thousands)",
+                fontStyle: "bold",
               },
               gridLines: {
                 display: true,
@@ -78,28 +69,14 @@ const LineGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
             },
           ],
         },
-      },
-    })
-  }
-
-  useEffect(() => {
-    createGraph()
-  }, [])
-
-  useEffect(() => {
-    createGraph()
-  }, [data1, data2, chartRef])
-
-  return (
-    <div>
-      <canvas id="myChart" ref={chartRef} />
-    </div>
+      }}
+    />
   )
 }
 
-LineGraph.defaultProps = {
+FeeGraph.defaultProps = {
   data1: [],
   data2: [],
 }
 
-export default LineGraph
+export default FeeGraph

@@ -1,7 +1,4 @@
 import React from "react"
-import Container from "../components/container"
-import FlatCard from "../components/flatcard"
-import Layout from "../components/layout"
 import Row from "../components/row"
 import useCurrentBuild from "../hooks/currentbuild"
 import useSiteMetadata from "../hooks/sitemetadata"
@@ -15,18 +12,20 @@ import htmlsvg from "../../content/images/svg/html5.svg"
 import jssvg from "../../content/images/svg/javascript-shield.svg"
 import reactsvg from "../../content/images/svg/react.svg"
 import ExtLink from "../components/extlink"
+import MainSideCol from "../components/mainsidecol"
+import PageLayout from "../components/pagelayout"
 
 const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"
 
-const Page = () => {
+const HelpPage = () => {
   const { copyright } = useSiteMetadata()
   const currentDate = useCurrentBuild()
   const version = useVersion()
 
   return (
-    <Layout title="Help">
-      <Container>
-        <FlatCard autoHide={false}>
+    <PageLayout title="Help">
+      <MainSideCol>
+        <>
           <h4 className="font-semibold">About the {copyright} Web Site</h4>
           {/* <OutlineCard className="mt-8" autoHide={false}> */}
           <table className="w-full">
@@ -42,59 +41,69 @@ const Page = () => {
             </tbody>
           </table>
           {/* </OutlineCard> */}
-        </FlatCard>
-        {/* <OutlineCard className="mt-8" autoHide={false}> */}
-        <div className="my-8">
-          This web site was developed using the following technologies:
-        </div>
 
-        <Row className="xl:justify-center">
-          <div>
-            <ul className="xl:inline">
-              <li className="xl:inline">
-                <ExtLink to="https://www.npmjs.com/">
-                  <img src={npmsvg} className={LOGO_CLASS} alt="NPM logo" />
-                </ExtLink>
-              </li>
-              <li className="lg:inline">
-                <ExtLink to="https://reactjs.org/">
-                  <img src={reactsvg} className={LOGO_CLASS} alt="React logo" />
-                </ExtLink>
-              </li>
-              <li className="lg:inline">
-                <ExtLink to="https://www.gatsbyjs.org">
-                  <img
-                    src={gatsbysvg}
-                    className={LOGO_CLASS}
-                    alt="Gatsby logo"
-                  />
-                </ExtLink>
-              </li>
-              <li className="lg:inline">
-                <ExtLink to="https://www.w3.org/html/">
-                  <img src={htmlsvg} className={LOGO_CLASS} alt="HTML5 logo" />
-                </ExtLink>
-              </li>
-              <li className="lg:inline">
-                <ExtLink to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
-                  <img src={jssvg} className={LOGO_CLASS} alt="JS logo" />
-                </ExtLink>
-              </li>
-              <li className="lg:inline">
-                <ExtLink to="https://github.com/">
-                  <img
-                    src={githubsvg}
-                    className={LOGO_CLASS}
-                    alt="GitHub logo"
-                  />
-                </ExtLink>
-              </li>
-            </ul>
+          {/* <OutlineCard className="mt-8" autoHide={false}> */}
+          <div className="my-8">
+            This web site was developed using the following technologies:
           </div>
-        </Row>
-      </Container>
-    </Layout>
+
+          <Row className="xl:justify-center">
+            <div>
+              <ul className="xl:inline">
+                <li className="xl:inline">
+                  <ExtLink to="https://www.npmjs.com/">
+                    <img src={npmsvg} className={LOGO_CLASS} alt="NPM logo" />
+                  </ExtLink>
+                </li>
+                <li className="lg:inline">
+                  <ExtLink to="https://reactjs.org/">
+                    <img
+                      src={reactsvg}
+                      className={LOGO_CLASS}
+                      alt="React logo"
+                    />
+                  </ExtLink>
+                </li>
+                <li className="lg:inline">
+                  <ExtLink to="https://www.gatsbyjs.org">
+                    <img
+                      src={gatsbysvg}
+                      className={LOGO_CLASS}
+                      alt="Gatsby logo"
+                    />
+                  </ExtLink>
+                </li>
+                <li className="lg:inline">
+                  <ExtLink to="https://www.w3.org/html/">
+                    <img
+                      src={htmlsvg}
+                      className={LOGO_CLASS}
+                      alt="HTML5 logo"
+                    />
+                  </ExtLink>
+                </li>
+                <li className="lg:inline">
+                  <ExtLink to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+                    <img src={jssvg} className={LOGO_CLASS} alt="JS logo" />
+                  </ExtLink>
+                </li>
+                <li className="lg:inline">
+                  <ExtLink to="https://github.com/">
+                    <img
+                      src={githubsvg}
+                      className={LOGO_CLASS}
+                      alt="GitHub logo"
+                    />
+                  </ExtLink>
+                </li>
+              </ul>
+            </div>
+          </Row>
+        </>
+        <></>
+      </MainSideCol>
+    </PageLayout>
   )
 }
 
-export default Page
+export default HelpPage

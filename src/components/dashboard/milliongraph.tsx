@@ -1,7 +1,6 @@
 import React from "react"
 import { Bar, defaults } from "react-chartjs-2"
 
-
 type GraphProps = {
   age: number
   data1: Array<number>
@@ -39,7 +38,7 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
         tooltips: {
           enabled: true,
           callbacks: {
-            label: (tooltipItem:any, data) => {
+            label: (tooltipItem: any, data) => {
               return (
                 "$" + Math.round(tooltipItem.yLabel * 1000000).toLocaleString()
               )

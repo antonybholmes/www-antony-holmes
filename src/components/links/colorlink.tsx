@@ -65,6 +65,9 @@ const ColorLink: React.FC<LinkProps> = ({
       case "blue":
         cls = `${cls} hover:text-blue-500`
         break
+      case "dark-blue":
+        cls = `${cls} hover:text-blue-700`
+        break
       case "white":
         cls = `${cls} hover:text-white-98`
         break

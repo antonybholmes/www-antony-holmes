@@ -1,5 +1,5 @@
 const useCategoryUrl = (category: string) => {
-  return `/posts/categories/${category.toLowerCase()}`
+  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
 }
 
 export default useCategoryUrl

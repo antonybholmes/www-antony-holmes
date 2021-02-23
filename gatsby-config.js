@@ -12,7 +12,7 @@ module.exports = {
     },
     header: {
       links: [
-        ["Posts", "/posts/pages/1"],
+        ["Articles", "/articles"],
         ["Credit Cards", "/credit-cards"],
         ["Calculators", "/calculators"],
         ["Portfolio", "/portfolio"],
@@ -69,6 +69,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
+        excerpt_separator: `<!-- end -->`,
         plugins: [
           {
             resolve: `gatsby-remark-images`,

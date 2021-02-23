@@ -4,7 +4,8 @@ const dayjs = require("dayjs")
 
 // Define a template for blog post
 const postTemplate = path.resolve(`./src/templates/posttemplate.tsx`)
-const postsTemplate = path.resolve(`./src/templates/poststemplate.tsx`)
+const authorTemplate = path.resolve(`./src/templates/authortemplate.tsx`)
+const categoryTemplate = path.resolve(`./src/templates/categorytemplate.tsx`)
 
 const RECORDS_PER_PAGE = 10
 
@@ -19,7 +20,15 @@ const usePostId = post => {
 }
 
 const usePostUrl = post => {
-  return `/posts/${post.frontmatter.id}`
+  return `/articles/${post.frontmatter.id}`
+}
+
+const useAuthorUrl = author => {
+  return `/authors/${author.frontmatter.id}`
+}
+
+const useCategoryUrl = category => {
+  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -29,9 +38,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
+        posts: allMarkdownRemark(
+          filter: { fileAbsolutePath: { regex: "/posts/" } }
           sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
         ) {
           nodes {
             frontmatter {
@@ -41,6 +50,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               date
               description
               categories
+            }
+          }
+        }
+
+        authors: allMarkdownRemark(
+          filter: { fileAbsolutePath: { regex: "/authors/" } }
+          sort: {
+            fields: [frontmatter___lastName, frontmatter___firstName]
+            order: [ASC, ASC]
+          }
+        ) {
+          nodes {
+            excerpt
+            frontmatter {
+              id
+              firstName
+              lastName
+              title
+              email
             }
           }
         }
@@ -56,55 +84,75 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.posts.nodes
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId =
-        index === 0 ? null : posts[index - 1].frontmatter.id
-      const nextPostId =
-        index === posts.length - 1 ? null : posts[index + 1].frontmatter.id
+  const categories = new Set()
 
-      createPage({
-        path: usePostUrl(post),
-        component: postTemplate,
-        context: {
-          id: post.frontmatter.id,
-          authorId: post.frontmatter.author,
-          previousPostId,
-          nextPostId,
-        },
-      })
+  posts.forEach((post, index) => {
+    const previousPostId = index === 0 ? null : posts[index - 1].frontmatter.id
+    const nextPostId =
+      index === posts.length - 1 ? null : posts[index + 1].frontmatter.id
+
+    createPage({
+      path: usePostUrl(post),
+      component: postTemplate,
+      context: {
+        id: post.frontmatter.id,
+        authorId: post.frontmatter.author,
+        previousPostId,
+        nextPostId,
+      },
     })
 
-    const pages = Math.floor(
-      (posts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
-    )
+    post.frontmatter.categories.forEach(item => categories.add(item))
+  })
 
-    let start = 0
+  categories.forEach((category, index) => {
+    createPage({
+      path: useCategoryUrl(category),
+      component: categoryTemplate,
+      context: {
+        category: category,
+      },
+    })
+  })
 
-    console.log("pag", pages)
+  const authors = result.data.authors.nodes
 
-    for (let page = 0; page < pages; ++page) {
-      console.log("aja", `/posts/pages/${page + 1}`)
-      createPage({
-        path: `/posts/pages/${page + 1}`,
-        component: postsTemplate,
-        context: {
-          page: page,
-          start: start,
-          limit: RECORDS_PER_PAGE,
-          pages: pages,
-        },
-      })
+  authors.forEach((author, index) => {
+    createPage({
+      path: useAuthorUrl(author),
+      component: authorTemplate,
+      context: {
+        id: author.frontmatter.id,
+      },
+    })
+  })
 
-      start += RECORDS_PER_PAGE
-    }
-  }
+  // const pages = Math.floor(
+  //   (posts.length + RECORDS_PER_PAGE - 1) / RECORDS_PER_PAGE
+  // )
+
+  // let start = 0
+
+  // for (let page = 0; page < pages; ++page) {
+  //   createPage({
+  //     path: `/article/page/${page + 1}`,
+  //     component: postsTemplate,
+  //     context: {
+  //       page: page,
+  //       start: start,
+  //       limit: RECORDS_PER_PAGE,
+  //       pages: pages,
+  //     },
+  //   })
+
+  //   start += RECORDS_PER_PAGE
+  // }
 }
 
 // exports.onCreateNode = ({ node, actions, getNode }) => {

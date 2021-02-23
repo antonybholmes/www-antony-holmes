@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Row from "../components/row"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import BackgroundImage from "gatsby-background-image"
+import PageLayout from "../components/pagelayout"
 
 const calcLink = (name: string, to: string) => {
   return (
@@ -27,9 +28,9 @@ type DataProps = {
   hero: any
 }
 
-const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
+const CalculatorsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   return (
-    <Layout title="Calculators">
+    <PageLayout title="Calculators">
       <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -48,11 +49,11 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
           )}
         </Row>
       </Container>
-    </Layout>
+    </PageLayout>
   )
 }
 
-export default Page
+export default CalculatorsPage
 
 export const query = graphql`
   query {

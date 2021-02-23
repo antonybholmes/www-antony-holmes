@@ -1,15 +1,12 @@
 import React from "react"
 import { defaults, Line } from "react-chartjs-2"
 
-
 type GraphProps = {
   data1: Array<number>
   data2: Array<number>
 }
 
 const FeeGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
- 
-
   const labels = []
 
   for (var i = 0; i < data1.length; ++i) {

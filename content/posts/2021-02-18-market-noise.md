@@ -4,7 +4,7 @@ title: "Market Noise or: How I Learned to Stop Worrying and Do Nothing"
 author: "antony-holmes"
 date: "2021-02-18"
 description: "This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter."
-categories: ["Investing", "Porfolio Design"]
+categories: ["Investing", "Portfolio Design"]
 related: []
 ---
 

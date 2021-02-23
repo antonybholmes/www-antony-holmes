@@ -1,7 +1,6 @@
 import React from "react"
 import { defaults, Line } from "react-chartjs-2"
 
-
 type GraphProps = {
   data1: Array<number>
 }

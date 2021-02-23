@@ -4,7 +4,7 @@ title: "Forget the 1%, it's all about the 4%"
 author: "antony-holmes"
 date: "2021-02-20"
 description: ""
-categories: ["Retirement", "Investing", "Porfolio Design"]
+categories: ["Retirement", "Investing", "Portfolio Design"]
 related: []
 ---
 

@@ -1,191 +1,183 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Container from "../components/container"
-import FlHdDiv from "../components/flhddiv"
+import { graphql } from "gatsby"
 import MainSideCol from "../components/mainsidecol"
 import dayjs from "dayjs"
-import usePostUrl from "../hooks/posturl"
 import Img from "gatsby-image"
 import Row from "../components/row"
-import AltView from "../components/altview"
-import BlueLink from "../components/links/bluelink"
-import BlueIndexLink from "../components/links/blueindexlink"
-import useCategoryUrl from "../hooks/categoryurl"
 import ColorLink from "../components/links/colorlink"
+import useTagUrl from "../hooks/tagurl"
+import useAuthorUrl from "../hooks/authorurl"
+import CategoryList from "../components/posts/categorylist"
+import PageLayout from "../components/pagelayout"
 
 type PostTemplateProps = {
-  pageContext: any
   data: any
 }
 
-const PostTemplate: React.FC<PostTemplateProps> = ({ pageContext, data }) => {
-  const post = data.markdownRemark
+const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
+  const post = data.post
   const { previous, next } = data
   const date = dayjs(post.frontmatter.date)
+  const author = data.author
+  const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
 
   return (
-    <Layout title={post.frontmatter.title}>
-      <FlHdDiv>
-        <Container>
-          <MainSideCol>
-            <>
-              <article
-                className="blog-post"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header className="mb-16">
-                  <div className="text-gray-600 uppercase tracking-widest">
-                    <ColorLink
-                      color="gray"
-                      color2="blue"
-                      underline={false}
-                      to={useCategoryUrl(post.frontmatter.categories[0])}
-                    >
-                      {post.frontmatter.categories[0]}
-                    </ColorLink>
-                  </div>
+    <PageLayout title={post.frontmatter.title}>
+      <MainSideCol>
+        <>
+          <article
+            className="blog-post"
+            itemScope
+            itemType="http://schema.org/Article"
+          >
+            <header className="mb-8">
+              <div className="text-gray-600 uppercase tracking-widest">
+                <ColorLink
+                  color="blue"
+                  color2="dark-blue"
+                  underline={false}
+                  to={useTagUrl(post.frontmatter.categories[0])}
+                >
+                  {post.frontmatter.categories[0]}
+                </ColorLink>
+              </div>
 
-                  <h1 className="mt-4">{post.frontmatter.title}</h1>
+              <h1 className="mt-4">{post.frontmatter.title}</h1>
 
-                  <Img
-                    fluid={data.postImage.childImageSharp.fluid}
-                    className="mt-8"
-                  />
-                </header>
+              <Img
+                fluid={data.postImage.childImageSharp.fluid}
+                className="mt-8"
+              />
+            </header>
 
-                <AltView size="lg">
-                  <>
-                    <header>
-                      <p className="text-sm font-medium mt-4">
-                        {data.author.name}
-                      </p>
-                      <p className="text-sm mt-2">{data.author.title}</p>
-                      <p className="mt-8 text-sm text-gray-500">
-                        Published {date.format("MMM DD, YYYY")}
-                      </p>
-                    </header>
-                    <section
-                      dangerouslySetInnerHTML={{ __html: post.html }}
-                      className="mt-8"
-                    />
-                  </>
+            <Row className="mb-16">
+              <div>
+                <Img
+                  fluid={data.authorImage.childImageSharp.fluid}
+                  className="w-32 rounded-full"
+                />
+              </div>
+              <div className="ml-8">
+                <p className="text-sm font-medium mt-4">
+                  By{" "}
+                  <ColorLink
+                    color="black"
+                    color2="blue"
+                    to={useAuthorUrl(author)}
+                  >
+                    {name}
+                  </ColorLink>
+                </p>
+                {/* <p className="text-sm mt-1">{data.author.title}</p> */}
+                <p className="mt-1 text-sm text-gray-500">
+                  Published {date.format("MMM DD, YYYY")}
+                </p>
 
-                  <Row isVCentered={false}>
-                    <div className="w-2/10">
-                      <Img
-                        fluid={data.authorImage.childImageSharp.fluid}
-                        className="w-1/2"
-                      />
-                      <p className="text-sm font-medium mt-4">
-                        {data.author.name}
-                      </p>
-                      <p className="text-sm mt-2">{data.author.title}</p>
-                      <p className="mt-8 text-sm text-gray-500">
-                        Published {date.format("MMM DD, YYYY")}
-                      </p>
-                    </div>
+                <CategoryList post={post} />
+              </div>
+            </Row>
 
-                    <div className="w-8/10">
-                      <section
-                        dangerouslySetInnerHTML={{ __html: post.html }}
-                        itemProp="articleBody"
-                      />
+            <section
+              dangerouslySetInnerHTML={{ __html: post.html }}
+              itemProp="articleBody"
+            />
 
-                      <Row className="mt-8 font-medium">
-                        <div className="uppercase mr-2">Posted In:</div>
+            {/* <Row className="mt-8 font-medium">
+                  <div className="uppercase mr-2">Posted In:</div>
 
-                        <ul className="inline-block">
-                          {post.frontmatter.categories.map(
-                            (category: string, index: number) => {
-                              return (
-                                <li
-                                  key={index}
-                                  className="inline-block uppercase"
-                                >
-                                  {index > 0 && ", "}
-                                  <BlueLink
-                                    to={`/posts/catergories/${category.toLocaleUpperCase()}`}
-                                  >
-                                    {category}
-                                  </BlueLink>
-                                </li>
-                              )
-                            }
-                          )}
-                        </ul>
-                      </Row>
+                  <ul className="inline-block">
+                    {post.frontmatter.categories.map(
+                      (category: string, index: number) => {
+                        return (
+                          <li key={index} className="inline-block uppercase">
+                            {index > 0 && ", "}
+                            <BlueLink to={useCategoryUrl(category)}>
+                              {category}
+                            </BlueLink>
+                          </li>
+                        )
+                      }
+                    )}
+                  </ul>
+                </Row> */}
 
-                      <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
-                        <Row className="justify-between">
-                          {previous && (
-                            <Link to={usePostUrl(previous)}>
-                              <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
-                                {previous.frontmatter.title}
-                              </div>
-                            </Link>
-                          )}
+            {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
+                  <Row className="justify-between">
+                    {previous && (
+                      <Link to={usePostUrl(previous)}>
+                        <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
+                          {previous.frontmatter.title}
+                        </div>
+                      </Link>
+                    )}
 
-                          {next && (
-                            <Link to={usePostUrl(next)}>
-                              <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
-                                {next.frontmatter.title}
-                              </div>
-                            </Link>
-                          )}
-                        </Row>
-                      </nav>
-                    </div>
+                    {next && (
+                      <Link to={usePostUrl(next)}>
+                        <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
+                          {next.frontmatter.title}
+                        </div>
+                      </Link>
+                    )}
                   </Row>
-                </AltView>
-              </article>
-            </>
+                </nav> */}
+          </article>
+        </>
 
-            <></>
-          </MainSideCol>
-        </Container>
-      </FlHdDiv>
-    </Layout>
+        <></>
+      </MainSideCol>
+    </PageLayout>
   )
 }
 
 export default PostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query PostQuery(
     $id: String!
     $authorId: String!
     $previousPostId: String
     $nextPostId: String
   ) {
-    markdownRemark(frontmatter: { id: { eq: $id } }) {
+    post: markdownRemark(frontmatter: { id: { eq: $id } }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date
         description
         categories
       }
     }
 
-    author: authorsJson(id: { eq: $authorId }) {
-      name
-      title
+    author: markdownRemark(
+      frontmatter: { id: { eq: $authorId } }
+      fileAbsolutePath: { regex: "/authors/" }
+    ) {
+      excerpt
+      frontmatter {
+        id
+        firstName
+        lastName
+        title
+        email
+      }
     }
 
-    previous: markdownRemark(frontmatter: { id: { eq: $previousPostId } }) {
+    previous: markdownRemark(
+      fileAbsolutePath: { regex: "/posts/" }
+      frontmatter: { id: { eq: $previousPostId } }
+    ) {
       frontmatter {
         id
         title
       }
     }
 
-    next: markdownRemark(frontmatter: { id: { eq: $nextPostId } }) {
+    next: markdownRemark(
+      fileAbsolutePath: { regex: "/posts/" }
+      frontmatter: { id: { eq: $nextPostId } }
+    ) {
       frontmatter {
         id
         title

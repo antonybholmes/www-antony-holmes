@@ -1,16 +1,13 @@
 import React from "react"
-import Layout from "../components/layout"
-import useSiteMetadata from "../hooks/sitemetadata"
+import PageLayout from "../components/pagelayout"
 
-const Page = () => {
-  const { siteTitle } = useSiteMetadata()
-
+const ErrorPage = () => {
   return (
-    <Layout title="404: Not Found">
+    <PageLayout title="404: Not Found">
       <h1>404: Not Found</h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Layout>
+    </PageLayout>
   )
 }
 
-export default Page
+export default ErrorPage

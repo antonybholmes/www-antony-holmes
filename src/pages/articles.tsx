@@ -20,7 +20,7 @@ type DataProps = {
         date: string
         title: string
         description: string
-        categories: Array<string>
+        tags: Array<string>
       }
     }>
   }
@@ -42,14 +42,16 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
       <MainSideCol>
         <>
           <Row>
-            <div className="text-gray-600">{posts.length} Articles</div>
+            <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
+              {posts.length} Articles
+            </div>
           </Row>
 
-          <ol>
+          <ul className="mt-8">
             {posts.slice(0, records).map((post: any, index: number) => {
               return <Post post={post} imageMap={imageMap} key={index} />
             })}
-          </ol>
+          </ul>
 
           {posts.length > records && (
             <Row isCentered={true} className="mt-32">
@@ -80,7 +82,7 @@ export const pageQuery = graphql`
           date
           title
           description
-          categories
+          tags
         }
       }
     }

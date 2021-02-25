@@ -5,10 +5,10 @@ import dayjs from "dayjs"
 import Img from "gatsby-image"
 import Row from "../components/row"
 import ColorLink from "../components/links/colorlink"
-import useTagUrl from "../hooks/tagurl"
 import useAuthorUrl from "../hooks/authorurl"
-import CategoryList from "../components/posts/categorylist"
+import PostTagList from "../components/posts/posttaglist"
 import PageLayout from "../components/pagelayout"
+import useCategoryUrl from "../hooks/categoryurl"
 
 type PostTemplateProps = {
   data: any
@@ -34,11 +34,11 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
               <div className="text-gray-600 uppercase tracking-widest">
                 <ColorLink
                   color="blue"
-                  color2="dark-blue"
+                  color2="dark-green"
                   underline={false}
-                  to={useTagUrl(post.frontmatter.categories[0])}
+                  to={useCategoryUrl(post.frontmatter.tags[0])}
                 >
-                  {post.frontmatter.categories[0]}
+                  {post.frontmatter.tags[0]}
                 </ColorLink>
               </div>
 
@@ -73,7 +73,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
                   Published {date.format("MMM DD, YYYY")}
                 </p>
 
-                <CategoryList post={post} />
+                <PostTagList post={post} />
               </div>
             </Row>
 
@@ -86,7 +86,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
                   <div className="uppercase mr-2">Posted In:</div>
 
                   <ul className="inline-block">
-                    {post.frontmatter.categories.map(
+                    {post.frontmatter.tags.map(
                       (category: string, index: number) => {
                         return (
                           <li key={index} className="inline-block uppercase">
@@ -146,7 +146,7 @@ export const pageQuery = graphql`
         title
         date
         description
-        categories
+        tags
       }
     }
 

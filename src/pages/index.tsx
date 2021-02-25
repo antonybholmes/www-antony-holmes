@@ -18,7 +18,7 @@ type DataProps = {
         date: Date
         title: string
         description: string
-        categories: Array<string>
+        tags: Array<string>
       }
     }>
   }
@@ -72,7 +72,7 @@ export const pageQuery = graphql`
           date
           title
           description
-          categories
+          tags
         }
       }
     }

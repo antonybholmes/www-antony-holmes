@@ -10,9 +10,9 @@ const Footer = () => {
   const { links, infoLinks } = footer
 
   return (
-    <footer className="bg-footer py-16 text-sm ">
+    <footer className="bg-footer py-16">
       <Container>
-        <div className="text-gray-600">
+        <div className="text-gray-600 text-sm">
           <Row isVCentered={false} className="justify-between">
             {links.map((linkGroup: any, linkGroupIndex: number) => {
               return (
@@ -36,7 +36,7 @@ const Footer = () => {
             })}
           </Row>
 
-          <Row className="border-t border-solid border-gray-200 mt-16 pt-8 justify-between">
+          <Row className="border-t border-solid border-gray-200 text-xs mt-16 pt-8 justify-between">
             <div>{useCopyright()}</div>
             <div>
               <ul className="inline-block">

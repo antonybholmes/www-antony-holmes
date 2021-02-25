@@ -5,7 +5,7 @@ const dayjs = require("dayjs")
 // Define a template for blog post
 const postTemplate = path.resolve(`./src/templates/posttemplate.tsx`)
 const authorTemplate = path.resolve(`./src/templates/authortemplate.tsx`)
-const categoryTemplate = path.resolve(`./src/templates/categorytemplate.tsx`)
+const postTagTemplate = path.resolve(`./src/templates/posttagtemplate.tsx`)
 
 const RECORDS_PER_PAGE = 10
 
@@ -49,7 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               author
               date
               description
-              categories
+              tags
             }
           }
         }
@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  const categories = new Set()
+  const tags = new Set()
 
   posts.forEach((post, index) => {
     const previousPostId = index === 0 ? null : posts[index - 1].frontmatter.id
@@ -108,15 +108,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
 
-    post.frontmatter.categories.forEach(item => categories.add(item))
+    post.frontmatter.tags.forEach(item => tags.add(item))
   })
 
-  categories.forEach((category, index) => {
+  tags.forEach((tag, index) => {
     createPage({
-      path: useCategoryUrl(category),
-      component: categoryTemplate,
+      path: useCategoryUrl(tag),
+      component: postTagTemplate,
       context: {
-        category: category,
+        tag: tag,
       },
     })
   })

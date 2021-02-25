@@ -29,7 +29,7 @@ const HeadPost: React.FC<PostProps> = ({ post, imageMap }) => {
 
         <div className="pl-8 w-4/10">
           <div className="text-gray-500 uppercase tracking-widest">
-            {date.format("MMM DD")} / {post.frontmatter.categories[0]}
+            {date.format("MMM DD")} / {post.frontmatter.tags[0]}
           </div>
           <h1 className="mt-3">
             <Link to={usePostUrl(post)}>{post.frontmatter.title}</Link>

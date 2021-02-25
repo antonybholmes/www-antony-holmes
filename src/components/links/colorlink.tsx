@@ -42,6 +42,9 @@ const ColorLink: React.FC<LinkProps> = ({
     case "blue":
       cls = "text-blue-500"
       break
+    case "green":
+      cls = "text-green-500"
+      break
     case "white":
       cls = "text-white-98"
       break
@@ -68,6 +71,12 @@ const ColorLink: React.FC<LinkProps> = ({
       case "dark-blue":
         cls = `${cls} hover:text-blue-700`
         break
+      case "green":
+        cls = `${cls} hover:text-green-500`
+        break
+      case "dark-green":
+        cls = `${cls} hover:text-green-600`
+        break
       case "white":
         cls = `${cls} hover:text-white-98`
         break
@@ -84,7 +93,7 @@ const ColorLink: React.FC<LinkProps> = ({
   }
 
   if (underline) {
-    cls = `${cls} border-b border-solid border-transparent trans-ani`
+    cls = `${cls} border-b border-solid border-transparent`
 
     switch (underlineColor) {
       case "red":
@@ -107,6 +116,8 @@ const ColorLink: React.FC<LinkProps> = ({
         break
     }
   }
+
+  cls = `${cls} trans-ani`
 
   if (to === null || to === undefined) {
     to = ""

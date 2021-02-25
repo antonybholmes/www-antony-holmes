@@ -4,10 +4,14 @@ import Header from "./header/header"
 import SEO from "./seo"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faCalculator, faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import {
+  faCalculator,
+  faChevronRight,
+  faTags,
+} from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
-library.add(faCalculator, faChevronRight)
+library.add(faCalculator, faChevronRight, faTags)
 
 const Main = styled.main`
   position: relative;

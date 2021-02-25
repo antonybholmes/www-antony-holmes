@@ -5,8 +5,9 @@ import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
 import PageLayout from "../components/pagelayout"
+import Row from "../components/row"
 
-type CategoryTemplateProps = { category: string }
+type CategoryTemplateProps = { tag: string }
 
 type DataProps = {
   author: {
@@ -32,23 +33,36 @@ type DataProps = {
       }
     }>
   }
+  tag: {
+    name: string
+    info: string
+  }
 }
 
-const CategoryTemplate: React.FC<
+const PostTagTemplate: React.FC<
   PageProps<DataProps, CategoryTemplateProps>
 > = ({ pageContext, data }) => {
-  const { category } = pageContext
+  const { tag } = pageContext
 
   const posts = data.posts.nodes
   const imageMap = useImageMap(data)
 
+  console.log(tag)
+
   return (
-    <PageLayout title={category}>
+    <PageLayout title={tag}>
       <MainSideCol>
         <>
-          <p className="uppercase text-gray-400">{category}</p>
+          <h2 className="uppercase text-blue-600">{tag}</h2>
+          <p className="text-xl">{data.tag.info}</p>
 
-          <ul>
+          <Row className="mt-8">
+            <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
+              {posts.length} Articles
+            </div>
+          </Row>
+
+          <ul className="inline-block border-t border-solid border-gray-200 mt-16">
             {posts.map((post: any, index: number) => {
               return <Post post={post} imageMap={imageMap} key={index} />
             })}
@@ -61,14 +75,14 @@ const CategoryTemplate: React.FC<
   )
 }
 
-export default CategoryTemplate
+export default PostTagTemplate
 
 export const pageQuery = graphql`
-  query($category: String) {
+  query($tag: String) {
     posts: allMarkdownRemark(
       filter: {
         fileAbsolutePath: { regex: "/posts/" }
-        frontmatter: { categories: { eq: $category } }
+        frontmatter: { tags: { eq: $tag } }
       }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 10
@@ -80,7 +94,7 @@ export const pageQuery = graphql`
           date
           title
           description
-          categories
+          tags
         }
       }
     }
@@ -100,6 +114,11 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+
+    tag: posttagsJson(name: { eq: $tag }) {
+      name
+      info
     }
   }
 `

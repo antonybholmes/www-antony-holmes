@@ -17,7 +17,7 @@ const SubHeadingPost: React.FC<PostProps> = ({ post, imageMap }) => {
   return (
     <Link to={usePostUrl(post)}>
       <div className="text-gray-500 uppercase tracking-widest">
-        {date.format("MMM DD")} / {post.frontmatter.categories[0]}
+        {date.format("MMM DD")} / {post.frontmatter.tags[0]}
       </div>
       <h2 className="my-3 truncate">{post.frontmatter.title}</h2>
 

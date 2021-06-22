@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import MainSideCol from "../components/mainsidecol"
 import dayjs from "dayjs"
-import Img from "gatsby-image"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import ColorLink from "../components/links/colorlink"
 import useAuthorUrl from "../hooks/authorurl"
@@ -44,16 +44,18 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
 
               <h1 className="mt-4">{post.frontmatter.title}</h1>
 
-              <Img
-                fluid={data.postImage.childImageSharp.fluid}
+              <GatsbyImage
+                image={getImage(data.postImage)}
+                alt={post.frontmatter.title}
                 className="mt-8"
               />
             </header>
 
             <Row className="mb-16">
               <div>
-                <Img
-                  fluid={data.authorImage.childImageSharp.fluid}
+                <GatsbyImage
+                  image={getImage(data.authorImage)}
+                  alt="Author"
                   className="w-32 rounded-full"
                 />
               </div>
@@ -193,9 +195,7 @@ export const pageQuery = graphql`
       ext
       relativePath
       childImageSharp {
-        fluid(maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData
       }
     }
 
@@ -208,9 +208,7 @@ export const pageQuery = graphql`
       ext
       relativePath
       childImageSharp {
-        fluid(maxWidth: 800) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData
       }
     }
   }

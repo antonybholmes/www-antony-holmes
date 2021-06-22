@@ -1,11 +1,8 @@
 import dayjs from "dayjs"
 import { Link } from "gatsby"
 import React from "react"
-import usePostId from "../../hooks/postid"
 import usePostUrl from "../../hooks/posturl"
-import Img from "gatsby-image"
-import Row from "../row"
-import BlueIndexLink from "../links/blueindexlink"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
 type PostProps = {
   post: any
@@ -21,8 +18,8 @@ const SubHeadingPost: React.FC<PostProps> = ({ post, imageMap }) => {
       </div>
       <h2 className="my-3 truncate">{post.frontmatter.title}</h2>
 
-      <Img
-        fluid={imageMap[post.frontmatter.id].childImageSharp.fluid}
+      <GatsbyImage
+        image={getImage(imageMap[post.frontmatter.id])}
         className={`trans-ani w-full`}
         alt={post.frontmatter.title}
       />

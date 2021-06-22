@@ -86,9 +86,7 @@ export const pageQuery = graphql`
           ext
           relativePath
           childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
       }

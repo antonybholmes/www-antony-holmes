@@ -1,10 +1,8 @@
-import { graphql, Link, PageProps } from "gatsby"
+import { Link, PageProps } from "gatsby"
 import React from "react"
 import Container from "../components/container"
-import Layout from "../components/layout"
 import Row from "../components/row"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import BackgroundImage from "gatsby-background-image"
 import PageLayout from "../components/pagelayout"
 
 const calcLink = (name: string, to: string) => {
@@ -28,25 +26,14 @@ type DataProps = {
   hero: any
 }
 
-const CalculatorsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
+const CalculatorsPage: React.FC<PageProps<DataProps>> = () => {
   return (
     <PageLayout title="Calculators">
-      <BackgroundImage
-        Tag="section"
-        fluid={data.hero.childImageSharp.fluid}
-        className="w-full h-60"
-      />
       <Container className="mt-16">
         <Row wrap={true}>
-          {calcLink("Fee Calculator", "/calculators/fee-calculator")}
-          {calcLink(
-            "Retirement Calculator",
-            "/calculators/retirement-calculator"
-          )}
-          {calcLink(
-            "Save A Million Calculator",
-            "/calculators/save-million-calculator"
-          )}
+          {calcLink("Fees", "/calculators/fee-calculator")}
+          {calcLink("Retirement", "/calculators/retirement-calculator")}
+          {calcLink("Save A Million", "/calculators/save-million-calculator")}
         </Row>
       </Container>
     </PageLayout>
@@ -54,15 +41,3 @@ const CalculatorsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 }
 
 export default CalculatorsPage
-
-export const query = graphql`
-  query {
-    hero: file(relativePath: { regex: "/calculator.jpg/" }) {
-      childImageSharp {
-        fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-  }
-`

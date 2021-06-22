@@ -39,46 +39,43 @@ type DataProps = {
   }
 }
 
-const PostTagTemplate: React.FC<
-  PageProps<DataProps, CategoryTemplateProps>
-> = ({ pageContext, data }) => {
-  const { tag } = pageContext
+const PostTagTemplate: React.FC<PageProps<DataProps, CategoryTemplateProps>> =
+  ({ pageContext, data }) => {
+    const { tag } = pageContext
 
-  const posts = data.posts.nodes
-  const imageMap = useImageMap(data)
+    const posts = data.posts.nodes
+    const imageMap = useImageMap(data)
 
-  console.log(tag)
+    return (
+      <PageLayout title={tag}>
+        <MainSideCol>
+          <>
+            <h2 className="uppercase text-blue-600">{tag}</h2>
+            {/* <p className="text-xl">{data.tag.info}</p> */}
 
-  return (
-    <PageLayout title={tag}>
-      <MainSideCol>
-        <>
-          <h2 className="uppercase text-blue-600">{tag}</h2>
-          <p className="text-xl">{data.tag.info}</p>
+            <Row className="mt-8">
+              <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
+                {posts.length} Articles
+              </div>
+            </Row>
 
-          <Row className="mt-8">
-            <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
-              {posts.length} Articles
-            </div>
-          </Row>
+            <ul className="inline-block border-t border-solid border-gray-200 mt-16">
+              {posts.map((post: any, index: number) => {
+                return <Post post={post} imageMap={imageMap} key={index} />
+              })}
+            </ul>
+          </>
 
-          <ul className="inline-block border-t border-solid border-gray-200 mt-16">
-            {posts.map((post: any, index: number) => {
-              return <Post post={post} imageMap={imageMap} key={index} />
-            })}
-          </ul>
-        </>
-
-        <></>
-      </MainSideCol>
-    </PageLayout>
-  )
-}
+          <></>
+        </MainSideCol>
+      </PageLayout>
+    )
+  }
 
 export default PostTagTemplate
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query ($tag: String) {
     posts: allMarkdownRemark(
       filter: {
         fileAbsolutePath: { regex: "/posts/" }
@@ -108,9 +105,7 @@ export const pageQuery = graphql`
           ext
           relativePath
           childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData
           }
         }
       }

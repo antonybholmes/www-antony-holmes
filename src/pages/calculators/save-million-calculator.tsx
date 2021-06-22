@@ -264,9 +264,7 @@ export const query = graphql`
   query {
     hero: file(relativePath: { regex: "/calculator.jpg/" }) {
       childImageSharp {
-        fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData
       }
     }
   }

@@ -1,9 +1,6 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Layout from "../components/layout"
-import Container from "../components/container"
-import FlHdDiv from "../components/flhddiv"
 import MainSideCol from "../components/mainsidecol"
 import Row from "../components/row"
 import Post from "../components/posts/post"
@@ -96,9 +93,7 @@ export const pageQuery = graphql`
           ext
           relativePath
           childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
       }

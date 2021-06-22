@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
     <div className="relative">
       <SEO title={title} />
       <Header title={title} />
-      <Main className="min-h-screen">{children}</Main>
+      <main className="min-h-screen">{children}</main>
       <Footer />
     </div>
   )

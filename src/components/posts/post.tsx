@@ -2,7 +2,7 @@ import dayjs from "dayjs"
 import { Link } from "gatsby"
 import React from "react"
 import usePostUrl from "../../hooks/posturl"
-import Img from "gatsby-image"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../row"
 import { useState } from "react"
 import PostTagList from "./posttaglist"
@@ -51,8 +51,8 @@ const Post: React.FC<PostProps> = ({ post, imageMap }) => {
           </div>
 
           <div className="w-1/4">
-            <Img
-              fluid={imageMap[post.frontmatter.id].childImageSharp.fluid}
+            <GatsbyImage
+              image={getImage(imageMap[post.frontmatter.id])}
               className={`trans-ani w-full`}
               alt={post.frontmatter.title}
             />

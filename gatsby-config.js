@@ -13,10 +13,9 @@ module.exports = {
     header: {
       links: [
         ["Articles", "/articles"],
+        ["Portfolios", "/portfolios"],
         ["Credit Cards", "/credit-cards"],
         ["Calculators", "/calculators"],
-        ["Portfolio", "/portfolio"],
-        ["About", "/about"],
       ],
     },
     footer: {
@@ -89,8 +88,9 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-transformer-json`,
     {
       resolve: "gatsby-background-image",
@@ -100,7 +100,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: `gatsby-plugin-gtag`,
       options: {
         trackingId: `UA-121311307-2`,
       },

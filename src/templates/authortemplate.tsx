@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 
 import PageLayout from "../components/pagelayout"
 import MainSideCol from "../components/mainsidecol"
-import Img from "gatsby-image"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
@@ -47,8 +47,9 @@ const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
         <>
           <Row className="mb-16">
             <div>
-              <Img
-                fluid={data.authorImage.childImageSharp.fluid}
+              <GatsbyImage
+                image={getImage(data.authorImage)}
+                alt={name}
                 className="w-32 rounded-full"
               />
             </div>
@@ -77,7 +78,7 @@ const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 export default AuthorTemplate
 
 export const pageQuery = graphql`
-  query($id: String) {
+  query ($id: String) {
     author: markdownRemark(
       fileAbsolutePath: { regex: "/authors/" }
       frontmatter: { id: { eq: $id } }
@@ -101,9 +102,7 @@ export const pageQuery = graphql`
       ext
       relativePath
       childImageSharp {
-        fluid(maxWidth: 800) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(placeholder: BLURRED, width: 400, aspectRatio: 1)
       }
     }
 
@@ -136,9 +135,7 @@ export const pageQuery = graphql`
           ext
           relativePath
           childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
       }

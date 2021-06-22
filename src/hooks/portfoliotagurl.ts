@@ -1,5 +1,5 @@
-const useCategoryUrl = (category: string) => {
-  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
+const usePortfolioTagUrl = (tag: string) => {
+  return `/portfolios/tags/${tag.toLowerCase().replace(" ", "-")}`
 }
 
-export default useCategoryUrl
+export default usePortfolioTagUrl

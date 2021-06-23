@@ -10,66 +10,41 @@ module.exports = {
     social: {
       twitter: `politeinvestor`,
     },
-    header: {
-      links: [
-        ["Articles", "/articles"],
-        ["Portfolios", "/portfolios"],
-        ["Credit Cards", "/credit-cards"],
-        ["Calculators", "/calculators"],
-      ],
-    },
-    footer: {
-      links: [
-        {
-          name: "Start Here",
-          urls: [
-            ["Blog", "/posts"],
-            ["Calculators", "/calculators"],
-          ],
-        },
-        {
-          name: "Recommendations",
-          urls: [
-            ["Credit Cards", "/credit-cards"],
-            ["Web Sites", "/websites"],
-          ],
-        },
-        { name: "Resources", urls: [["Disclaimer", "/disclaimer"]] },
-      ],
-      infoLinks: [
-        ["Site Map", "/sitemap"],
-        ["Privacy", "/privacy"],
-        ["Terms of Use", "/terms"],
-      ],
-    },
   },
   plugins: [
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/content/posts`,
+    //     name: `posts`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/content/authors`,
+    //     name: `authors`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/content/portfolios`,
+    //     name: `portfolios`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/content/posttags`,
+    //     name: `posttags`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/posts`,
-        name: `posts`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/authors`,
-        name: `authors`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/portfolios`,
-        name: `portfolios`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/posttags`,
-        name: `posttags`,
+        path: `${__dirname}/content`,
+        name: `content`,
       },
     },
     {

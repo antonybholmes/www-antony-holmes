@@ -7,18 +7,19 @@ import PageLayout from "../components/pagelayout"
 
 const calcLink = (name: string, to: string) => {
   return (
-    <div className="w-1/4 bg-blue-300 hover:bg-blue-400 mx-8 p-8 text-white trans-ani">
-      <Link to={to}>
-        <Row isCentered={true}>
-          <div>
-            <FontAwesomeIcon icon="calculator" size="9x" />
-          </div>
-        </Row>
-        <Row isCentered={true}>
-          <div className="mt-8">{name}</div>
-        </Row>
-      </Link>
-    </div>
+    <Link
+      to={to}
+      className="block w-1/3 border border-solid border-gray-200 rounded-md  mx-8  trans-ani hover:bg-gray-100 text-blue-400 my-4 py-16"
+    >
+      <Row isCentered={true}>
+        <div>
+          <FontAwesomeIcon icon="calculator" size="9x" />
+        </div>
+      </Row>
+      <Row isCentered={true}>
+        <div className="mt-8">{name}</div>
+      </Row>
+    </Link>
   )
 }
 
@@ -29,13 +30,11 @@ type DataProps = {
 const CalculatorsPage: React.FC<PageProps<DataProps>> = () => {
   return (
     <PageLayout title="Calculators">
-      <Container className="mt-16">
-        <Row wrap={true}>
-          {calcLink("Fees", "/calculators/fee-calculator")}
-          {calcLink("Retirement", "/calculators/retirement-calculator")}
-          {calcLink("Save A Million", "/calculators/save-million-calculator")}
-        </Row>
-      </Container>
+      <Row wrap={true} className="justify-center">
+        {calcLink("Fees", "/calculators/fee-calculator")}
+        {calcLink("Retirement", "/calculators/retirement-calculator")}
+        {calcLink("Save A Million", "/calculators/save-million-calculator")}
+      </Row>
     </PageLayout>
   )
 }

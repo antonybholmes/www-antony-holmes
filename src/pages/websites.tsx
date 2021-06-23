@@ -2,7 +2,7 @@ import { PageProps } from "gatsby"
 import React from "react"
 import PageLayout from "../components/pagelayout"
 
-const WebsitesPage: React.FC<PageProps> = () => {
+const WebsitesPage = () => {
   return (
     <PageLayout title="Web Sites">
       <p>

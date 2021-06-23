@@ -1,26 +1,28 @@
 import { Link } from "gatsby"
 import React from "react"
-import useSiteMetadata from "../../hooks/sitemetadata"
-import Row from "../row"
+import useHeaderLinks from "../../hooks/headerlinks"
 
-const HeaderLinks = ({ title }) => {
-  const { header } = useSiteMetadata()
-  const { links } = header
+type HeaderLinksProps = {
+  title: String
+}
+
+const HeaderLinks: React.FC<HeaderLinksProps> = ({ title }) => {
+  const links = useHeaderLinks()
 
   return (
     <ul className="inline-block pl-4">
-      {links.map((link: [string, string], index: number) => {
+      {links.map((link: { name: string; url: string }, index: number) => {
         return (
           <li className="inline-block pl-8" key={index}>
             <Link
-              to={link[1]}
+              to={link.url}
               className={`inline-block border-b-2 border-solid py-1 font-semibold text-black trans-ani ${
-                title == link[0]
+                title == link.name
                   ? "border-blue-600"
                   : "hover:border-blue-600 border-transparent"
               }`}
             >
-              {link[0]}
+              {link.name}
             </Link>
           </li>
         )

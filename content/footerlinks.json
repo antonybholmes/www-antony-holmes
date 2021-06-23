@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Start Here",
+    "links": [
+      { "name": "Blog", "url": "/posts" },
+      { "name": "Calculators", "url": "/calculators" }
+    ]
+  },
+  {
+    "title": "Recommendations",
+    "links": [
+      { "name": "Credit Cards", "url": "/credit-cards" },
+      { "name": "Web Sites", "url": "/websites" }
+    ]
+  },
+  {
+    "title": "Resources",
+    "links": [{ "name": "Disclaimer", "url": "/disclaimer" }]
+  }
+]

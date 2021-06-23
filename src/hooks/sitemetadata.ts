@@ -14,16 +14,6 @@ const useSiteMetadata = () => {
             social {
               twitter
             }
-            header {
-              links
-            }
-            footer {
-              links {
-                name
-                urls
-              }
-              infoLinks
-            }
           }
         }
       }

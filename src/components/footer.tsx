@@ -1,57 +1,62 @@
 import { Link } from "gatsby"
 import React from "react"
 import useCopyright from "../hooks/copyright"
-import useSiteMetadata from "../hooks/sitemetadata"
+import useFooterLinks from "../hooks/footerlinks"
+import useInfoLinks from "../hooks/infolinks"
 import Container from "./container"
 import Row from "./row"
 
 const Footer = () => {
-  const { footer } = useSiteMetadata()
-  const { links, infoLinks } = footer
+  const links = useFooterLinks()
+  const infoLinks = useInfoLinks()
 
   return (
-    <footer className="bg-footer py-16">
+    <footer className="py-16">
       <Container>
-        <div className="text-gray-600 text-sm">
+        <div className="text-gray-600 text-sm border-t border-solid border-gray-200 pt-16">
           <Row isVCentered={false} className="justify-between">
-            {links.map((linkGroup: any, linkGroupIndex: number) => {
+            {links.map((linkGroup: {title:string, links:Array<{name:string,url:string}>}, linkGroupIndex: number) => {
               return (
                 <div key={linkGroupIndex}>
-                  <p className="font-semibold">{linkGroup.name}</p>
-                  <div>
-                    {linkGroup.urls.map(
-                      (url: [string, string], urlIndex: number) => {
+                  <h6 className="font-semibold mb-2">{linkGroup.title}</h6>
+                  <ul>
+                    {linkGroup.links.map(
+                      (link: {name:string,url:string}, linkIndex: number) => {
                         return (
-                          <div key={urlIndex}>
-                            <Link to={url[1]}>
-                              <a className="hover:text-blue-500 ">{url[0]}</a>
+                          <li key={linkIndex} className="mb-2">
+                            <Link to={link.url}>
+                              <a className="hover:text-blue-500 ">{link.name}</a>
                             </Link>
-                          </div>
+                          </li>
                         )
                       }
                     )}
-                  </div>
+                  </ul>
                 </div>
               )
             })}
           </Row>
 
-          <Row className="border-t border-solid border-gray-200 text-xs mt-16 pt-8 justify-between">
-            <div>{useCopyright()}</div>
+          <Row isCentered={true} className="text-xs mt-16 py-4 px-6 rounded-md bg-gray-100">
+            {/* <div>{useCopyright()}</div> */}
             <div>
               <ul className="inline-block">
-                {infoLinks.map((link: any, index: number) => {
+                {infoLinks.map((link: {name:string, url:string}, index: number) => {
                   return (
                     <li
                       key={index}
                       className={`inline-block ${index > 0 ? "ml-8" : ""}`}
                     >
-                      <Link to={link[1]}>{link[0]}</Link>
+                      <Link to={link.url}>{link.name}</Link>
                     </li>
                   )
                 })}
               </ul>
             </div>
+          </Row>
+
+          <Row isCentered={true} className="pt-8 text-xs">
+          <div>{useCopyright()}</div>
           </Row>
         </div>
       </Container>

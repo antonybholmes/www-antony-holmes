@@ -54,15 +54,29 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/content/images`,
+        path: `${__dirname}/content/authors`,
+        name: `authors`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `content`,
-        path: `${__dirname}/content`,
+        path: `${__dirname}/content/portfolios`,
+        name: `portfolios`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/posttags`,
+        name: `posttags`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/assets/images`,
       },
     },
     {
@@ -113,7 +127,7 @@ module.exports = {
         short_name: `polite-investor`,
         start_url: `/`,
         background_color: `#ffffff`,
-        icon: `content/images/favicon.png`,
+        icon: `assets/images/favicon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -130,7 +144,7 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: "/content/images/svg",
+          include: "/assets/images/svg",
         },
       },
     },

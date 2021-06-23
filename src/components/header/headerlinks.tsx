@@ -8,16 +8,16 @@ const HeaderLinks = ({ title }) => {
   const { links } = header
 
   return (
-    <ul className="inline-block pl-8">
+    <ul className="inline-block pl-4">
       {links.map((link: [string, string], index: number) => {
         return (
           <li className="inline-block pl-8" key={index}>
             <Link
               to={link[1]}
-              className={`inline-block border-b-4 border-solid py-6 trans-ani ${
+              className={`inline-block border-b-2 border-solid py-1 font-semibold text-black trans-ani ${
                 title == link[0]
-                  ? "text-black border-blue-700"
-                  : "text-gray-500 hover:text-black border-transparent"
+                  ? "border-blue-600"
+                  : "hover:border-blue-600 border-transparent"
               }`}
             >
               {link[0]}

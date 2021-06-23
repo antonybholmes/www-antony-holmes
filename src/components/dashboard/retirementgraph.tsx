@@ -1,5 +1,5 @@
 import React from "react"
-import { defaults, Line } from "react-chartjs-2"
+import { Line } from "react-chartjs-2"
 
 type GraphProps = {
   data1: Array<number>
@@ -14,6 +14,7 @@ const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
 
   return (
     <Line
+      type="line"
       data={{
         labels: labels,
         //Bring in data
@@ -23,41 +24,43 @@ const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
             data: data1,
             backgroundColor: "rgba(0,0,255,0.1)",
             borderColor: "rgba(0,0,255,0.5)",
+            fill: true,
           },
         ],
       }}
       options={{
-        legend: {
-          display: false,
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
         },
         title: {
           display: false,
         },
         scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Year",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: false,
-              },
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: "Year",
+              weight: "bold",
             },
-          ],
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Millions Of Dollars",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: true,
-              },
+            grid: {
+              display: false,
             },
-          ],
+          },
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: "Millions Of Dollars",
+              weight: "bold",
+            },
+            grid: {
+              display: true,
+            },
+          },
         },
       }}
     />

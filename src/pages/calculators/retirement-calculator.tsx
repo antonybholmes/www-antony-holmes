@@ -136,7 +136,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
             <div>
               <h2>Retirement Calculator</h2>
               <div className="mb-8">
-                Our simple calculator yets you easily plot if you are on target
+                This simple calculator yets you easily plot if you are on target
                 for retirement and shows you on an interactive graph how long
                 your money is likely to last. We built this because similar
                 calculators on other sites are often cumbersome and ask for too

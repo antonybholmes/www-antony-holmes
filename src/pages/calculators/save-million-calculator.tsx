@@ -140,8 +140,8 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
             <div>
               <h2>Save A Million Dollars Calculator</h2>
               <div className="mb-8">
-                Figure out how long it will take you to save a million dollars
-                with this simple calculator.
+                See out how long it will take you to save a million dollars with
+                this simple calculator.
                 {minAge != -1 && (
                   <h3 className="text-center mt-8">
                     You could be a millionaire by age {minAge}!

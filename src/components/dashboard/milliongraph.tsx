@@ -16,6 +16,7 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
 
   return (
     <Bar
+      type="bar"
       data={{
         labels: labels,
         //Bring in data
@@ -52,30 +53,26 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
           display: false,
         },
         scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Year",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: false,
-              },
+          x: {
+            title: {
+              display: true,
+              text: "Year",
+              weight: "bold",
             },
-          ],
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Millions Of Dollars",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: true,
-              },
+            grid: {
+              display: false,
             },
-          ],
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Millions Of Dollars",
+              weight: "bold",
+            },
+            grid: {
+              display: true,
+            },
+          },
         },
       }}
     />

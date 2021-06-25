@@ -46,8 +46,10 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
             },
           },
         },
-        legend: {
-          display: true,
+        plugins: {
+          legend: {
+            display: true,
+          },
         },
         title: {
           display: false,
@@ -57,7 +59,9 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
             title: {
               display: true,
               text: "Year",
-              weight: "bold",
+              font: {
+                weight: "bold",
+              },
             },
             grid: {
               display: false,
@@ -67,7 +71,9 @@ const MillionGraph: React.FC<GraphProps> = ({ age, data1, data2 }) => {
             title: {
               display: true,
               text: "Millions Of Dollars",
-              weight: "bold",
+              font: {
+                weight: "bold",
+              },
             },
             grid: {
               display: true,

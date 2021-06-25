@@ -34,37 +34,39 @@ const FeeGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
         ],
       }}
       options={{
-        legend: {
-          display: true,
+        plugins: {
+          legend: {
+            display: true,
+          },
         },
         title: {
           display: false,
         },
         scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Years",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: false,
+          x: {
+            title: {
+              display: true,
+              text: "Years",
+              font: {
+                weight: "bold",
               },
             },
-          ],
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Dollars (thousands)",
-                fontStyle: "bold",
-              },
-              gridLines: {
-                display: true,
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Dollars (thousands)",
+              font: {
+                weight: "bold",
               },
             },
-          ],
+            grid: {
+              display: true,
+            },
+          },
         },
       }}
     />

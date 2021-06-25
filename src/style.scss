@@ -7,27 +7,28 @@ body {
 }
 
 .h {
-  @apply mb-2;
+  @apply mb-2 font-medium;
+  font-family: "Inter";
 }
 
 h1 {
-  @apply h text-5xl font-medium;
+  @apply h text-5xl;
 }
 
 h2 {
-  @apply h text-3xl font-medium;
+  @apply h text-3xl;
 }
 
 h3 {
-  @apply h text-2xl font-medium;
+  @apply h text-2xl;
 }
 
 h4 {
-  @apply h text-xl font-medium;
+  @apply h text-xl;
 }
 
 h5 {
-  @apply h text-lg font-medium;
+  @apply h text-lg;
 }
 
 p {
@@ -53,21 +54,15 @@ p {
 }
 
 .slider::-webkit-slider-thumb {
-  @apply rounded-full cursor-pointer;
+  @apply rounded-full cursor-pointer border-none outline-none appearance-none;
   -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  border: none;
   width: 25px;
   height: 25px;
   background: #4caf50;
 }
 
 .slider::-moz-range-thumb {
-  @apply rounded-full cursor-pointer bg-blue-500;
-  appearance: none;
-  outline: none;
-  border: none;
+  @apply rounded-full cursor-pointer bg-blue-500 border-none outline-none appearance-none;
   width: 25px;
   height: 25px;
 }

@@ -24,67 +24,62 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
   return (
     <PageLayout title={post.frontmatter.title}>
       <MainSideCol>
-        <>
-          <article
-            className="blog-post"
-            itemScope
-            itemType="http://schema.org/Article"
-          >
-            <header className="mb-8">
-              <div className="text-gray-600 uppercase tracking-widest">
-                <ColorLink
-                  color="blue"
-                  color2="dark-green"
-                  underline={false}
-                  to={useCategoryUrl(post.frontmatter.tags[0])}
-                >
-                  {post.frontmatter.tags[0]}
-                </ColorLink>
-              </div>
+        <article>
+          <header className="mb-8">
+            <div className="text-gray-600 uppercase tracking-widest">
+              <ColorLink
+                color="blue"
+                color2="dark-green"
+                underline={false}
+                to={useCategoryUrl(post.frontmatter.tags[0])}
+              >
+                {post.frontmatter.tags[0]}
+              </ColorLink>
+            </div>
 
-              <h1 className="mt-4">{post.frontmatter.title}</h1>
+            <h1 className="mt-4">{post.frontmatter.title}</h1>
 
-              <GatsbyImage
-                image={getImage(data.postImage)}
-                alt={post.frontmatter.title}
-                className="mt-8"
-              />
-            </header>
-
-            <Row className="mb-16">
-              <div>
-                <GatsbyImage
-                  image={getImage(data.authorImage)}
-                  alt="Author"
-                  className="w-32 rounded-full"
-                />
-              </div>
-              <div className="ml-8">
-                <p className="text-sm font-medium mt-4">
-                  By{" "}
-                  <ColorLink
-                    color="black"
-                    color2="blue"
-                    to={useAuthorUrl(author)}
-                  >
-                    {name}
-                  </ColorLink>
-                </p>
-                {/* <p className="text-sm mt-1">{data.author.title}</p> */}
-                <p className="mt-1 text-sm text-gray-500">
-                  Published {date.format("MMM DD, YYYY")}
-                </p>
-
-                <PostTagList post={post} />
-              </div>
-            </Row>
-
-            <section
-              dangerouslySetInnerHTML={{ __html: post.html }}
-              itemProp="articleBody"
+            <GatsbyImage
+              image={getImage(data.postImage)}
+              alt={post.frontmatter.title}
+              className="mt-8"
             />
+          </header>
 
-            {/* <Row className="mt-8 font-medium">
+          <Row className="mb-16">
+            <div>
+              <GatsbyImage
+                image={getImage(data.authorImage)}
+                alt="Author"
+                className="w-32 rounded-full"
+              />
+            </div>
+            <div className="ml-8">
+              <p className="text-sm font-medium mt-4">
+                By{" "}
+                <ColorLink
+                  color="black"
+                  color2="blue"
+                  to={useAuthorUrl(author)}
+                >
+                  {name}
+                </ColorLink>
+              </p>
+              {/* <p className="text-sm mt-1">{data.author.title}</p> */}
+              <p className="mt-1 text-sm text-gray-500">
+                Published {date.format("MMM DD, YYYY")}
+              </p>
+
+              <PostTagList post={post} />
+            </div>
+          </Row>
+
+          <section
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          />
+
+          {/* <Row className="mt-8 font-medium">
                   <div className="uppercase mr-2">Posted In:</div>
 
                   <ul className="inline-block">
@@ -103,7 +98,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
                   </ul>
                 </Row> */}
 
-            {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
+          {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
                   <Row className="justify-between">
                     {previous && (
                       <Link to={usePostUrl(previous)}>
@@ -122,8 +117,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
                     )}
                   </Row>
                 </nav> */}
-          </article>
-        </>
+        </article>
 
         <></>
       </MainSideCol>

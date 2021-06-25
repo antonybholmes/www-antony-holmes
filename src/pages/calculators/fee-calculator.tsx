@@ -1,17 +1,11 @@
 import { graphql, PageProps } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
-import Column from "../../components/column"
 import Container from "../../components/container"
 import FeeGraph from "../../components/dashboard/feegraph"
-import FlatCard from "../../components/flatcard"
 import FlHdDiv from "../../components/flhddiv"
-import FullDiv from "../../components/fulldiv"
 import Layout from "../../components/layout"
-import MainColumn from "../../components/maincolumn"
 import MainSideCol from "../../components/mainsidecol"
 import RangeSlider from "../../components/rangeslider"
-import SideColumn from "../../components/sidecolumn"
 import TextBox from "../../components/textbox"
 
 type DataProps = {
@@ -149,7 +143,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
               <FeeGraph data1={data1} data2={data2} />
             </div>
 
-            <div className="ml-8">
+            <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
               <div>
                 {heading("Annual Rate Of Return")}
                 <TextBox

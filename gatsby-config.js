@@ -10,6 +10,7 @@ module.exports = {
     social: {
       twitter: `politeinvestor`,
     },
+    version: "2.0.0",
   },
   plugins: [
     // {
@@ -123,12 +124,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-build-date`,
-      options: {
-        formatAsDateString: true, // boolean, defaults to true - if false API will return unformatted string from new Date()
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-build-date`,
+    //   options: {
+    //     formatAsDateString: true, // boolean, defaults to true - if false API will return unformatted string from new Date()
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -16,7 +16,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ["Poppins", "Helvetica", "Arial", "sans-serif"],
+      sans: ["Poppins", "Inter", "Helvetica", "Arial", "sans-serif"],
     },
     fontWeight: {
       hairline: 100,
@@ -152,6 +152,8 @@ module.exports = {
         "2xl": "1440px",
         "3xl": "1600px",
         "4xl": "1800px",
+        "5xl": "1920px",
+        "6xl": "2048px",
       },
     },
   },

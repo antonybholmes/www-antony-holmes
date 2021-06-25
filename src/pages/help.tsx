@@ -1,8 +1,6 @@
 import React from "react"
 import Row from "../components/row"
-import useCurrentBuild from "../hooks/currentbuild"
 import useSiteMetadata from "../hooks/sitemetadata"
-import useVersion from "../hooks/version"
 
 import gatsbysvg from "../../assets/images/svg/gatsby.svg"
 //import mariadbsvg from "../assets/svg/maria-db.svg"
@@ -18,9 +16,7 @@ import PageLayout from "../components/pagelayout"
 const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"
 
 const HelpPage = () => {
-  const { copyright } = useSiteMetadata()
-  const currentDate = useCurrentBuild()
-  const version = useVersion()
+  const { copyright, version } = useSiteMetadata()
 
   return (
     <PageLayout title="Help">
@@ -34,10 +30,10 @@ const HelpPage = () => {
                 <td className="py-2 lg:w-2/10">Version</td>
                 <td className="py-2">{version}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td className="py-2 lg:w-2/10">Last updated</td>
                 <td className="py-2">{currentDate.format("DD MMM, YYYY")}</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
           {/* </OutlineCard> */}

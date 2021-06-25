@@ -151,7 +151,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
               <MillionGraph age={startAge} data1={data1} data2={data2} />
             </div>
 
-            <div className="ml-8">
+            <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
               <div>
                 {heading("Age")}
                 <TextBox

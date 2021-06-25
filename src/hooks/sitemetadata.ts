@@ -14,6 +14,7 @@ const useSiteMetadata = () => {
             social {
               twitter
             }
+            version
           }
         }
       }

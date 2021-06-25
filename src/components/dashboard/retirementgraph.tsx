@@ -44,7 +44,9 @@ const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
             title: {
               display: true,
               text: "Year",
-              weight: "bold",
+              font: {
+                weight: "bold",
+              },
             },
             grid: {
               display: false,
@@ -55,7 +57,9 @@ const RetirementGraph: React.FC<GraphProps> = ({ data1 }) => {
             title: {
               display: true,
               text: "Millions Of Dollars",
-              weight: "bold",
+              font: {
+                weight: "bold",
+              },
             },
             grid: {
               display: true,

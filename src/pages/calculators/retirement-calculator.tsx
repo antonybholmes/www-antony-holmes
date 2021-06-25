@@ -146,7 +146,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
               <RetirementGraph data1={data1} />
             </div>
 
-            <div className="ml-8">
+            <div className="ml-8 border border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
               <div>
                 {heading("Annual Rate Of Return")}
                 <TextBox

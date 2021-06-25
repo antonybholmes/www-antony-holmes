@@ -1090,11 +1090,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/eb-garamond@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/eb-garamond/-/eb-garamond-4.4.5.tgz#699b9b55ba8f31d1d3c6ef96ebe9cf7c7d4b6f26"
-  integrity sha512-q/usMj4wL4x+PKUYMG13J2y48K8cWbvcQ47mFItGhCMNnTK4JTXz80KuoUIbhoyKuHF6KJ6mfTyhx2ZrU6aj5g==
-
 "@fontsource/inter@^4.4.5":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.4.5.tgz#bce26ff9dd83898bd610924cff1342cc30d0e89a"

@@ -55,7 +55,7 @@
     "prettier": "^2.3.1",
     "sass": "^1.35.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://www.politeinvestor.com",
   "keywords": [
     "polite investor"
   ],
@@ -63,7 +63,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/antonybholmes/www-polite-investor.git"
   },
   "scripts": {
     "build": "gatsby build",

@@ -2,7 +2,7 @@ import { PageProps } from "gatsby"
 import React from "react"
 import PageLayout from "../components/pagelayout"
 
-const ErrorPage: React.FC<PageProps> = ({path}) => {
+const ErrorPage: React.FC<PageProps> = ({ path }) => {
   return (
     <PageLayout title="404: Not Found" path={path}>
       <h1>404: Not Found</h1>

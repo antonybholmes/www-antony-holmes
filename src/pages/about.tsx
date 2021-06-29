@@ -3,7 +3,7 @@ import React from "react"
 import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/pagelayout"
 
-const Page: React.FC<PageProps> = ({path}) => {
+const Page: React.FC<PageProps> = ({ path }) => {
   return (
     <PageLayout title="About" path={path}>
       <MainSideCol>

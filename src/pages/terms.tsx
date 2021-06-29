@@ -7,14 +7,11 @@ import { PageProps } from "gatsby"
 
 //nav="About"
 
-const TermsPage: React.FC<PageProps> = ({path}) => {
+const TermsPage: React.FC<PageProps> = ({ path }) => {
   const { siteTitle } = useSiteMetadata()
 
   return (
-    <PageLayout
-      title="Terms of Use"
-      path={path}
-    >
+    <PageLayout title="Terms of Use" path={path}>
       <MainSideCol>
         <>
           <h1>{siteTitle} Website Terms of Use</h1>

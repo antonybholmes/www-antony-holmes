@@ -6,11 +6,8 @@ import { PageProps } from "gatsby"
 
 //nav="About"
 
-const PrivacyPage: React.FC<PageProps> = ({path}) => (
-  <PageLayout
-    title="Privacy Policy"
-    path={path}
-  >
+const PrivacyPage: React.FC<PageProps> = ({ path }) => (
+  <PageLayout title="Privacy Policy" path={path}>
     <MainSideCol>
       <>
         <h1>Privacy Policy</h1>

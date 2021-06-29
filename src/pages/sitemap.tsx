@@ -6,7 +6,7 @@ import FlHdDiv from "../components/flhddiv"
 import BlueLink from "../components/links/bluelink"
 import Row from "../components/row"
 
-const SiteMapPage: React.FC<PageProps> = ({path}) => {
+const SiteMapPage: React.FC<PageProps> = ({ path }) => {
   const headerLinks = useHeaderLinks()
 
   return (

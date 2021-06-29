@@ -24,12 +24,14 @@ const FeeGraph: React.FC<GraphProps> = ({ data1, data2 }) => {
             data: data1,
             backgroundColor: "rgba(0,0,255,0.1)",
             borderColor: "rgba(0,0,255,0.5)",
+            fill: true,
           },
           {
             label: "With Fees",
             data: data2,
             backgroundColor: "rgba(255,0,0,0.1)",
             borderColor: "rgba(255,0,0,0.5)",
+            fill: true,
           },
         ],
       }}

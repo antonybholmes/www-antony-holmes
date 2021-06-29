@@ -125,11 +125,11 @@ type DataProps = {
   }
 }
 
-const PortfoliosPage: React.FC<PageProps<DataProps>> = ({ data }) => {
+const PortfoliosPage: React.FC<PageProps<DataProps>> = ({ location, data }) => {
   const portfolios = data.portfolios.nodes
 
   return (
-    <PageLayout title="Portfolios">
+    <PageLayout title="Portfolios" location={location}>
       <MainSideCol>
         <>
           <h1>You've Got To Pick A Portfolio Or Two</h1>

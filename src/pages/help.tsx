@@ -12,14 +12,15 @@ import reactsvg from "../../assets/images/svg/react.svg"
 import ExtLink from "../components/extlink"
 import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/pagelayout"
+import { PageProps } from "gatsby"
 
 const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"
 
-const HelpPage = () => {
+const HelpPage: React.FC<PageProps> = ({ path }) => {
   const { copyright, version } = useSiteMetadata()
 
   return (
-    <PageLayout title="Help">
+    <PageLayout title="Help" path={path}>
       <MainSideCol>
         <>
           <h4 className="font-semibold">About the {copyright} Web Site</h4>

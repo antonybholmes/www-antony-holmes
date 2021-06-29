@@ -40,17 +40,17 @@ type DataProps = {
 }
 
 const PostTagTemplate: React.FC<PageProps<DataProps, CategoryTemplateProps>> =
-  ({ pageContext, data }) => {
+  ({ path, pageContext, data }) => {
     const { tag } = pageContext
 
     const posts = data.posts.nodes
     const imageMap = useImageMap(data)
 
     return (
-      <PageLayout title={tag}>
+      <PageLayout title={tag} path={path}>
         <MainSideCol>
           <>
-            <h2 className="uppercase text-blue-600">{tag}</h2>
+            <h1>Articles tagged {tag}</h1>
             {/* <p className="text-xl">{data.tag.info}</p> */}
 
             <Row className="mt-8">

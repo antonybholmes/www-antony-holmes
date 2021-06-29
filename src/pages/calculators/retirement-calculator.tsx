@@ -1,28 +1,19 @@
 import { graphql, PageProps } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
-import Column from "../../components/column"
 import Container from "../../components/container"
 import RetirementGraph from "../../components/dashboard/retirementgraph"
-import FlatCard from "../../components/flatcard"
 import FlHdDiv from "../../components/flhddiv"
-import FullDiv from "../../components/fulldiv"
 import Layout from "../../components/layout"
-import MainColumn from "../../components/maincolumn"
 import MainSideCol from "../../components/mainsidecol"
 import RangeSlider from "../../components/rangeslider"
-import SideColumn from "../../components/sidecolumn"
+import Slider from "../../components/slider"
 import TextBox from "../../components/textbox"
-
-type DataProps = {
-  hero: any
-}
 
 const heading = (text: string) => {
   return <div className="font-semibold text-sm mb-1">{text}</div>
 }
 
-const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
+const Page: React.FC<PageProps> = ({ path }) => {
   const [arr, setARR] = useState(8)
   const [spendingRate, setSpendingRate] = useState(4)
   const [er, setER] = useState(2)
@@ -123,7 +114,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <Layout title="Retirement Calculator">
+    <Layout title="Retirement Calculator" path={path}>
       {/* <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -156,10 +147,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleARRChange}
                 />
-                <RangeSlider
+                <Slider
                   value={arr}
                   onChange={(v: number) => setARR(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -171,12 +162,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefixLeft={false}
                   alignLeft={false}
                 />
-                <RangeSlider
+                <Slider
                   min={0}
                   max={2000}
                   value={er}
                   onChange={(v: number) => setER(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -186,13 +177,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleStartingBalanceChange}
                 />
-                <RangeSlider
+                <Slider
                   value={startingBalance}
                   min={10000}
                   max={1000000}
                   step={10000}
                   onChange={(v: number) => setStartingBalance(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -202,13 +193,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleSavingsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={savings}
                   min={0}
                   max={100000}
                   step={1000}
                   onChange={(v: number) => setSavings(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -220,12 +211,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleContributionYearsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={contributionYears}
                   min={1}
                   max={100}
                   onChange={(v: number) => setContributionYears(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -237,12 +228,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleDrawDownYearsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={drawDownYears}
                   min={1}
                   max={100}
                   onChange={(v: number) => setDrawDownYears(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -254,12 +245,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefixLeft={false}
                   alignLeft={false}
                 />
-                <RangeSlider
+                <Slider
                   min={0}
                   max={100}
                   value={spendingRate}
                   onChange={(v: number) => setSpendingRate(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
             </div>

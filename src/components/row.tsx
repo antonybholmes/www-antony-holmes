@@ -12,6 +12,10 @@ type RowProps = {
   style?: any
   onMouseEnter?: any
   onMouseLeave?: any
+  onMouseMove?: any
+  onMouseUp?: any
+  onMouseDown?: any
+  tabIndex?: number
 }
 
 const Row: React.FC<RowProps> = React.forwardRef(
@@ -27,9 +31,13 @@ const Row: React.FC<RowProps> = React.forwardRef(
       style,
       onMouseEnter,
       onMouseLeave,
+      onMouseMove,
+      onMouseUp,
+      onMouseDown,
+      tabIndex,
       children,
     },
-    ref?: any
+    ref: any
   ) => {
     const baseClass = `flex flex-row ${w !== "" ? `w-full ${size}:${w}` : ""} ${
       isCentered ? "justify-center" : ""
@@ -42,7 +50,11 @@ const Row: React.FC<RowProps> = React.forwardRef(
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
         ref={ref}
+        tabIndex={tabIndex}
       >
         {children}
       </div>
@@ -61,6 +73,10 @@ Row.defaultProps = {
   wrap: false,
   onMouseEnter: null,
   onMouseLeave: null,
+  onMouseMove: null,
+  onMouseUp: null,
+  onMouseDown: null,
+  tabIndex: undefined,
 }
 
 export default Row

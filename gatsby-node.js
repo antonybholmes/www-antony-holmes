@@ -193,6 +193,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       siteUrl: String
       social: Social
       version: String
+      keywords: String
     }
 
     type MarkdownRemark implements Node {

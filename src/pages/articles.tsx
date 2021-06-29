@@ -23,7 +23,7 @@ type DataProps = {
   }
 }
 
-const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
+const PostsPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const [records, setRecords] = useState(25)
 
   const posts = data.posts.nodes
@@ -35,7 +35,7 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <PageLayout title="Articles">
+    <PageLayout title="Articles" path={path}>
       <MainSideCol>
         <>
           <Row>

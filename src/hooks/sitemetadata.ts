@@ -6,7 +6,9 @@ const useSiteMetadata = () => {
       query {
         site {
           siteMetadata {
+            keywords
             siteTitle
+            siteUrl
             author {
               name
               summary

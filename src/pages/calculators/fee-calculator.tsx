@@ -5,18 +5,14 @@ import FeeGraph from "../../components/dashboard/feegraph"
 import FlHdDiv from "../../components/flhddiv"
 import Layout from "../../components/layout"
 import MainSideCol from "../../components/mainsidecol"
-import RangeSlider from "../../components/rangeslider"
+import Slider from "../../components/slider"
 import TextBox from "../../components/textbox"
-
-type DataProps = {
-  hero: any
-}
 
 const heading = (text: string) => {
   return <div className="font-semibold text-sm mb-1">{text}</div>
 }
 
-const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
+const Page: React.FC<PageProps> = ({ path }) => {
   const [arr, setARR] = useState(8)
   const [er, setER] = useState(1)
   const [frontLoad, setFrontLoad] = useState(5)
@@ -113,7 +109,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <Layout title="Fee Calculator">
+    <Layout title="Fee Calculator" path={path}>
       {/* <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -127,7 +123,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
               <h2>Retirement Fee Calculator</h2>
               <div className="text-lg">
                 Want to understand how fees affect your retirement savings? Play
-                around with our interactive tool to see just how much can you
+                around with this interactive tool to see just how much can you
                 lose over your investment lifetime, even when the fees seem
                 small.
               </div>
@@ -153,10 +149,15 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleARRChange}
                 />
-                <RangeSlider
+                {/* <RangeSlider
                   value={arr}
                   onChange={(v: number) => setARR(v)}
                   className="mt-4"
+                /> */}
+                <Slider
+                  value={arr}
+                  onChange={(v: number) => setARR(v)}
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -168,12 +169,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefixLeft={false}
                   alignLeft={false}
                 />
-                <RangeSlider
+                <Slider
                   min={0}
                   max={100}
                   value={er}
                   onChange={(v: number) => setER(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -185,10 +186,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleFrontEndChange}
                 />
-                <RangeSlider
+                <Slider
                   value={frontLoad}
                   onChange={(v: number) => setFrontLoad(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -198,13 +199,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleStartingBalanceChange}
                 />
-                <RangeSlider
+                <Slider
                   value={startingBalance}
                   min={10000}
                   max={1000000}
                   step={10000}
                   onChange={(v: number) => setStartingBalance(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -214,13 +215,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleSavingsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={savings}
                   min={0}
                   max={100000}
                   step={1000}
                   onChange={(v: number) => setSavings(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -232,12 +233,12 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleYearsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={years}
                   min={1}
                   max={100}
                   onChange={(v: number) => setYears(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
             </div>

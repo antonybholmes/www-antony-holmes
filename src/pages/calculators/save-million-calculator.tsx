@@ -7,17 +7,14 @@ import FlHdDiv from "../../components/flhddiv"
 import Layout from "../../components/layout"
 import MainSideCol from "../../components/mainsidecol"
 import RangeSlider from "../../components/rangeslider"
+import Slider from "../../components/slider"
 import TextBox from "../../components/textbox"
-
-type DataProps = {
-  hero: any
-}
 
 const heading = (text: string) => {
   return <div className="font-semibold text-sm mb-1">{text}</div>
 }
 
-const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
+const Page: React.FC<PageProps> = ({ path }) => {
   const [startAge, setStartAge] = useState(30)
   const [targetAge, setTargetAge] = useState(65)
   const [startingBalance, setStartingBalance] = useState(100000)
@@ -127,7 +124,7 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <Layout title="Save A Million Calculator">
+    <Layout title="Save A Million Calculator" path={path}>
       {/* <BackgroundImage
         Tag="section"
         fluid={data.hero.childImageSharp.fluid}
@@ -161,13 +158,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleAgeChange}
                 />
-                <RangeSlider
+                <Slider
                   min={1}
                   max={100}
                   step={1}
                   value={startAge}
                   onChange={(v: number) => setStartAge(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -179,13 +176,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleAgeChange}
                 />
-                <RangeSlider
+                <Slider
                   min={1}
                   max={100}
                   step={1}
-                  value={startAge}
+                  value={targetAge}
                   onChange={(v: number) => setTargetAge(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -195,13 +192,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleStartingBalanceChange}
                 />
-                <RangeSlider
+                <Slider
                   value={startingBalance}
                   min={10000}
                   max={1000000}
                   step={10000}
                   onChange={(v: number) => setStartingBalance(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -211,13 +208,13 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   prefix="$"
                   onChange={handleSavingsChange}
                 />
-                <RangeSlider
+                <Slider
                   value={savings}
                   min={0}
                   max={100000}
                   step={1000}
                   onChange={(v: number) => setSavings(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -229,10 +226,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleARRChange}
                 />
-                <RangeSlider
+                <Slider
                   value={arr}
                   onChange={(v: number) => setARR(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
               <div className="mt-8">
@@ -244,10 +241,10 @@ const Page: React.FC<PageProps<DataProps>> = ({ data }) => {
                   alignLeft={false}
                   onChange={handleInflationChange}
                 />
-                <RangeSlider
+                <Slider
                   value={arr}
                   onChange={(v: number) => setInflation(v)}
-                  className="mt-4"
+                  className="mt-2"
                 />
               </div>
             </div>

@@ -73,7 +73,6 @@ module.exports = {
             },
           },
           `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
       },
@@ -124,6 +123,7 @@ module.exports = {
         },
       },
     },
+    "gatsby-plugin-next-seo",
     // {
     //   resolve: `gatsby-plugin-build-date`,
     //   options: {

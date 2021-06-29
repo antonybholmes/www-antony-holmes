@@ -10,6 +10,7 @@ import {
   faTags,
 } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
+import { PageProps } from "gatsby"
 
 library.add(faCalculator, faChevronRight, faTags)
 
@@ -30,12 +31,13 @@ const Main = styled.main`
 
 type LayoutProps = {
   title: string
+  path: string
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+const Layout: React.FC<LayoutProps> = ({ title, path, children }) => {
   return (
     <div className="relative">
-      <SEO title={title} />
+      <SEO title={title} path={path} />
       <Header title={title} />
       <main className="min-h-screen">{children}</main>
       <Footer />

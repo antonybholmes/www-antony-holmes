@@ -38,8 +38,8 @@ const Post: React.FC<PostProps> = ({ post, imageMap }) => {
         <Row isVCentered={false} className="w-full">
           <div className="w-3/4 mr-8">
             <h2
-              className={`mt-3 font-semibold trans-ani ${
-                hover ? "text-green-500" : "text-black"
+              className={`mt-3 trans-ani ${
+                hover ? "text-blue-500" : "text-black"
               }`}
             >
               {post.frontmatter.title}

@@ -23,13 +23,9 @@ const calcLink = (name: string, to: string) => {
   )
 }
 
-type DataProps = {
-  hero: any
-}
-
-const CalculatorsPage: React.FC<PageProps<DataProps>> = () => {
+const CalculatorsPage: React.FC<PageProps> = ({ path }) => {
   return (
-    <PageLayout title="Calculators">
+    <PageLayout title="Calculators" path={path}>
       <Row wrap={true} className="justify-center">
         {calcLink("Fees", "/calculators/fee-calculator")}
         {calcLink("Retirement", "/calculators/retirement-calculator")}

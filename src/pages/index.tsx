@@ -24,12 +24,13 @@ type DataProps = {
   }
 }
 
-const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
+const IndexPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const posts = data.posts.nodes
   const imageMap = useImageMap(data)
 
   return (
-    <PageLayout title="Home">
+    <PageLayout title="Home" location={location}>
+      {path}
       <div>
         <HeadPost post={posts[0]} imageMap={imageMap} />
       </div>

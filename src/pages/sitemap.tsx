@@ -1,16 +1,16 @@
 import React from "react"
-import Container from "../components/container"
-import FlHdDiv from "../components/flhddiv"
-import Row from "../components/row"
-import PageLayout from "../components/pagelayout"
-import BlueLink from "../components/links/bluelink"
 import useHeaderLinks from "../hooks/headerlinks"
+import { PageProps } from "gatsby"
+import PageLayout from "../components/pagelayout"
+import FlHdDiv from "../components/flhddiv"
+import BlueLink from "../components/links/bluelink"
+import Row from "../components/row"
 
-const SiteMapPage = () => {
+const SiteMapPage: React.FC<PageProps> = ({path}) => {
   const headerLinks = useHeaderLinks()
 
   return (
-    <PageLayout title="Site Map">
+    <PageLayout title="Site Map" path={path}>
       <FlHdDiv>
         <div className="font-medium">
           <Row isVCentered={false} wrap={true}>

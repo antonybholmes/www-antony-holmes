@@ -1,19 +1,15 @@
 import React from "react"
-import FlHdDiv from "../components/flhddiv"
 import ColorLink from "../components/links/colorlink"
-import Container from "../components/container"
-import Layout from "../components/layout"
 import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/pagelayout"
+import { PageProps } from "gatsby"
 
 //nav="About"
 
-const PrivacyPage = () => (
+const PrivacyPage: React.FC<PageProps> = ({path}) => (
   <PageLayout
     title="Privacy Policy"
-    crumbs={[["Privacy Policy", "/privacy"]]}
-    bgColorClass="bg-white"
-    showLogo={false}
+    path={path}
   >
     <MainSideCol>
       <>

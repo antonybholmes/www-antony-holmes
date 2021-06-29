@@ -1,9 +1,10 @@
+import { PageProps } from "gatsby"
 import React from "react"
 import PageLayout from "../components/pagelayout"
 
-const PortfolioPage = () => {
+const PortfolioPage: React.FC<PageProps> = ({path}) => {
   return (
-    <PageLayout title="Portfolio">
+    <PageLayout title="Portfolio" path={path}>
       <h1 className="text-center mb-8">Portfolio</h1>
       <p>
         Since I am offering my perspective on managing your finances and

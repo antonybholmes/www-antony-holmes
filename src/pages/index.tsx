@@ -29,7 +29,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const imageMap = useImageMap(data)
 
   return (
-    <PageLayout title="Home" location={location}>
+    <PageLayout title="Home" path={path}>
       {path}
       <div>
         <HeadPost post={posts[0]} imageMap={imageMap} />

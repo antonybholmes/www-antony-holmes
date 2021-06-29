@@ -1,22 +1,19 @@
 import React from "react"
-import FlHdDiv from "../components/flhddiv"
-import Container from "../components/container"
 import BlueLink from "../components/links/bluelink"
 import MainSideCol from "../components/mainsidecol"
 import useSiteMetadata from "../hooks/sitemetadata"
 import PageLayout from "../components/pagelayout"
+import { PageProps } from "gatsby"
 
 //nav="About"
 
-const TermsPage = () => {
+const TermsPage: React.FC<PageProps> = ({path}) => {
   const { siteTitle } = useSiteMetadata()
 
   return (
     <PageLayout
       title="Terms of Use"
-      crumbs={[["Terms of Use", "/terms"]]}
-      bgColorClass="bg-white"
-      showLogo={false}
+      path={path}
     >
       <MainSideCol>
         <>

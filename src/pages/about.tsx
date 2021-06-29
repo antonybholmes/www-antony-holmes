@@ -1,10 +1,11 @@
+import { PageProps } from "gatsby"
 import React from "react"
 import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/pagelayout"
 
-const Page = () => {
+const Page: React.FC<PageProps> = ({path}) => {
   return (
-    <PageLayout title="About">
+    <PageLayout title="About" path={path}>
       <MainSideCol>
         <>
           <h1 className="text-center mb-8">About</h1>

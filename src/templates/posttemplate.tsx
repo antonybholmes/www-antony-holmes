@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import MainSideCol from "../components/mainsidecol"
 import dayjs from "dayjs"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
@@ -10,11 +10,14 @@ import PostTagList from "../components/posts/posttaglist"
 import PageLayout from "../components/pagelayout"
 import useCategoryUrl from "../hooks/categoryurl"
 
-type PostTemplateProps = {
-  data: any
+type DataProps = {
+  post: any
+  next: any
+  previous: any
+  author: any
 }
 
-const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
+const PostTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const post = data.post
   const { previous, next } = data
   const date = dayjs(post.frontmatter.date)
@@ -22,7 +25,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data }) => {
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
 
   return (
-    <PageLayout title={post.frontmatter.title}>
+    <PageLayout title={post.frontmatter.title} path={path}>
       <MainSideCol>
         <article>
           <header className="mb-8">

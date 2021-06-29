@@ -35,14 +35,14 @@ type DataProps = {
   }
 }
 
-const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const posts = data.posts.nodes
   const author = data.author
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
   const imageMap = useImageMap(data)
 
   return (
-    <PageLayout title={name}>
+    <PageLayout title={name} path={path}>
       <MainSideCol>
         <>
           <Row className="mb-16">

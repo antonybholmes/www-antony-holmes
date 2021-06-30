@@ -8,25 +8,40 @@
 import React from "react"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 import useSiteMetadata from "../hooks/sitemetadata"
+import { useLocation } from "@reach/router"
 
 type SEOProps = {
   title: string
   description?: string
-  path: string
+  path?: string
 }
 
 const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
-  const { siteTitle, siteUrl } = useSiteMetadata()
+  const location = useLocation()
 
-  const t = `${title} | ${siteTitle}`
+  console.log(location.pathname)
+
+  const { siteTitle, siteUrl, siteDescription } = useSiteMetadata()
+
+  if (path === "") {
+    path = location.pathname
+  }
+
+  path = `${siteUrl}${path}`
+
+  title = `${title} | ${siteTitle}`
+
+  if (description === "") {
+    description = siteDescription
+  }
 
   return (
     <GatsbySeo
-      title={t}
+      title={title}
       description={description}
       openGraph={{
-        url: `${siteUrl}${path}`,
-        title: t,
+        url: path,
+        title: title,
         description: description,
       }}
     />
@@ -82,9 +97,9 @@ const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
+  title: "",
+  description: "",
+  path: "",
 }
 
 export default SEO

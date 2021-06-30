@@ -2,7 +2,7 @@ import React from "react"
 import BlueLink from "../components/links/bluelink"
 import MainSideCol from "../components/mainsidecol"
 import useSiteMetadata from "../hooks/sitemetadata"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
 
 //nav="About"

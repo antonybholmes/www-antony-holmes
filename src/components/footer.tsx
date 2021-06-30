@@ -34,10 +34,11 @@ const Footer = () => {
                         ) => {
                           return (
                             <li key={linkIndex} className="mb-2">
-                              <Link to={link.url}>
-                                <a className="hover:text-blue-500 ">
-                                  {link.name}
-                                </a>
+                              <Link
+                                to={link.url}
+                                className="hover:text-blue-500 "
+                              >
+                                {link.name}
                               </Link>
                             </li>
                           )

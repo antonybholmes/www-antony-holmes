@@ -65,10 +65,19 @@ const Slider: React.FC<SliderProps> = ({
 
   useEffect(() => {
     gsap.to(handleHighlightRef.current, {
-      duration: 0.5,
+      duration: 0.4,
       ease: "back.out(2)",
       scale: hasFocus ? 1.6 : 1,
     })
+
+    if (hasFocus) {
+      gsap.to(handleHighlightRef.current, {
+        delay: 5,
+        duration: 0.4,
+        ease: "back.out(2)",
+        scale: 1,
+      })
+    }
   }, [hasFocus])
 
   const _onChange = (v: number) => {

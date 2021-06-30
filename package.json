@@ -16,7 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "chart.js": "3.4.0",
     "dayjs": "^1.10.5",
-    "gatsby": "^3.8.0",
+    "gatsby": "^3.8.1",
     "gatsby-background-image": "^1.5.3",
     "gatsby-image": "^3.8.0",
     "gatsby-plugin-feed": "^3.8.0",

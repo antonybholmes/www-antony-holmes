@@ -1,7 +1,7 @@
 import React from "react"
 import useHeaderLinks from "../hooks/headerlinks"
 import { PageProps } from "gatsby"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import FlHdDiv from "../components/flhddiv"
 import BlueLink from "../components/links/bluelink"
 import Row from "../components/row"

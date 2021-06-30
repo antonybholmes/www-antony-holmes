@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import Row from "../components/row"
 import BlueIndexLink from "../components/links/blueindexlink"
 import BlueLink from "../components/links/bluelink"

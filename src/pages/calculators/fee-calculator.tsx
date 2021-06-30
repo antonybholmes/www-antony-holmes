@@ -1,9 +1,7 @@
 import { graphql, PageProps } from "gatsby"
 import React, { useEffect, useState } from "react"
-import Container from "../../components/container"
 import FeeGraph from "../../components/dashboard/feegraph"
-import FlHdDiv from "../../components/flhddiv"
-import Layout from "../../components/layout"
+import PageLayout from "../../components/layouts/pagelayout"
 import MainSideCol from "../../components/mainsidecol"
 import Slider from "../../components/slider"
 import TextBox from "../../components/textbox"
@@ -109,143 +107,132 @@ const Page: React.FC<PageProps> = ({ path }) => {
   }
 
   return (
-    <Layout title="Fee Calculator" path={path}>
-      {/* <BackgroundImage
-        Tag="section"
-        fluid={data.hero.childImageSharp.fluid}
-        className="w-full h-60"
-      /> */}
+    <PageLayout title="Fee Calculator">
+      <MainSideCol>
+        <div>
+          <h2>Retirement Fee Calculator</h2>
+          <div className="text-lg">
+            Want to understand how fees affect your retirement savings? Play
+            around with this interactive tool to see just how much can you lose
+            over your investment lifetime, even when the fees seem small.
+          </div>
 
-      <FlHdDiv>
-        <Container>
-          <MainSideCol>
-            <div>
-              <h2>Retirement Fee Calculator</h2>
-              <div className="text-lg">
-                Want to understand how fees affect your retirement savings? Play
-                around with this interactive tool to see just how much can you
-                lose over your investment lifetime, even when the fees seem
-                small.
-              </div>
+          <h4 className="my-8 text-center">
+            Fees could cost you $
+            {Math.round(
+              (data1[data1.length - 1] - data2[data2.length - 1]) * 1000
+            ).toLocaleString()}{" "}
+            over a {years} year period!
+          </h4>
 
-              <h4 className="my-8 text-center">
-                Fees could cost you $
-                {Math.round(
-                  (data1[data1.length - 1] - data2[data2.length - 1]) * 1000
-                ).toLocaleString()}{" "}
-                over a {years} year period!
-              </h4>
+          <FeeGraph data1={data1} data2={data2} />
+        </div>
 
-              <FeeGraph data1={data1} data2={data2} />
-            </div>
-
-            <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
-              <div>
-                {heading("Annual Rate Of Return")}
-                <TextBox
-                  value={arr}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleARRChange}
-                />
-                {/* <RangeSlider
+        <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
+          <div>
+            {heading("Annual Rate Of Return")}
+            <TextBox
+              value={arr}
+              prefix="%"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleARRChange}
+            />
+            {/* <RangeSlider
                   value={arr}
                   onChange={(v: number) => setARR(v)}
                   className="mt-4"
                 /> */}
-                <Slider
-                  value={arr}
-                  onChange={(v: number) => setARR(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Expense Ratio")}
-                <TextBox
-                  value={er}
-                  onChange={handleERChange}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                />
-                <Slider
-                  min={0}
-                  max={100}
-                  value={er}
-                  onChange={(v: number) => setER(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Front-End Load")}
-                <TextBox
-                  value={frontLoad}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleFrontEndChange}
-                />
-                <Slider
-                  value={frontLoad}
-                  onChange={(v: number) => setFrontLoad(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Starting Balance")}
-                <TextBox
-                  value={startingBalance}
-                  prefix="$"
-                  onChange={handleStartingBalanceChange}
-                />
-                <Slider
-                  value={startingBalance}
-                  min={10000}
-                  max={1000000}
-                  step={10000}
-                  onChange={(v: number) => setStartingBalance(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Savings Per Month")}
-                <TextBox
-                  value={savings}
-                  prefix="$"
-                  onChange={handleSavingsChange}
-                />
-                <Slider
-                  value={savings}
-                  min={0}
-                  max={100000}
-                  step={1000}
-                  onChange={(v: number) => setSavings(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Years")}
-                <TextBox
-                  value={years}
-                  prefix="years"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleYearsChange}
-                />
-                <Slider
-                  value={years}
-                  min={1}
-                  max={100}
-                  onChange={(v: number) => setYears(v)}
-                  className="mt-2"
-                />
-              </div>
-            </div>
-          </MainSideCol>
-        </Container>
-      </FlHdDiv>
-    </Layout>
+            <Slider
+              value={arr}
+              onChange={(v: number) => setARR(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Expense Ratio")}
+            <TextBox
+              value={er}
+              onChange={handleERChange}
+              prefix="%"
+              prefixLeft={false}
+              alignLeft={false}
+            />
+            <Slider
+              min={0}
+              max={100}
+              value={er}
+              onChange={(v: number) => setER(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Front-End Load")}
+            <TextBox
+              value={frontLoad}
+              prefix="%"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleFrontEndChange}
+            />
+            <Slider
+              value={frontLoad}
+              onChange={(v: number) => setFrontLoad(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Starting Balance")}
+            <TextBox
+              value={startingBalance}
+              prefix="$"
+              onChange={handleStartingBalanceChange}
+            />
+            <Slider
+              value={startingBalance}
+              min={10000}
+              max={1000000}
+              step={10000}
+              onChange={(v: number) => setStartingBalance(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Savings Per Month")}
+            <TextBox
+              value={savings}
+              prefix="$"
+              onChange={handleSavingsChange}
+            />
+            <Slider
+              value={savings}
+              min={0}
+              max={100000}
+              step={1000}
+              onChange={(v: number) => setSavings(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Years")}
+            <TextBox
+              value={years}
+              prefix="years"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleYearsChange}
+            />
+            <Slider
+              value={years}
+              min={1}
+              max={100}
+              onChange={(v: number) => setYears(v)}
+              className="mt-2"
+            />
+          </div>
+        </div>
+      </MainSideCol>
+    </PageLayout>
   )
 }
 

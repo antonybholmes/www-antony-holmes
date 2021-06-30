@@ -1,12 +1,8 @@
 import { graphql, PageProps } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
 import React, { useEffect, useState } from "react"
-import Container from "../../components/container"
 import MillionGraph from "../../components/dashboard/milliongraph"
-import FlHdDiv from "../../components/flhddiv"
-import Layout from "../../components/layout"
+import PageLayout from "../../components/layouts/pagelayout"
 import MainSideCol from "../../components/mainsidecol"
-import RangeSlider from "../../components/rangeslider"
 import Slider from "../../components/slider"
 import TextBox from "../../components/textbox"
 
@@ -124,134 +120,124 @@ const Page: React.FC<PageProps> = ({ path }) => {
   }
 
   return (
-    <Layout title="Save A Million Calculator" path={path}>
-      {/* <BackgroundImage
-        Tag="section"
-        fluid={data.hero.childImageSharp.fluid}
-        className="w-full h-60"
-      /> */}
+    <PageLayout title="Save A Million Calculator">
+      <MainSideCol>
+        <div>
+          <h2>Save A Million Dollars Calculator</h2>
+          <div className="mb-8">
+            See out how long it will take you to save a million dollars with
+            this simple calculator.
+            {minAge != -1 && (
+              <h3 className="text-center mt-8">
+                You could be a millionaire by age {minAge}!
+              </h3>
+            )}
+          </div>
+          <MillionGraph age={startAge} data1={data1} data2={data2} />
+        </div>
 
-      <FlHdDiv>
-        <Container>
-          <MainSideCol>
-            <div>
-              <h2>Save A Million Dollars Calculator</h2>
-              <div className="mb-8">
-                See out how long it will take you to save a million dollars with
-                this simple calculator.
-                {minAge != -1 && (
-                  <h3 className="text-center mt-8">
-                    You could be a millionaire by age {minAge}!
-                  </h3>
-                )}
-              </div>
-              <MillionGraph age={startAge} data1={data1} data2={data2} />
-            </div>
-
-            <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
-              <div>
-                {heading("Age")}
-                <TextBox
-                  value={startAge}
-                  prefix="years"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleAgeChange}
-                />
-                <Slider
-                  min={1}
-                  max={100}
-                  step={1}
-                  value={startAge}
-                  onChange={(v: number) => setStartAge(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Target Age")}
-                <TextBox
-                  value={targetAge}
-                  prefix="years"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleAgeChange}
-                />
-                <Slider
-                  min={1}
-                  max={100}
-                  step={1}
-                  value={targetAge}
-                  onChange={(v: number) => setTargetAge(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Starting Balance")}
-                <TextBox
-                  value={startingBalance}
-                  prefix="$"
-                  onChange={handleStartingBalanceChange}
-                />
-                <Slider
-                  value={startingBalance}
-                  min={10000}
-                  max={1000000}
-                  step={10000}
-                  onChange={(v: number) => setStartingBalance(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Savings Per Month")}
-                <TextBox
-                  value={savings}
-                  prefix="$"
-                  onChange={handleSavingsChange}
-                />
-                <Slider
-                  value={savings}
-                  min={0}
-                  max={100000}
-                  step={1000}
-                  onChange={(v: number) => setSavings(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Annual Rate Of Return")}
-                <TextBox
-                  value={arr}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleARRChange}
-                />
-                <Slider
-                  value={arr}
-                  onChange={(v: number) => setARR(v)}
-                  className="mt-2"
-                />
-              </div>
-              <div className="mt-8">
-                {heading("Inflation")}
-                <TextBox
-                  value={inflation}
-                  prefix="%"
-                  prefixLeft={false}
-                  alignLeft={false}
-                  onChange={handleInflationChange}
-                />
-                <Slider
-                  value={arr}
-                  onChange={(v: number) => setInflation(v)}
-                  className="mt-2"
-                />
-              </div>
-            </div>
-          </MainSideCol>
-        </Container>
-      </FlHdDiv>
-    </Layout>
+        <div className="ml-8 border-solid border-gray-200 p-4 bg-gray-100 rounded-md">
+          <div>
+            {heading("Age")}
+            <TextBox
+              value={startAge}
+              prefix="years"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleAgeChange}
+            />
+            <Slider
+              min={1}
+              max={100}
+              step={1}
+              value={startAge}
+              onChange={(v: number) => setStartAge(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Target Age")}
+            <TextBox
+              value={targetAge}
+              prefix="years"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleAgeChange}
+            />
+            <Slider
+              min={1}
+              max={100}
+              step={1}
+              value={targetAge}
+              onChange={(v: number) => setTargetAge(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Starting Balance")}
+            <TextBox
+              value={startingBalance}
+              prefix="$"
+              onChange={handleStartingBalanceChange}
+            />
+            <Slider
+              value={startingBalance}
+              min={10000}
+              max={1000000}
+              step={10000}
+              onChange={(v: number) => setStartingBalance(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Savings Per Month")}
+            <TextBox
+              value={savings}
+              prefix="$"
+              onChange={handleSavingsChange}
+            />
+            <Slider
+              value={savings}
+              min={0}
+              max={100000}
+              step={1000}
+              onChange={(v: number) => setSavings(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Annual Rate Of Return")}
+            <TextBox
+              value={arr}
+              prefix="%"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleARRChange}
+            />
+            <Slider
+              value={arr}
+              onChange={(v: number) => setARR(v)}
+              className="mt-2"
+            />
+          </div>
+          <div className="mt-8">
+            {heading("Inflation")}
+            <TextBox
+              value={inflation}
+              prefix="%"
+              prefixLeft={false}
+              alignLeft={false}
+              onChange={handleInflationChange}
+            />
+            <Slider
+              value={arr}
+              onChange={(v: number) => setInflation(v)}
+              className="mt-2"
+            />
+          </div>
+        </div>
+      </MainSideCol>
+    </PageLayout>
   )
 }
 

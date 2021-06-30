@@ -11,7 +11,7 @@ import jssvg from "../../assets/images/svg/javascript-shield.svg"
 import reactsvg from "../../assets/images/svg/react.svg"
 import ExtLink from "../components/extlink"
 import MainSideCol from "../components/mainsidecol"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
 
 const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"

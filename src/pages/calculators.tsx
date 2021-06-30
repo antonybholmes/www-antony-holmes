@@ -3,7 +3,7 @@ import React from "react"
 import Container from "../components/container"
 import Row from "../components/row"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 
 const calcLink = (name: string, to: string) => {
   return (

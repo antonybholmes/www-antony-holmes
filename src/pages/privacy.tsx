@@ -1,7 +1,7 @@
 import React from "react"
 import ColorLink from "../components/links/colorlink"
 import MainSideCol from "../components/mainsidecol"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
 
 //nav="About"

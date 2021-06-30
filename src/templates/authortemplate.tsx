@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import MainSideCol from "../components/mainsidecol"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"

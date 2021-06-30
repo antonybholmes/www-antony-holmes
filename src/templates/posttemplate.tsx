@@ -7,7 +7,7 @@ import Row from "../components/row"
 import ColorLink from "../components/links/colorlink"
 import useAuthorUrl from "../hooks/authorurl"
 import PostTagList from "../components/posts/posttaglist"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import useCategoryUrl from "../hooks/categoryurl"
 
 type DataProps = {

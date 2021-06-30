@@ -5,7 +5,7 @@ import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
 import HeadPost from "../components/posts/headpost"
 import SubHeadingPost from "../components/posts/subheadingpost"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 
 type DataProps = {
   posts: {
@@ -29,8 +29,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   const imageMap = useImageMap(data)
 
   return (
-    <PageLayout title="Home" path={path}>
-      {path}
+    <PageLayout title="Home">
       <div>
         <HeadPost post={posts[0]} imageMap={imageMap} />
       </div>

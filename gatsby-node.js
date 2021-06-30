@@ -188,14 +188,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       twitter: String
     }
 
-    type SiteSiteMetadata {
-      author: Author
-      siteUrl: String
-      social: Social
-      version: String
-      keywords: String
-    }
-
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
       fields: Fields

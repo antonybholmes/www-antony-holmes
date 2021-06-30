@@ -5,7 +5,7 @@ module.exports = {
       name: `Antony Holmes`,
       summary: `who lives and works in New York building useful things.`,
     },
-    description: `Polite Investor finance web site.`,
+    siteDescription: `Polite Investor financial web site.`,
     siteUrl: `https://www.politeinvestor.com/`,
     social: {
       twitter: `politeinvestor`,

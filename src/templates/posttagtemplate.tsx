@@ -4,7 +4,7 @@ import MainSideCol from "../components/mainsidecol"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 import Row from "../components/row"
 
 type CategoryTemplateProps = { tag: string }

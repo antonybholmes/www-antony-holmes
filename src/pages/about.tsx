@@ -1,7 +1,7 @@
 import { PageProps } from "gatsby"
 import React from "react"
 import MainSideCol from "../components/mainsidecol"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 
 const Page: React.FC<PageProps> = ({ path }) => {
   return (

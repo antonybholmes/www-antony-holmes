@@ -8,7 +8,9 @@ tags: ["Investing", "Portfolio Design"]
 related: []
 ---
 
-<p>There is an entire industry built on making investing seem complicated so you can be sold services but it doesn't have to be. There is a **default option**.  Unless you have a good reason to do something differently, you should go with the default options. Thet are tried and tested methods that should work for anyone. As you learn more, you may add some bells and whistles, but even if you never change a thing with your investment plan, this is the way to go.</p>
+There is an entire industry built on making investing seem complicated so you can be sold services but it doesn't have to be. There is a **default option**. Unless you have a good reason to do something differently, you should go with the default options. Thet are tried and tested methods that should work for anyone. As you learn more, you may add some bells and whistles, but even if you never change a thing with your investment plan, this is the way to go.
+
+<!-- end -->
 
 <ol class="list-decimal list-inside">
 <li class="mt-2">Save at least **20%** of your gross income, every year, toward retirement.</li>

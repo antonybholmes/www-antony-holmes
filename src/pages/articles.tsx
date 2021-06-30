@@ -7,7 +7,7 @@ import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
 import { useState } from "react"
 import BlueButton from "../components/links/bluebutton"
-import PageLayout from "../components/pagelayout"
+import PageLayout from "../components/layouts/pagelayout"
 
 type DataProps = {
   posts: {

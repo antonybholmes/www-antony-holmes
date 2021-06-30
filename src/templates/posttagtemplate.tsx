@@ -6,6 +6,7 @@ import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
 import PageLayout from "../components/layouts/pagelayout"
 import Row from "../components/row"
+import Container from "../components/container"
 
 type CategoryTemplateProps = { tag: string }
 
@@ -40,34 +41,40 @@ type DataProps = {
 }
 
 const PostTagTemplate: React.FC<PageProps<DataProps, CategoryTemplateProps>> =
-  ({ path, pageContext, data }) => {
-    const { tag } = pageContext
-
+  ({ pageContext, data }) => {
     const posts = data.posts.nodes
+
+    const tag = data.tag
+
     const imageMap = useImageMap(data)
 
     return (
-      <PageLayout title={tag} path={path}>
-        <MainSideCol>
-          <>
-            <h1>Articles tagged {tag}</h1>
-            {/* <p className="text-xl">{data.tag.info}</p> */}
+      <PageLayout title={tag.name}>
+        <Container>
+          {/* <MainSideCol>
+          <> */}
 
-            <Row className="mt-8">
-              <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
-                {posts.length} Articles
-              </div>
-            </Row>
+          <h1>{tag.name}</h1>
 
-            <ul className="inline-block border-t border-solid border-gray-200 mt-16">
-              {posts.map((post: any, index: number) => {
-                return <Post post={post} imageMap={imageMap} key={index} />
-              })}
-            </ul>
-          </>
+          <h3>{tag.info}</h3>
+
+          <ul className="mt-16">
+            {posts.map((post: any, index: number) => {
+              return (
+                <Post
+                  post={post}
+                  imageMap={imageMap}
+                  key={index}
+                  showMainTagLink={false}
+                />
+              )
+            })}
+          </ul>
+          {/* </>
 
           <></>
-        </MainSideCol>
+        </MainSideCol> */}
+        </Container>
       </PageLayout>
     )
   }

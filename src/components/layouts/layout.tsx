@@ -29,13 +29,26 @@ library.add(faCalculator, faChevronRight, faTags)
 
 type LayoutProps = {
   title?: string
+  description?: string
   path?: string
+  isIndexed?: boolean
 }
 
-const Layout: React.FC<LayoutProps> = ({ title = "", path = "", children }) => {
+const Layout: React.FC<LayoutProps> = ({
+  title = "",
+  description = "",
+  path = "",
+  isIndexed = true,
+  children,
+}) => {
   return (
     <div className="relative">
-      <SEO title={title} path={path} />
+      <SEO
+        title={title}
+        description={description}
+        path={path}
+        isIndexed={isIndexed}
+      />
       <Header title={title} />
       <main className="min-h-screen">{children}</main>
       <Footer />

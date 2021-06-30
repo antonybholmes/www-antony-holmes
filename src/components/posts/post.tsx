@@ -6,13 +6,23 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../row"
 import { useState } from "react"
 import PostTagList from "./posttaglist"
+import ColorLink from "../links/colorlink"
+import BlueLink from "../links/bluelink"
+import useCategoryUrl from "../../hooks/categoryurl"
 
 type PostProps = {
   post: any
   imageMap: any
+  baseUrl?: string
+  showMainTagLink?: boolean
 }
 
-const Post: React.FC<PostProps> = ({ post, imageMap }) => {
+const Post: React.FC<PostProps> = ({
+  post,
+  imageMap,
+  baseUrl = "/posts",
+  showMainTagLink = true,
+}) => {
   const [hover, setHover] = useState(false)
 
   const date = dayjs(post.frontmatter.date)
@@ -27,38 +37,44 @@ const Post: React.FC<PostProps> = ({ post, imageMap }) => {
 
   return (
     <li
-      className="inline-block w-full mt-16"
+      className="inline-block w-full mb-16"
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
-      <Link to={usePostUrl(post)}>
-        <div className="text-blue-500 uppercase tracking-widest text-sm">
-          {date.format("MMM DD")} / {post.frontmatter.tags[0]}
-        </div>
-        <Row isVCentered={false} className="w-full">
-          <div className="w-3/4 mr-8">
-            <h2
-              className={`mt-3 trans-ani ${
-                hover ? "text-blue-500" : "text-black"
-              }`}
-            >
+      <Row isVCentered={false} className="w-full">
+        <div className="w-3/4 mr-8">
+          {showMainTagLink && (
+            <div className="mb-4">
+              <BlueLink
+                to={useCategoryUrl(post.frontmatter.tags[0])}
+                className="uppercase tracking-widest text-sm`"
+              >
+                {post.frontmatter.tags[0]}
+              </BlueLink>
+            </div>
+          )}
+          <h2>
+            <ColorLink to={usePostUrl(post, baseUrl)}>
               {post.frontmatter.title}
-            </h2>
+            </ColorLink>
+          </h2>
+          <p className="text-sm text-gray-500">{date.format("MMM DD, YYYY")}</p>
 
-            <PostTagList post={post} />
+          <p className="mt-4 font-light">{post.excerpt}</p>
 
-            <div className="mt-4">{post.excerpt}</div>
-          </div>
+          <PostTagList post={post} />
+        </div>
 
-          <div className="w-1/4">
+        <div className="w-1/4">
+          <Link to={usePostUrl(post, baseUrl)}>
             <GatsbyImage
               image={getImage(imageMap[post.frontmatter.id])}
               className={`trans-ani w-full`}
               alt={post.frontmatter.title}
             />
-          </div>
-        </Row>
-      </Link>
+          </Link>
+        </div>
+      </Row>
     </li>
   )
 }

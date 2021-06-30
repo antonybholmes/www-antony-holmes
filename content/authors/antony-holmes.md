@@ -2,7 +2,7 @@
 id: "antony-holmes"
 firstName: "Antony"
 lastName: "Holmes"
-title: "CEO"
+title: "The Polite Investor"
 email: "ceo@politeinvestor.com"
 ---
 

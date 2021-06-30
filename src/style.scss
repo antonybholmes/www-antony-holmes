@@ -7,7 +7,7 @@ body {
 }
 
 .h {
-  @apply mb-2;
+  @apply mb-4;
   color: rgb(70, 80, 90);
   font-family: "Quicksand";
 }
@@ -32,8 +32,12 @@ h5 {
   @apply h text-lg;
 }
 
+h6 {
+  @apply h text-base;
+}
+
 p {
-  @apply tracking-wide leading-relaxed font-light text-justify;
+  @apply leading-relaxed font-light mb-4;
 }
 
 .ani-t {

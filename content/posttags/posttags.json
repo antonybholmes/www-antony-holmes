@@ -5,10 +5,14 @@
   },
   {
     "name": "Portfolio Design",
-    "info": "Learn about how to construct a solid portfolio for your investments."
+    "info": "Latest news about how to construct a solid portfolio for your investments."
   },
   {
     "name": "Investing",
-    "info": "Information about investing."
+    "info": "Latest news about investing."
+  },
+  {
+    "name": "Blog",
+    "info": "Latest news about the blog itself."
   }
 ]

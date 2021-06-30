@@ -4,6 +4,7 @@ title: "The Default Investor"
 author: "antony-holmes"
 date: "2021-02-16"
 description: "This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter."
+readtime: "1 min"
 tags: ["Investing", "Portfolio Design"]
 related: []
 ---

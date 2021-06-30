@@ -1,13 +1,13 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import MainSideCol from "../components/mainsidecol"
 import Row from "../components/row"
 import Post from "../components/posts/post"
 import useImageMap from "../hooks/imagemap"
 import { useState } from "react"
 import BlueButton from "../components/links/bluebutton"
 import PageLayout from "../components/layouts/pagelayout"
+import Container from "../components/container"
 
 type DataProps = {
   posts: {
@@ -23,7 +23,7 @@ type DataProps = {
   }
 }
 
-const PostsPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
+const DraftsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [records, setRecords] = useState(25)
 
   const posts = data.posts.nodes
@@ -35,41 +35,45 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
   }
 
   return (
-    <PageLayout title="Articles" path={path}>
-      <MainSideCol>
-        <>
-          <Row>
-            <div className="text-gray-600 text-sm border rounded-full px-8 py-2">
-              {posts.length} Articles
-            </div>
+    <PageLayout title="Articles" isIndexed={false}>
+      <Container>
+        {/* <MainSideCol>
+        <> */}
+
+        <ul>
+          {posts.slice(0, records).map((post: any, index: number) => {
+            return (
+              <Post
+                post={post}
+                imageMap={imageMap}
+                key={index}
+                baseUrl="/drafts"
+              />
+            )
+          })}
+        </ul>
+
+        {posts.length > records && (
+          <Row isCentered={true} className="mt-32">
+            <BlueButton onClick={handleMoreArticles}>
+              Load More Articles
+            </BlueButton>
           </Row>
+        )}
 
-          <ul className="mt-8">
-            {posts.slice(0, records).map((post: any, index: number) => {
-              return <Post post={post} imageMap={imageMap} key={index} />
-            })}
-          </ul>
-
-          {posts.length > records && (
-            <Row isCentered={true} className="mt-32">
-              <BlueButton onClick={handleMoreArticles}>
-                Load More Articles
-              </BlueButton>
-            </Row>
-          )}
-        </>
-        <></>
-      </MainSideCol>
+        {/*</> <></>
+      </MainSideCol> */}
+      </Container>
     </PageLayout>
   )
 }
 
-export default PostsPage
+export default DraftsPage
 
 export const pageQuery = graphql`
-  query PostsQuery {
+  query DraftsQuery {
     posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/posts/" } }
+      filter: { fileAbsolutePath: { regex: "/drafts/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {

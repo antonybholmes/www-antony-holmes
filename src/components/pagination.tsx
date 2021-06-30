@@ -257,8 +257,6 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const pageArray = fetchPageNumbers()
 
-  //console.log(pageArray)
-
   // return (
   //   {true ? (
   //   <Row className="justify-center" aria-label="Pagination">

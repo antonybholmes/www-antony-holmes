@@ -164,7 +164,9 @@ const Slider: React.FC<SliderProps> = ({
 
       <div
         ref={handleRef}
-        className="absolute left-0 bg-white border-solid border border-gray-400 rounded-full"
+        className={`absolute left-0 bg-white border-solid border border-gray-400 rounded-full cursor-pointer ${
+          hasFocus ? "shadow" : ""
+        }`}
         style={{ width: `${D}px`, height: `${D}px` }}
         onMouseDown={_handleMouseDown}
         onMouseUp={_handleMouseUp}

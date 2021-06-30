@@ -17,7 +17,7 @@ const PostTagList: React.FC<ListProps> = ({ post }) => (
     <ul>
       {post.frontmatter.tags.map((category: string, index: number) => {
         return (
-          <li className={`inline-block ${index > 0 ? "pl-2" : ""}`} key={index}>
+          <li className={`inline-block mr-2 mb-2`} key={index}>
             <Link
               to={useCategoryUrl(category)}
               className={`inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded text-xs font-medium uppercase trans-ani`}

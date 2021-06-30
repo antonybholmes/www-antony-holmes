@@ -20,7 +20,11 @@ const usePostId = post => {
 }
 
 const usePostUrl = post => {
-  return `/articles/${post.frontmatter.id}`
+  return `/posts/${post.frontmatter.id}`
+}
+
+const useDraftUrl = post => {
+  return `/drafts/${post.frontmatter.id}`
 }
 
 const useAuthorUrl = author => {
@@ -28,7 +32,7 @@ const useAuthorUrl = author => {
 }
 
 const useCategoryUrl = category => {
-  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
+  return `/posts/tags/${category.toLowerCase().replace(" ", "-")}`
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -49,6 +53,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               author
               date
               description
+              readtime
+              tags
+            }
+          }
+        }
+
+        drafts: allMarkdownRemark(
+          filter: { fileAbsolutePath: { regex: "/drafts/" } }
+          sort: { fields: [frontmatter___date], order: ASC }
+        ) {
+          nodes {
+            frontmatter {
+              id
+              title
+              author
+              date
+              description
+              readtime
               tags
             }
           }
@@ -84,13 +106,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
+  const tags = new Set()
+
   const posts = result.data.posts.nodes
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
-
-  const tags = new Set()
 
   posts.forEach((post, index) => {
     const previousPostId = index === 0 ? null : posts[index - 1].frontmatter.id
@@ -105,11 +127,42 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         authorId: post.frontmatter.author,
         previousPostId,
         nextPostId,
+        isIndexed: true,
       },
     })
 
     post.frontmatter.tags.forEach(item => tags.add(item))
   })
+
+  const drafts = result.data.drafts.nodes
+
+  // Create blog posts pages
+  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
+  // `context` is available in the template as a prop and as a variable in GraphQL
+
+  drafts.forEach((post, index) => {
+    const previousPostId = index === 0 ? null : posts[index - 1].frontmatter.id
+    const nextPostId =
+      index === posts.length - 1 ? null : posts[index + 1].frontmatter.id
+
+    createPage({
+      path: useDraftUrl(post),
+      component: postTemplate,
+      context: {
+        id: post.frontmatter.id,
+        authorId: post.frontmatter.author,
+        previousPostId,
+        nextPostId,
+        isIndexed: false,
+      },
+    })
+
+    post.frontmatter.tags.forEach(item => tags.add(item))
+  })
+
+  //
+  // Make tag pages
+  //
 
   tags.forEach((tag, index) => {
     createPage({

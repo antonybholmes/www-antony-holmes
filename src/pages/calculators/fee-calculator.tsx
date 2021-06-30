@@ -28,8 +28,6 @@ const Page: React.FC<PageProps> = ({ path }) => {
 
     const inc = savings * 12
 
-    console.log(arr, er)
-
     for (var i = 0; i < years; ++i) {
       d1.push(b1)
       d2.push(b2)

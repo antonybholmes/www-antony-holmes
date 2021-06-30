@@ -14,15 +14,15 @@ type LinkProps = {
 }
 
 const ColorLink: React.FC<LinkProps> = ({
-  to,
-  color,
-  color2,
-  underlineColor,
-  underline,
-  target,
-  aria,
-  className,
-  activeClassName,
+  to = "/",
+  color = "default",
+  color2 = "blue",
+  underlineColor = "",
+  underline = false,
+  target = "_blank",
+  aria = "",
+  className = "",
+  activeClassName = "",
   children,
 }) => {
   if (color2 === "") {
@@ -150,17 +150,6 @@ const ColorLink: React.FC<LinkProps> = ({
       </Link>
     )
   }
-}
-
-ColorLink.defaultProps = {
-  color: "",
-  color2: "",
-  underlineColor: "",
-  className: "",
-  activeClassName: "",
-  underline: true,
-  target: "_blank",
-  aria: "",
 }
 
 export default ColorLink

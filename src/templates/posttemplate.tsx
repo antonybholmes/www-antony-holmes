@@ -9,24 +9,34 @@ import useAuthorUrl from "../hooks/authorurl"
 import PostTagList from "../components/posts/posttaglist"
 import PageLayout from "../components/layouts/pagelayout"
 import useCategoryUrl from "../hooks/categoryurl"
+import Container from "../components/container"
 
 type DataProps = {
   post: any
+  baseUrl: string
   next: any
   previous: any
   author: any
 }
 
-const PostTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
+type ContextProps = {
+  isIndexed: boolean
+}
+
+const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
+  pageContext,
+  data,
+}) => {
+  const { isIndexed } = pageContext
+
   const post = data.post
-  const { previous, next } = data
   const date = dayjs(post.frontmatter.date)
   const author = data.author
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
 
   return (
-    <PageLayout title={post.frontmatter.title} path={path}>
-      <MainSideCol>
+    <PageLayout title={post.frontmatter.title} isIndexed={isIndexed}>
+      <Container>
         <article>
           <header className="mb-8">
             <div className="text-gray-600 uppercase tracking-widest">
@@ -42,42 +52,44 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
 
             <h1 className="mt-4">{post.frontmatter.title}</h1>
 
-            <GatsbyImage
-              image={getImage(data.postImage)}
-              alt={post.frontmatter.title}
-              className="mt-8"
-            />
+            <Row className="mt-8 text-sm text-gray-500">
+              <div>{date.format("MMM DD, YYYY")}</div>
+              <div className="ml-8">{post.frontmatter.readtime} read</div>
+            </Row>
+
+            <Row className="mt-8">
+              <div>
+                <GatsbyImage
+                  image={getImage(data.authorImage)}
+                  alt="Author"
+                  className="w-24 rounded-full"
+                />
+              </div>
+              <div className="ml-8">
+                <div className="text-sm font-medium">
+                  <ColorLink
+                    color="black"
+                    color2="blue"
+                    to={useAuthorUrl(author)}
+                  >
+                    {name}
+                  </ColorLink>
+                </div>
+                <div className="text-sm font-light mt-1">
+                  {author.frontmatter.title}
+                </div>
+              </div>
+            </Row>
           </header>
 
-          <Row className="mb-16">
-            <div>
-              <GatsbyImage
-                image={getImage(data.authorImage)}
-                alt="Author"
-                className="w-32 rounded-full"
-              />
-            </div>
-            <div className="ml-8">
-              <p className="text-sm font-medium mt-4">
-                By{" "}
-                <ColorLink
-                  color="black"
-                  color2="blue"
-                  to={useAuthorUrl(author)}
-                >
-                  {name}
-                </ColorLink>
-              </p>
-              {/* <p className="text-sm mt-1">{data.author.title}</p> */}
-              <p className="mt-1 text-sm text-gray-500">
-                Published {date.format("MMM DD, YYYY")}
-              </p>
-
-              <PostTagList post={post} />
-            </div>
-          </Row>
+          <GatsbyImage
+            image={getImage(data.postImage)}
+            alt={post.frontmatter.title}
+            className="mt-8"
+          />
 
           <section
+            className="mt-10"
             dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"
           />
@@ -120,10 +132,11 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
                     )}
                   </Row>
                 </nav> */}
+          <footer className="mt-16">
+            <PostTagList post={post} />
+          </footer>
         </article>
-
-        <></>
-      </MainSideCol>
+      </Container>
     </PageLayout>
   )
 }
@@ -145,6 +158,7 @@ export const pageQuery = graphql`
         title
         date
         description
+        readtime
         tags
       }
     }

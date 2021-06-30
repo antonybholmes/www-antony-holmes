@@ -9,7 +9,7 @@ const Header = (props: { title: string }) => {
   return (
     <header className="w-full bg-white">
       <Container>
-        <Row className="py-4 border-b border-solid border-gray-200 justify-between">
+        <Row className="py-4  justify-between">
           <Link to="/">
             <img src={Logo} className="h-10" />
           </Link>

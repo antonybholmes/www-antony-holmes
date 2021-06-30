@@ -5,6 +5,9 @@ import usePostUrl from "../../hooks/posturl"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../row"
 import BlueIndexLink from "../links/blueindexlink"
+import BlueLink from "../links/bluelink"
+import useCategoryUrl from "../../hooks/categoryurl"
+import ColorLink from "../links/colorlink"
 
 type PostProps = {
   post: any
@@ -12,9 +15,8 @@ type PostProps = {
 }
 
 const HeadPost: React.FC<PostProps> = ({ post, imageMap }) => {
-  console.log(post, imageMap, imageMap[post.frontmatter.id])
-
   const date = dayjs(post.frontmatter.date)
+
   return (
     <>
       <Row isVCentered={false} className="w-full">
@@ -27,12 +29,20 @@ const HeadPost: React.FC<PostProps> = ({ post, imageMap }) => {
         </div>
 
         <div className="pl-8 w-4/10">
-          <div className="text-gray-500 uppercase tracking-widest">
-            {date.format("MMM DD")} / {post.frontmatter.tags[0]}
-          </div>
+          <BlueLink
+            to={useCategoryUrl(post.frontmatter.tags[0])}
+            className="uppercase tracking-widest text-sm`"
+          >
+            {post.frontmatter.tags[0]}
+          </BlueLink>
+
           <h1 className="mt-3">
-            <Link to={usePostUrl(post)}>{post.frontmatter.title}</Link>
+            <ColorLink to={usePostUrl(post)}>
+              {post.frontmatter.title}
+            </ColorLink>
           </h1>
+
+          <p className="text-gray-500">{date.format("MMM DD, YYYY")}</p>
 
           <div className="mt-4">{post.excerpt}</div>
           <div className="mt-8">

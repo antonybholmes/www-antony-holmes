@@ -1,9 +1,9 @@
-import { Link } from "gatsby"
 import React from "react"
 import useCopyright from "../hooks/copyright"
 import useFooterLinks from "../hooks/footerlinks"
 import useInfoLinks from "../hooks/infolinks"
 import Container from "./container"
+import ColorLink from "./links/colorlink"
 import Row from "./row"
 
 const Footer = () => {
@@ -11,10 +11,10 @@ const Footer = () => {
   const infoLinks = useInfoLinks()
 
   return (
-    <footer className="py-16">
+    <footer className="py-16 bg-gray-100">
       <Container>
-        <div className="text-gray-600 text-sm border-t border-solid border-gray-200 pt-16">
-          <Row isVCentered={false} className="justify-between">
+        <div className="text-gray-600 text-sm">
+          <Row isVCentered={false}>
             {links.map(
               (
                 linkGroup: {
@@ -24,7 +24,7 @@ const Footer = () => {
                 linkGroupIndex: number
               ) => {
                 return (
-                  <div key={linkGroupIndex}>
+                  <div key={linkGroupIndex} className="w-1/5">
                     <h6 className="font-semibold mb-2">{linkGroup.title}</h6>
                     <ul>
                       {linkGroup.links.map(
@@ -34,12 +34,7 @@ const Footer = () => {
                         ) => {
                           return (
                             <li key={linkIndex} className="mb-2">
-                              <Link
-                                to={link.url}
-                                className="hover:text-blue-500 "
-                              >
-                                {link.name}
-                              </Link>
+                              <ColorLink to={link.url}>{link.name}</ColorLink>
                             </li>
                           )
                         }
@@ -51,11 +46,8 @@ const Footer = () => {
             )}
           </Row>
 
-          <Row
-            isCentered={true}
-            className="text-xs mt-16 py-4 px-6 rounded-md bg-gray-100"
-          >
-            {/* <div>{useCopyright()}</div> */}
+          <Row className="text-xs mt-16 rounded-md bg-gray-100 justify-between">
+            <div>{useCopyright()}</div>
             <div>
               <ul className="inline-block">
                 {infoLinks.map(
@@ -65,7 +57,7 @@ const Footer = () => {
                         key={index}
                         className={`inline-block ${index > 0 ? "ml-8" : ""}`}
                       >
-                        <Link to={link.url}>{link.name}</Link>
+                        <ColorLink to={link.url}>{link.name}</ColorLink>
                       </li>
                     )
                   }
@@ -74,9 +66,9 @@ const Footer = () => {
             </div>
           </Row>
 
-          <Row isCentered={true} className="pt-8 text-xs">
+          {/*           <Row isCentered={true} className="pt-8 text-xs">
             <div>{useCopyright()}</div>
-          </Row>
+          </Row> */}
         </div>
       </Container>
     </footer>

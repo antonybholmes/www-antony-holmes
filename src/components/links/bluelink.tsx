@@ -10,9 +10,9 @@ type LinkProps = {
 
 const BlueLink: React.FC<LinkProps> = ({
   to,
-  underline,
-  className,
-  activeClassName,
+  underline = false,
+  className = "",
+  activeClassName = "",
   children,
 }) => (
   <ColorLink
@@ -25,11 +25,5 @@ const BlueLink: React.FC<LinkProps> = ({
     {children}
   </ColorLink>
 )
-
-BlueLink.defaultProps = {
-  underline: true,
-  className: "",
-  activeClassName: "",
-}
 
 export default BlueLink

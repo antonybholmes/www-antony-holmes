@@ -14,12 +14,16 @@ type SEOProps = {
   title: string
   description?: string
   path?: string
+  isIndexed?: boolean
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
+const SEO: React.FC<SEOProps> = ({
+  title = "",
+  description = "",
+  path = "",
+  isIndexed = true,
+}) => {
   const location = useLocation()
-
-  console.log(location.pathname)
 
   const { siteTitle, siteUrl, siteDescription } = useSiteMetadata()
 
@@ -39,6 +43,8 @@ const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
     <GatsbySeo
       title={title}
       description={description}
+      noindex={!isIndexed}
+      nofollow={!isIndexed}
       openGraph={{
         url: path,
         title: title,
@@ -94,12 +100,6 @@ const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
   //     ].concat(meta)}
   //   />
   // )
-}
-
-SEO.defaultProps = {
-  title: "",
-  description: "",
-  path: "",
 }
 
 export default SEO

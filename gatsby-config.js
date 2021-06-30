@@ -124,6 +124,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-next-seo",
+    "gatsby-plugin-sitemap",
     // {
     //   resolve: `gatsby-plugin-build-date`,
     //   options: {

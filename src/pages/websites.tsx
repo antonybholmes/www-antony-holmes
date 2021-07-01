@@ -3,7 +3,7 @@ import React from "react"
 import Container from "../components/container"
 import PageLayout from "../components/layouts/pagelayout"
 import BlueLink from "../components/links/bluelink"
-import useWebsites from "../hooks/websites"
+import useWebsites from "../utils/websites"
 
 const renderWebsites = () => {
   const websites = useWebsites()

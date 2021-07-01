@@ -5,11 +5,12 @@ import dayjs from "dayjs"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import ColorLink from "../components/links/colorlink"
-import useAuthorUrl from "../hooks/authorurl"
+import getAuthorUrl from "../utils/authorurl"
 import PostTagList from "../components/posts/posttaglist"
 import PageLayout from "../components/layouts/pagelayout"
-import useCategoryUrl from "../hooks/categoryurl"
+import getCategoryUrl from "../utils/categoryurl"
 import Container from "../components/container"
+import PostCategoryLink from "../components/posts/postcategorylink"
 
 type DataProps = {
   post: any
@@ -39,16 +40,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
       <Container>
         <article>
           <header className="mb-8">
-            <div className="text-gray-600 uppercase tracking-widest">
-              <ColorLink
-                color="blue"
-                color2="dark-green"
-                underline={false}
-                to={useCategoryUrl(post.frontmatter.tags[0])}
-              >
-                {post.frontmatter.tags[0]}
-              </ColorLink>
-            </div>
+            <PostCategoryLink post={post} />
 
             <h1 className="mt-4">{post.frontmatter.title}</h1>
 
@@ -70,7 +62,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
                   <ColorLink
                     color="black"
                     color2="blue"
-                    to={useAuthorUrl(author)}
+                    to={getAuthorUrl(author)}
                   >
                     {name}
                   </ColorLink>
@@ -103,7 +95,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
                         return (
                           <li key={index} className="inline-block uppercase">
                             {index > 0 && ", "}
-                            <BlueLink to={useCategoryUrl(category)}>
+                            <BlueLink to={getCategoryUrl(category)}>
                               {category}
                             </BlueLink>
                           </li>
@@ -116,7 +108,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
           {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
                   <Row className="justify-between">
                     {previous && (
-                      <Link to={usePostUrl(previous)}>
+                      <Link to={getPostUrl(previous)}>
                         <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
                           {previous.frontmatter.title}
                         </div>
@@ -124,7 +116,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
                     )}
 
                     {next && (
-                      <Link to={usePostUrl(next)}>
+                      <Link to={getPostUrl(next)}>
                         <div className="border border-solid border-gray-200 rounded-md px-4 py-3 hover:shadow trans-ani">
                           {next.frontmatter.title}
                         </div>

@@ -1,14 +1,14 @@
 import React from "react"
-import useCopyright from "../hooks/copyright"
-import useFooterLinks from "../hooks/footerlinks"
-import useInfoLinks from "../hooks/infolinks"
+import getCopyright from "../utils/copyright"
+import getFooterLinks from "../utils/footerlinks"
+import getInfoLinks from "../utils/infolinks"
 import Container from "./container"
 import ColorLink from "./links/colorlink"
 import Row from "./row"
 
 const Footer = () => {
-  const links = useFooterLinks()
-  const infoLinks = useInfoLinks()
+  const links = getFooterLinks()
+  const infoLinks = getInfoLinks()
 
   return (
     <footer className="py-16 bg-gray-100">
@@ -47,7 +47,7 @@ const Footer = () => {
           </Row>
 
           <Row className="text-xs mt-16 rounded-md bg-gray-100 justify-between">
-            <div>{useCopyright()}</div>
+            <div>{getCopyright()}</div>
             <div>
               <ul className="inline-block">
                 {infoLinks.map(
@@ -67,7 +67,7 @@ const Footer = () => {
           </Row>
 
           {/*           <Row isCentered={true} className="pt-8 text-xs">
-            <div>{useCopyright()}</div>
+            <div>{getCopyright()}</div>
           </Row> */}
         </div>
       </Container>

@@ -7,7 +7,7 @@
 
 import React from "react"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
-import useSiteMetadata from "../hooks/sitemetadata"
+import getSiteMetadata from "../utils/sitemetadata"
 import { useLocation } from "@reach/router"
 
 type SEOProps = {
@@ -25,7 +25,7 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const location = useLocation()
 
-  const { siteTitle, siteUrl, siteDescription } = useSiteMetadata()
+  const { siteTitle, siteUrl, siteDescription } = getSiteMetadata()
 
   if (path === "") {
     path = location.pathname

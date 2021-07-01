@@ -9,7 +9,7 @@ const postTagTemplate = path.resolve(`./src/templates/posttagtemplate.tsx`)
 
 const RECORDS_PER_PAGE = 10
 
-const usePostId = post => {
+const getPostId = post => {
   const name = post.frontmatter.title
     .toLowerCase()
     .replace(" ", "-")
@@ -19,20 +19,20 @@ const usePostId = post => {
   return `${date.format("YYYY-MM-DD")}-${name}`
 }
 
-const usePostUrl = post => {
-  return `/posts/${post.frontmatter.id}`
+const getPostUrl = post => {
+  return `/articles/${post.frontmatter.id}`
 }
 
 const useDraftUrl = post => {
   return `/drafts/${post.frontmatter.id}`
 }
 
-const useAuthorUrl = author => {
+const getAuthorUrl = author => {
   return `/authors/${author.frontmatter.id}`
 }
 
-const useCategoryUrl = category => {
-  return `/posts/tags/${category.toLowerCase().replace(" ", "-")}`
+const getCategoryUrl = category => {
+  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -120,7 +120,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       index === posts.length - 1 ? null : posts[index + 1].frontmatter.id
 
     createPage({
-      path: usePostUrl(post),
+      path: getPostUrl(post),
       component: postTemplate,
       context: {
         id: post.frontmatter.id,
@@ -166,7 +166,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   tags.forEach((tag, index) => {
     createPage({
-      path: useCategoryUrl(tag),
+      path: getCategoryUrl(tag),
       component: postTagTemplate,
       context: {
         tag: tag,
@@ -178,7 +178,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   authors.forEach((author, index) => {
     createPage({
-      path: useAuthorUrl(author),
+      path: getAuthorUrl(author),
       component: authorTemplate,
       context: {
         id: author.frontmatter.id,

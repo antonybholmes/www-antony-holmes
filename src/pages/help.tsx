@@ -1,6 +1,6 @@
 import React from "react"
 import Row from "../components/row"
-import useSiteMetadata from "../hooks/sitemetadata"
+import getSiteMetadata from "../utils/sitemetadata"
 
 import gatsbysvg from "../../assets/images/svg/gatsby.svg"
 //import mariadbsvg from "../assets/svg/maria-db.svg"
@@ -9,7 +9,7 @@ import githubsvg from "../../assets/images/svg/github.svg"
 import htmlsvg from "../../assets/images/svg/html5.svg"
 import jssvg from "../../assets/images/svg/javascript-shield.svg"
 import reactsvg from "../../assets/images/svg/react.svg"
-import ExtLink from "../components/extlink"
+import ExtLink from "../components/links/extlink"
 import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
@@ -17,7 +17,7 @@ import { PageProps } from "gatsby"
 const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"
 
 const HelpPage: React.FC<PageProps> = ({ path }) => {
-  const { copyright, version } = useSiteMetadata()
+  const { copyright, version } = getSiteMetadata()
 
   return (
     <PageLayout title="Help" path={path}>

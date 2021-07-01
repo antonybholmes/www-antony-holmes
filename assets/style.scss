@@ -7,13 +7,13 @@ body {
 }
 
 .h {
-  @apply mb-4;
+  @apply mb-4 font-medium;
   color: rgb(70, 80, 90);
-  font-family: "Quicksand";
+  font-family: "Poppins";
 }
 
 h1 {
-  @apply h text-5xl;
+  @apply h text-5xl font-semibold;
 }
 
 h2 {

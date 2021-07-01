@@ -3,14 +3,7 @@ import Footer from "../footer"
 import Header from "../header/header"
 import SEO from "../seo"
 
-import { library } from "@fortawesome/fontawesome-svg-core"
-import {
-  faCalculator,
-  faChevronRight,
-  faTags,
-} from "@fortawesome/free-solid-svg-icons"
-
-library.add(faCalculator, faChevronRight, faTags)
+import "../../utils/fontawesome"
 
 // const Main = styled.main`
 //   position: relative;

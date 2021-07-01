@@ -41,7 +41,7 @@
   },
   {
     "name": "Wellington",
-    "description": "One of Vanguard's oldest actively managed funds gives you a 65/35 stock/bond balance. The actively managed alternative to Balanced Index, it mostly behaves like an index fund, is still low cost by fund standards and has shown consistently good performance over decades.",
+    "description": "One of Vanguard's oldest actively managed funds gives you a 65/35 stocks/bonds ratio. This is the actively managed alternative to Balanced Index, though it mostly behaves like an index fund, and is still low cost by fund standards and has shown consistently good performance over decades.",
     "brokerages": [
       {
         "name": "Vanguard",
@@ -55,7 +55,7 @@
   },
   {
     "name": "Two Fund",
-    "description": "If you don't mind the volatity, you could do a lot worse than picking a single fund that covers the whole US stock market. It is simple, very low cost, diversified among 3,000 different companies, and has a long track record of exceptional returns.",
+    "description": "The two fund portfolio is a simple mix between a US stock market and bond funds, as recommended by the likes of Jack Bogle and Warren Buffet. The classic portfolio is 60/40 stocks/bonds, which some might find too conservative, so simply adjust for your risk tolerance.",
     "brokerages": [
       {
         "name": "Vanguard",
@@ -71,17 +71,23 @@
       {
         "name": "Fidelity",
         "stocks": [
-          { "name": "Fidelity Total Market", "ticker": "FSKAX", "pc": 1 }
+          { "name": "Fidelity Total Market", "ticker": "FSKAX", "pc": 0.6 },
+          {
+            "name": "Fidelity U.S. Bond Index Fund ",
+            "ticker": "FXNAX",
+            "pc": 0.4
+          }
         ]
       },
       {
         "name": "Schwab",
         "stocks": [
-          { "name": "Schwab Total Stock Market", "ticker": "SWTSX", "pc": 1 }
+          { "name": "Schwab Total US Market", "ticker": "SWTSX", "pc": 0.6 },
+          { "name": "Schwab Total Bond", "ticker": "SWAGX", "pc": 0.4 }
         ]
       }
     ],
-    "url": "https://www.portfoliovisualizer.com/backtest-portfolio?s=y&timePeriod=4&startYear=1985&firstMonth=1&endYear=2021&lastMonth=12&calendarAligned=true&includeYTD=false&initialAmount=10000&annualOperation=0&annualAdjustment=0&inflationAdjusted=true&annualPercentage=0.0&frequency=4&rebalanceType=1&absoluteDeviation=5.0&relativeDeviation=25.0&reinvestDividends=true&showYield=false&showFactors=false&factorModel=3&portfolioNames=false&portfolioName1=Portfolio+1&portfolioName2=Portfolio+2&portfolioName3=Portfolio+3&symbol1=VTSAX&allocation1_1=100&symbol2=FSKAX&allocation2_2=100&symbol3=SWTSX&allocation3_3=100",
-    "tags": ["Equity"]
+    "url": "https://www.portfoliovisualizer.com/backtest-portfolio?s=y&timePeriod=4&startYear=1985&firstMonth=1&endYear=2021&lastMonth=12&calendarAligned=true&includeYTD=false&initialAmount=10000&annualOperation=0&annualAdjustment=0&inflationAdjusted=true&annualPercentage=0.0&frequency=4&rebalanceType=1&absoluteDeviation=5.0&relativeDeviation=25.0&reinvestDividends=true&showYield=false&showFactors=false&factorModel=3&portfolioNames=false&portfolioName1=Portfolio+1&portfolioName2=Portfolio+2&portfolioName3=Portfolio+3&symbol1=VTSAX&allocation1_1=60&symbol2=FSKAX&allocation2_2=60&symbol3=SWTSX&allocation3_3=60&symbol4=VBTLX&allocation4_1=40&symbol5=FXNAX&allocation5_2=40&symbol6=SWAGX&allocation6_3=40",
+    "tags": ["Equity", "Balanced"]
   }
 ]

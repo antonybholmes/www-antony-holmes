@@ -1,14 +1,15 @@
 import dayjs from "dayjs"
 import { Link } from "gatsby"
 import React from "react"
-import usePostUrl from "../../hooks/posturl"
+import getPostUrl from "../../utils/posturl"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../row"
 import { useState } from "react"
 import PostTagList from "./posttaglist"
 import ColorLink from "../links/colorlink"
 import BlueLink from "../links/bluelink"
-import useCategoryUrl from "../../hooks/categoryurl"
+import getCategoryUrl from "../../utils/categoryurl"
+import PostCategoryLink from "./postcategorylink"
 
 type PostProps = {
   post: any
@@ -20,7 +21,7 @@ type PostProps = {
 const Post: React.FC<PostProps> = ({
   post,
   imageMap,
-  baseUrl = "/posts",
+  baseUrl = "/articles",
   showMainTagLink = true,
 }) => {
   const [hover, setHover] = useState(false)
@@ -45,16 +46,11 @@ const Post: React.FC<PostProps> = ({
         <div className="w-3/4 mr-8">
           {showMainTagLink && (
             <div className="mb-4">
-              <BlueLink
-                to={useCategoryUrl(post.frontmatter.tags[0])}
-                className="uppercase tracking-widest text-sm`"
-              >
-                {post.frontmatter.tags[0]}
-              </BlueLink>
+              <PostCategoryLink post={post} />
             </div>
           )}
           <h2>
-            <ColorLink to={usePostUrl(post, baseUrl)}>
+            <ColorLink to={getPostUrl(post, baseUrl)}>
               {post.frontmatter.title}
             </ColorLink>
           </h2>
@@ -66,7 +62,7 @@ const Post: React.FC<PostProps> = ({
         </div>
 
         <div className="w-1/4">
-          <Link to={usePostUrl(post, baseUrl)}>
+          <Link to={getPostUrl(post, baseUrl)}>
             <GatsbyImage
               image={getImage(imageMap[post.frontmatter.id])}
               className={`trans-ani w-full`}

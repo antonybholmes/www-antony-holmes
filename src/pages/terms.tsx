@@ -1,14 +1,14 @@
 import React from "react"
 import BlueLink from "../components/links/bluelink"
 import MainSideCol from "../components/mainsidecol"
-import useSiteMetadata from "../hooks/sitemetadata"
+import getSiteMetadata from "../utils/sitemetadata"
 import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
 
 //nav="About"
 
 const TermsPage: React.FC<PageProps> = ({ path }) => {
-  const { siteTitle } = useSiteMetadata()
+  const { siteTitle } = getSiteMetadata()
 
   return (
     <PageLayout title="Terms of Use" path={path}>

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import MainSideCol from "../components/mainsidecol"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
-import useImageMap from "../hooks/imagemap"
+import useImageMap from "../utils/imagemap"
 import PageLayout from "../components/layouts/pagelayout"
 import Row from "../components/row"
 import Container from "../components/container"
@@ -106,14 +106,12 @@ export const pageQuery = graphql`
     postImages: allFile(
       filter: { absolutePath: { regex: "/posts/" }, ext: { regex: "/jpg/" } }
     ) {
-      edges {
-        node {
-          name
-          ext
-          relativePath
-          childImageSharp {
-            gatsbyImageData
-          }
+      nodes {
+        name
+        ext
+        relativePath
+        childImageSharp {
+          gatsbyImageData
         }
       }
     }

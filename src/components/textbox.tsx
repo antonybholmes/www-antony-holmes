@@ -10,11 +10,11 @@ type TextBoxProps = {
 }
 
 const TextBox: React.FC<TextBoxProps> = ({
-  value,
-  onChange,
-  prefix,
-  prefixLeft,
-  alignLeft,
+  value = 10,
+  onChange = null,
+  prefix = "",
+  prefixLeft = true,
+  alignLeft = true,
 }) => {
   const textRef = useRef(null)
 
@@ -48,14 +48,6 @@ const TextBox: React.FC<TextBoxProps> = ({
       {prefix !== "" && !prefixLeft && <div className="ml-1">{prefix}</div>}
     </Row>
   )
-}
-
-TextBox.defaultProps = {
-  value: 10,
-  onChange: null,
-  prefix: "",
-  prefixLeft: true,
-  alignLeft: true,
 }
 
 export default TextBox

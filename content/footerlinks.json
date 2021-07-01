@@ -3,19 +3,17 @@
     "title": "Start Here",
     "links": [
       { "name": "About", "url": "/about" },
-      { "name": "Blog", "url": "/posts" },
-      { "name": "Calculators", "url": "/calculators" }
+      { "name": "Blog", "url": "/articles" },
+      { "name": "Calculators", "url": "/calculators" },
+      { "name": "Authors", "url": "/authors" }
     ]
   },
   {
     "title": "Recommendations",
     "links": [
       { "name": "Credit Cards", "url": "/credit-cards" },
-      { "name": "Web Sites", "url": "/websites" }
+      { "name": "Websites", "url": "/websites" },
+      { "name": "Books", "url": "/books" }
     ]
-  },
-  {
-    "title": "Resources",
-    "links": [{ "name": "Disclaimer", "url": "/disclaimer" }]
   }
 ]

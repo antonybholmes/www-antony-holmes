@@ -7,7 +7,7 @@ import BlueLink from "../components/links/bluelink"
 import MainSideCol from "../components/mainsidecol"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "gatsby"
-import usePortfolioTagUrl from "../hooks/portfoliotagurl"
+import getPortfolioTagUrl from "../utils/portfoliotagurl"
 import Container from "../components/container"
 
 type ListProps = {
@@ -25,7 +25,7 @@ const PortfolioTagsList: React.FC<ListProps> = ({ portfolio }) => (
         return (
           <li className={`inline-block ${index > 0 ? "pl-2" : ""}`}>
             <Link
-              to={usePortfolioTagUrl(tag)}
+              to={getPortfolioTagUrl(tag)}
               key={index}
               className={`inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded text-xs font-medium uppercase trans-ani`}
             >
@@ -82,29 +82,25 @@ const Portfolio: React.FC<PortfolioProps> = ({ portfolio, index }) => {
           >
             <tr>
               <td
-                className={`px-4 mb-2 w-7/10 font-semibold ${
+                className={`mb-2 w-7/10 font-semibold ${
                   porfolioIndex > 0 ? "pt-4" : ""
                 }`}
               >
                 {brokerage.name}
               </td>
               <td
-                className={`px-4 mb-2 w-2/10 ${
-                  porfolioIndex > 0 ? "pt-4" : ""
-                }`}
+                className={`mb-2 w-2/10 ${porfolioIndex > 0 ? "pt-4" : ""}`}
               ></td>
               <td
-                className={`px-4 mb-2 w-1/10 ${
-                  porfolioIndex > 0 ? "pt-4" : ""
-                }`}
+                className={`mb-2 w-1/10 ${porfolioIndex > 0 ? "pt-4" : ""}`}
               ></td>
             </tr>
             {brokerage.stocks.map((stock: any, brokerageIndex: number) => {
               return (
                 <tr>
-                  <td className="px-4 mb-2 w-7/10">{stock.name}</td>
-                  <td className="px-4 mb-2 w-2/10">{stock.ticker}</td>
-                  <td className="px-4 mb-2 w-1/10">{stock.pc * 100}%</td>
+                  <td className="mb-2 w-7/10">{stock.name}</td>
+                  <td className="mb-2 w-2/10">{stock.ticker}</td>
+                  <td className="mb-2 w-1/10">{stock.pc * 100}%</td>
                 </tr>
               )
             })}
@@ -169,19 +165,19 @@ const PortfoliosPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
 
         <h2 className="mt-4">Stick With It</h2>
         <p>
-          I suggest you pick a portfolio you like and stick with it for a few
-          decades. Eventually, any given investment portfolio will have its day
+          I suggest you pick a portfolio you like and stick with it (for a few
+          decades). Eventually, any given investment portfolio will have its day
           in the sun. Just don't continually change your portfolio in response
           to changes in the investment winds. This is the equivalent of driving
           while looking through the rearview mirror, or, as Dr. Bernstein likes
-          to phrase it, skating to where the puck was.
+          to phrase it, "skating to where the puck was".
         </p>
         <p>
-          This is a list of some starting portfolios you can use and adapt to
+          Below is a list of some starting portfolios you can use and adapt to
           your own needs. These portfolios will often use Vanguard funds as a
           basis, but where possible I have included equivalent low cost Fidelity
-          and Schwab fund equivalents. I can't say which is the best, but long
-          term all of them should serve you well. I have included links to{" "}
+          and Schwab funds. I can't say which is the best, but long term all of
+          them should serve you well. I have included links to{" "}
           <BlueLink to="https://portfoliovisualizer.com">
             Portfolio Visualizer
           </BlueLink>{" "}
@@ -191,7 +187,7 @@ const PortfoliosPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
           what will happen in various scenarios such as bull or bear market.
         </p>
 
-        <ul className="mt-16">
+        <ul className="mt-16 pt-8 border-t border-solid border-gray-200">
           {portfolios.map((portfolio: any, index: number) => {
             return <Portfolio key={index} index={index} portfolio={portfolio} />
           })}

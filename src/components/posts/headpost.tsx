@@ -1,13 +1,14 @@
 import dayjs from "dayjs"
 import { Link } from "gatsby"
 import React from "react"
-import usePostUrl from "../../hooks/posturl"
+import getPostUrl from "../../utils/posturl"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../row"
 import BlueIndexLink from "../links/blueindexlink"
 import BlueLink from "../links/bluelink"
-import useCategoryUrl from "../../hooks/categoryurl"
+import getCategoryUrl from "../../utils/categoryurl"
 import ColorLink from "../links/colorlink"
+import PostCategoryLink from "./postcategorylink"
 
 type PostProps = {
   post: any
@@ -29,15 +30,10 @@ const HeadPost: React.FC<PostProps> = ({ post, imageMap }) => {
         </div>
 
         <div className="pl-8 w-4/10">
-          <BlueLink
-            to={useCategoryUrl(post.frontmatter.tags[0])}
-            className="uppercase tracking-widest text-sm`"
-          >
-            {post.frontmatter.tags[0]}
-          </BlueLink>
+          <PostCategoryLink post={post} />
 
           <h1 className="mt-3">
-            <ColorLink to={usePostUrl(post)}>
+            <ColorLink to={getPostUrl(post)}>
               {post.frontmatter.title}
             </ColorLink>
           </h1>
@@ -46,7 +42,7 @@ const HeadPost: React.FC<PostProps> = ({ post, imageMap }) => {
 
           <div className="mt-4">{post.excerpt}</div>
           <div className="mt-8">
-            <BlueIndexLink to={usePostUrl(post)}>Read article</BlueIndexLink>
+            <BlueIndexLink to={getPostUrl(post)}>Read Article</BlueIndexLink>
           </div>
         </div>
       </Row>

@@ -1,13 +1,13 @@
 import { Link } from "gatsby"
 import React from "react"
-import useHeaderLinks from "../../hooks/headerlinks"
+import getHeaderLinks from "../../utils/headerlinks"
 
 type HeaderLinksProps = {
   title: String
 }
 
 const HeaderLinks: React.FC<HeaderLinksProps> = ({ title }) => {
-  const links = useHeaderLinks()
+  const links = getHeaderLinks()
 
   return (
     <ul className="inline-block pl-4">

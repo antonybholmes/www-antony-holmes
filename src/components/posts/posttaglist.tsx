@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "gatsby"
 import React from "react"
-import useCategoryUrl from "../../hooks/categoryurl"
+import getCategoryUrl from "../../utils/categoryurl"
 import Row from "../row"
 
 type ListProps = {
@@ -19,7 +19,7 @@ const PostTagList: React.FC<ListProps> = ({ post }) => (
         return (
           <li className={`inline-block mr-2 mb-2`} key={index}>
             <Link
-              to={useCategoryUrl(category)}
+              to={getCategoryUrl(category)}
               className={`inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded text-xs font-medium uppercase trans-ani`}
             >
               {category}

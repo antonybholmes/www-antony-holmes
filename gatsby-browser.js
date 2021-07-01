@@ -13,10 +13,16 @@ import "@fontsource/quicksand/400.css"
 import "@fontsource/quicksand/500.css"
 import "@fontsource/quicksand/600.css"
 
+import "@fontsource/roboto/300.css"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/500.css"
+import "@fontsource/roboto/700.css"
+
 // normalize CSS across browsers
-import "./src/normalize.scss"
+import "./assets/normalize.scss"
+
 // custom CSS styles
-import "./src/style.scss"
+import "./assets/style.scss"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"

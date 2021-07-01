@@ -1,25 +1,22 @@
 import { useStaticQuery, graphql } from "gatsby"
-import useFlattenEdges from "./flattenedges"
 
 const useWebsites = () => {
   const data = useStaticQuery(graphql`
     query {
       allWebsitesJson {
-        edges {
-          node {
+        nodes {
+          name
+          links {
             name
-            links {
-              name
-              description
-              url
-            }
+            description
+            url
           }
         }
       }
     }
   `)
 
-  return useFlattenEdges(data.allWebsitesJson.edges)
+  return data.allWebsitesJson.nodes
 }
 
 export default useWebsites

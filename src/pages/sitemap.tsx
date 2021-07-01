@@ -1,5 +1,5 @@
 import React from "react"
-import useHeaderLinks from "../hooks/headerlinks"
+import getHeaderLinks from "../utils/headerlinks"
 import { PageProps } from "gatsby"
 import PageLayout from "../components/layouts/pagelayout"
 import FlHdDiv from "../components/flhddiv"
@@ -7,7 +7,7 @@ import BlueLink from "../components/links/bluelink"
 import Row from "../components/row"
 
 const SiteMapPage: React.FC<PageProps> = ({ path }) => {
-  const headerLinks = useHeaderLinks()
+  const headerLinks = getHeaderLinks()
 
   return (
     <PageLayout title="Site Map" path={path}>

@@ -7,11 +7,13 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
-import useImageMap from "../hooks/imagemap"
+import useImageMap from "../utils/imagemap"
+import Container from "../components/container"
+import Author from "../components/author"
 
 type DataProps = {
   author: {
-    excerpt: string
+    html: string
     frontmatter: {
       id: string
       firstName: string
@@ -35,42 +37,36 @@ type DataProps = {
   }
 }
 
-const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ path, data }) => {
+const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.posts.nodes
   const author = data.author
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
   const imageMap = useImageMap(data)
 
   return (
-    <PageLayout title={name} path={path}>
-      <MainSideCol>
-        <>
-          <Row className="mb-16">
-            <div>
-              <GatsbyImage
-                image={getImage(data.authorImage)}
-                alt={name}
-                className="w-32 rounded-full"
-              />
-            </div>
-            <div className="ml-8">
-              <p className="text-sm font-medium mt-4">{name}</p>
-              <section
-                dangerouslySetInnerHTML={{ __html: author.excerpt }}
-                itemProp="articleBody"
-              />
-            </div>
-          </Row>
+    <PageLayout title={name}>
+      <Container>
+        {/* <MainSideCol>
+        <> */}
 
+        <Author
+          author={author}
+          image={data.authorImage}
+          showAuthorLink={false}
+        />
+
+        <section className="border-t border-solid border-gray-200 mt-16 pt-8">
           <ul>
             {posts.map((post: any, index: number) => {
               return <Post post={post} imageMap={imageMap} key={index} />
             })}
           </ul>
-        </>
+        </section>
+        {/*         </>
 
         <></>
-      </MainSideCol>
+      </MainSideCol> */}
+      </Container>
     </PageLayout>
   )
 }
@@ -83,7 +79,7 @@ export const pageQuery = graphql`
       fileAbsolutePath: { regex: "/authors/" }
       frontmatter: { id: { eq: $id } }
     ) {
-      excerpt
+      html
       frontmatter {
         id
         firstName
@@ -129,14 +125,12 @@ export const pageQuery = graphql`
     postImages: allFile(
       filter: { absolutePath: { regex: "/posts/" }, ext: { regex: "/jpg/" } }
     ) {
-      edges {
-        node {
-          name
-          ext
-          relativePath
-          childImageSharp {
-            gatsbyImageData(placeholder: BLURRED)
-          }
+      nodes {
+        name
+        ext
+        relativePath
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
         }
       }
     }

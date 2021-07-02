@@ -17,6 +17,6 @@ The site is primarily developed using Gatsby, a framework for building websites 
 
 Most of the site that you see is static, rendered at build time (another Gatsby feature) and served as plain HTML for speed, SEO and accessibility. I used Tailwind to style components with purgecss to remove unused css and reduce loading times.
 
-The site is hosted on Netlify. When I push an update to GitLab, a webhook triggers a rebuild of the site, which is then pushed to Netlify's CDN. Netlify's starter plan is free and is great for small to medium sites that do not require much rebuilding each month.
+The site is hosted on AWS using S3 and Cloudfront. I choose to build the site locally and then push it to an S3 bucket. I've found that continous deployment using Netlify, Cloudflare and AWS Amplify to be unreliable and frequently my site will not build, usually because they will not pull the most recent packages into their build environment, so I prefer to have more control over the build process. The added bonus is that it's cheaper.
 
 Site data is stored in a mixture of Markdown (this post, for example) and JSON and I make extensive use of Gatsby's GraphQL features to translate it into pages. This neatly separates the content from the presentation (JSX, CSS) layer which makes managing the site easier.

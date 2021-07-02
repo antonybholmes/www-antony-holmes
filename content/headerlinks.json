@@ -10,5 +10,9 @@
   {
     "name": "Posts",
     "url": "/posts"
+  },
+  {
+    "name": "Resources",
+    "url": "/resources"
   }
 ]

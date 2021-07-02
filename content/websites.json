@@ -1,51 +1,26 @@
 [
   {
-    "name": "Investing Sites",
+    "name": "Tools",
     "links": [
       {
-        "name": "Bogleheads Wiki",
-        "url": "http://www.bogleheads.org/wiki/Main_Page",
-        "description": "Brought to you by folks who follow the advice of Jack Bogle, founder of Vanguard.  Constantly updated topics range from very basic to quite advanced."
-      }
-    ]
-  },
-  {
-    "name": "Forums",
-    "links": [
-      {
-        "name": "Bogleheads Investing Forum",
-        "url": "https://www.bogleheads.org/",
-        "description": "The most active and polite investing forum on the web also by the same people who run the Bogleheads wiki. You can discuss just about anything here, so long as it doesn't involve politics. You'll get a range of answers to questions, often within minutes, without the conflicts of interest you get from so many financial advisers."
-      }
-    ]
-  },
-  {
-    "name": "Mutual Fund Companies and Brokerages",
-    "links": [
-      {
-        "name": "Vanguard",
-        "url": "https://investor.vanguard.com/home",
-        "description": "Founded by Jack Bogle, Vanguard is the only mutually-owned mutual fund company in the world and should be the default option for all your investments. It is now also the largest mutual fund company, now that the word is out about their low costs. Excellent fund and ETF lineup, though some people complain about the service and buy the products at other brokerages."
+        "name": "Visual Studio Code",
+        "url": "https://code.visualstudio.com/",
+        "description": "Great, free, editor for development."
       },
       {
-        "name": "Fidelity",
-        "url": "https://www.fidelity.com",
-        "description": "The second largest mutual fund company in the world. Known for a wide variety of funds, a nice online interface, and a good brokerage. Many regard it as having better service than Vanguard and you can buy Vanguard ETFs here as well. My personal favorite."
-      },
-      {
-        "name": "Schwab",
-        "url": "https://www.schwab.com",
-        "description": "Another great fund company that offers a nice interface and an almost complete banking and brokerage package. Has a large variety of its own low cost funds and ETFs or you can by Vanguard products here."
+        "name": "NPM",
+        "url": "https://www.npmjs.com/",
+        "description": "Find JS packages to do almost anything."
       }
     ]
   },
   {
-    "name": "Blogs",
+    "name": "Development",
     "links": [
       {
-        "name": "The White Coat Investor",
-        "url": "https://www.whitecoatinvestor.com",
-        "description": "Unbiased advice aimed at high income professionals, but a lot of the advice is applicable to everyone."
+        "name": "GitHub",
+        "url": "https://github.com",
+        "description": "Backup and version control for source code."
       }
     ]
   }

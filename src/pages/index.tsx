@@ -98,6 +98,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           </ol>
         </div>
         <div className="w-full md:w-8/10 md:pl-8">
+          <h2>Hi there!</h2>
           <p>Hello, I'm Antony Holmes, and welcome to my personal web site.</p>
           <p>
             I'm a researcher and full stack developer with experience using
@@ -113,11 +114,28 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             <BlueLink to="/posts/2021-07-01-new-design">here</BlueLink>.
           </p>
 
-          <ul className="mt-16">
-            {posts.slice(4, 14).map((post: any, index: number) => {
-              return <Post post={posts[0]} imageMap={imageMap} key={index} />
-            })}
-          </ul>
+          <section className="border border-solid border-gray-200 rounded-md p-4 mt-32">
+            <h5>Interested in how this website was developed?</h5>
+            <p className="text-sm">
+              It was made with{" "}
+              <BlueLink to="https://www.gatsbyjs.com/">Gatsby</BlueLink> and the
+              code is available on{" "}
+              <BlueLink to="https://github.com/antonybholmes/www-antony-holmes">
+                GitHub
+              </BlueLink>{" "}
+              if you want to look at it or get ideas. Please feel free to{" "}
+              <BlueLink to="mailto:antony@antonyholmes.com">email</BlueLink> me
+              to ask questions.
+            </p>
+          </section>
+
+          <section className="mt-32 pt-8 border-t border-solid border-gray-200">
+            <ul>
+              {posts.slice(0, 10).map((post: any, index: number) => {
+                return <Post post={post} imageMap={imageMap} key={index} />
+              })}
+            </ul>
+          </section>
         </div>
       </Row>
     </PageLayout>

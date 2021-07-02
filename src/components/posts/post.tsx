@@ -21,7 +21,7 @@ type PostProps = {
 const Post: React.FC<PostProps> = ({
   post,
   imageMap,
-  baseUrl = "/articles",
+  baseUrl = "/posts",
   showMainTagLink = true,
 }) => {
   const [hover, setHover] = useState(false)

@@ -1,18 +1,14 @@
 [
   {
-    "name": "Articles",
-    "url": "/articles"
+    "name": "Resume",
+    "url": "/resume"
   },
   {
-    "name": "Portfolios",
-    "url": "/portfolios"
+    "name": "Publications",
+    "url": "/publications"
   },
   {
-    "name": "Credit Cards",
-    "url": "/credit-cards"
-  },
-  {
-    "name": "Calculators",
-    "url": "/calculators"
+    "name": "Posts",
+    "url": "/posts"
   }
 ]

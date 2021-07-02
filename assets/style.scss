@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white font-light;
+  @apply bg-white;
 }
 
 .h {
@@ -37,7 +37,7 @@ h6 {
 }
 
 p {
-  @apply leading-relaxed font-light mb-8;
+  @apply mb-4;
 }
 
 .ani-t {

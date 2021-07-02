@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="py-16 bg-gray-100">
       <Container>
         <div className="text-gray-600 text-sm">
-          <Row isVCentered={false}>
+          {/* <Row isVCentered={false}>
             {links.map(
               (
                 linkGroup: {
@@ -44,9 +44,9 @@ const Footer = () => {
                 )
               }
             )}
-          </Row>
+          </Row> */}
 
-          <Row className="text-xs mt-16 rounded-md bg-gray-100 justify-between">
+          <Row className="text-xs rounded-md bg-gray-100 justify-between">
             <div>{getCopyright()}</div>
             <div>
               <ul className="inline-block">

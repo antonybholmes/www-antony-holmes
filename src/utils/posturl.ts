@@ -1,6 +1,6 @@
 import getPostId from "./postid"
 
-const getPostUrl = (post: any, baseUrl: string = "/articles") => {
+const getPostUrl = (post: any, baseUrl: string = "/posts") => {
   return `${baseUrl}/${getPostId(post)}`
 }
 

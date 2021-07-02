@@ -34,45 +34,7 @@ const TermsPage: React.FC<PageProps> = ({ path }) => {
             a personal, non-exclusive, non-transferable, limited privilege to
             enter and use the Site.
           </p>
-          <h2 className="mt-8 uppercase">Investing, Advice, And Content</h2>
-          <p></p>The content, courses and materials The {siteTitle} provides is
-          published generally and DOES NOT constitute financial, legal, or tax
-          advice. The content and materials are not personal to you and does not
-          take into account your personal circumstances. The {siteTitle}
-          does not assess the suitability or appropriateness of any investment
-          in light of your personal circumstances, including your knowledge and
-          understanding, financial strength, tax liability or appetite for risk.
-          <p>
-            The {siteTitle} does not act as an investment advisor or advocate
-            the purchase or sale of any security or investment. If you need
-            guidance on interpreting the materials and content on the Website
-            given your personal circumstances, you should seek independent
-            advice from appropriate qualified professionals.{" "}
-          </p>
-          <p>
-            Investment markets have inherent risks and there is no guarantee of
-            future profits, or even a return of your investment. Past
-            performances does not assure future results. Investors must be able
-            to afford to lose their entire investment. Specifically, certain
-            investments are only for accredited investors who are familiar with
-            and willing to accept the high risk associated with private
-            investments. Securities sold through private placements are not
-            publicly traded and, therefore, are less liquid, and may be subject
-            to holding period requirements.{" "}
-          </p>
-          <p>
-            The information generally available on the Website DOES NOT
-            constitute recommendations, solicitations, or offers to buy or sell
-            any securities, options, other financial instruments or other
-            assets, or provide any investment advice or service. The content and
-            materials The {siteTitle} provides is for general information only
-            and is not intended to be relied upon by users in making (or not
-            making) certain investment decisions. The {siteTitle} tries to
-            ensure that the content and materials are up to date and accurate,
-            but the {siteTitle} does not guarantee the accuracy of the
-            information. Users are encouraged to perform their own research,
-            investigation and due diligence.
-          </p>
+
           <h2 className="mt-8 uppercase">Content</h2>
           <p>
             All text, graphics, user interfaces, visual interfaces, photographs,

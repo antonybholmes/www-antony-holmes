@@ -3,23 +3,42 @@ import React from "react"
 import getHeaderLinks from "../../utils/headerlinks"
 
 type HeaderLinksProps = {
-  title: String
+  title: string
+  rowMode?: boolean
 }
 
-const HeaderLinks: React.FC<HeaderLinksProps> = ({ title }) => {
+const HeaderLinks: React.FC<HeaderLinksProps> = ({
+  title = "",
+  rowMode = true,
+}) => {
   const links = getHeaderLinks()
 
   return (
-    <ul className="inline-block pl-4">
+    <ul
+      className={`${
+        rowMode ? "inline-block" : "border-t border-solid border-white-50"
+      }`}
+    >
       {links.map((link: { name: string; url: string }, index: number) => {
         return (
-          <li className="inline-block pl-8" key={index}>
+          <li
+            className={`${
+              rowMode
+                ? "inline-block pl-8"
+                : "py-4 border-b border-solid border-white-50"
+            } `}
+            key={index}
+          >
             <Link
               to={link.url}
-              className={`inline-block border-b-2 border-solid py-1 font-semibold text-black trans-ani ${
-                title == link.name
-                  ? "border-blue-600"
-                  : "hover:border-blue-600 border-transparent"
+              className={`inline-block text-sm text-white trans-ani ${
+                rowMode
+                  ? `border-b-2 border-solid py-1 ${
+                      title == link.name
+                        ? "border-white"
+                        : "hover:border-white-50 border-transparent"
+                    }`
+                  : ""
               }`}
             >
               {link.name}

@@ -9,6 +9,15 @@ import BlueButton from "../components/links/bluebutton"
 import PageLayout from "../components/layouts/pagelayout"
 import Container from "../components/container"
 import sortByDate from "../utils/sortbydate"
+import BlueLink from "../components/links/bluelink"
+
+export const pubmedUrl = (pubmed: number) => {
+  return `https://pubmed.ncbi.nlm.nih.gov/${pubmed}/` //``https://www.ncbi.nlm.nih.gov/pubmed/?term=${pubmed}`
+}
+
+export const doiUrl = (doi: string) => {
+  return `https://doi.org/${doi}`
+}
 
 type DataProps = {
   publications: {
@@ -47,24 +56,54 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <PageLayout title="Publications">
-      <Container>
-        {/* <MainSideCol>
+      {/* <Container> */}
+      {/* <MainSideCol>
         <> */}
 
+      <h3>Publications</h3>
+      <p>Scientific literature I have authored.</p>
+      <section className="mt-16">
         {Array.from(publicationMap.keys())
           .sort()
           .reverse()
           .map((year: number, yearIndex: number) => {
             return (
-              <Row isVCentered={false} key={yearIndex} className="mb-8">
-                <div className="w-1/10 text-blue-600">{year}</div>
-                <div className="w-9/10 border border-solid border-gray-200 rounded-md p-4">
+              <Row
+                isVCentered={false}
+                wrap={true}
+                key={yearIndex}
+                className="mb-8"
+              >
+                <div className="w-full md:w-1/10 text-center md:text-left text-gray-300 mb-2 md:pr-4">
+                  {year}
+                </div>
+                <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md p-4">
                   {publicationMap
                     .get(year)
                     .map((publication: any, pubIndex: number) => {
+                      let url
+
+                      if (publication.url !== "") {
+                        url = publication.url
+                      } else if (publication.doi !== "") {
+                        url = doiUrl(publication.doi)
+                      } else if (publication.pmid !== "") {
+                        url = pubmedUrl(publication.pmid)
+                      } else {
+                        url = ""
+                      }
+
                       return (
                         <article className="mb-4">
-                          <h4 className="m-0">{publication.title}</h4>
+                          <h4 className="m-0">
+                            {url !== "" ? (
+                              <BlueLink to={url} underline={true}>
+                                {publication.title}
+                              </BlueLink>
+                            ) : (
+                              publication.title
+                            )}
+                          </h4>
                           <section>{publication.authors}</section>
                           <section className="text-sm">
                             {publication.journal}. {publication.year}.
@@ -76,10 +115,10 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
               </Row>
             )
           })}
-
-        {/*</> <></>
+      </section>
+      {/*</> <></>
       </MainSideCol> */}
-      </Container>
+      {/* </Container> */}
     </PageLayout>
   )
 }

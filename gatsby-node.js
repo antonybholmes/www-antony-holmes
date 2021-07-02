@@ -20,7 +20,7 @@ const getPostId = post => {
 }
 
 const getPostUrl = post => {
-  return `/articles/${post.frontmatter.id}`
+  return `/posts/${post.frontmatter.id}`
 }
 
 const useDraftUrl = post => {
@@ -32,7 +32,7 @@ const getAuthorUrl = author => {
 }
 
 const getCategoryUrl = category => {
-  return `/articles/tags/${category.toLowerCase().replace(" ", "-")}`
+  return `/posts/tags/${category.toLowerCase().replace(" ", "-")}`
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {

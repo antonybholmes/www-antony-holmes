@@ -1,5 +1,5 @@
 const getTagUrl = (category: string) => {
-  return `/articles/tag/${category.toLowerCase()}`
+  return `/posts/tag/${category.toLowerCase()}`
 }
 
 export default getTagUrl

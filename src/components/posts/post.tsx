@@ -42,14 +42,34 @@ const Post: React.FC<PostProps> = ({
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
-      <Row isVCentered={false} className="w-full">
-        <div className="w-3/4 mr-8">
+      {/* <Row isVCentered={false} className="w-full"> */}
+      {/* <div className="w-1/4">
+          <Link to={getPostUrl(post, baseUrl)}>
+            <GatsbyImage
+              image={getImage(imageMap[post.frontmatter.id])}
+              className={`trans-ani w-full`}
+              alt={post.frontmatter.title}
+            />
+          </Link>
+        </div> */}
+
+        {/* <div className="w-3/4 ml-8"> */}
+        <div>
           {showMainTagLink && (
             <div className="mb-4">
               <PostCategoryLink post={post} />
             </div>
           )}
-          <h2>
+
+<Link to={getPostUrl(post, baseUrl)}>
+            <GatsbyImage
+              image={getImage(imageMap[post.frontmatter.id])}
+              className={`trans-ani w-1/2`}
+              alt={post.frontmatter.title}
+            />
+          </Link>
+
+          <h2 className="mt-4">
             <ColorLink to={getPostUrl(post, baseUrl)}>
               {post.frontmatter.title}
             </ColorLink>
@@ -61,16 +81,8 @@ const Post: React.FC<PostProps> = ({
           <PostTagList post={post} />
         </div>
 
-        <div className="w-1/4">
-          <Link to={getPostUrl(post, baseUrl)}>
-            <GatsbyImage
-              image={getImage(imageMap[post.frontmatter.id])}
-              className={`trans-ani w-full`}
-              alt={post.frontmatter.title}
-            />
-          </Link>
-        </div>
-      </Row>
+        
+      {/* </Row> */}
     </li>
   )
 }

@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white;
+  @apply bg-white font-light;
 }
 
 .h {
-  @apply mb-4 font-medium;
+  @apply mb-2 font-semibold;
   color: rgb(70, 80, 90);
-  font-family: "Poppins";
+  font-family: "Inter";
 }
 
 h1 {
-  @apply h text-5xl font-semibold;
+  @apply h text-5xl;
 }
 
 h2 {
@@ -37,7 +37,7 @@ h6 {
 }
 
 p {
-  @apply leading-relaxed font-light mb-4;
+  @apply leading-relaxed font-light mb-8;
 }
 
 .ani-t {

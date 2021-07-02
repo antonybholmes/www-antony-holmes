@@ -3,17 +3,7 @@
     "title": "Start Here",
     "links": [
       { "name": "About", "url": "/about" },
-      { "name": "Blog", "url": "/articles" },
-      { "name": "Calculators", "url": "/calculators" },
-      { "name": "Authors", "url": "/authors" }
-    ]
-  },
-  {
-    "title": "Recommendations",
-    "links": [
-      { "name": "Credit Cards", "url": "/credit-cards" },
-      { "name": "Websites", "url": "/websites" },
-      { "name": "Books", "url": "/books" }
+      { "name": "Blog", "url": "/articles" }
     ]
   }
 ]

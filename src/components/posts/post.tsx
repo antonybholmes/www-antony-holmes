@@ -53,35 +53,34 @@ const Post: React.FC<PostProps> = ({
           </Link>
         </div> */}
 
-        {/* <div className="w-3/4 ml-8"> */}
-        <div>
-          {showMainTagLink && (
-            <div className="mb-4">
-              <PostCategoryLink post={post} />
-            </div>
-          )}
+      {/* <div className="w-3/4 ml-8"> */}
+      <div>
+        {showMainTagLink && (
+          <div className="mb-4">
+            <PostCategoryLink post={post} />
+          </div>
+        )}
 
-<Link to={getPostUrl(post, baseUrl)}>
-            <GatsbyImage
-              image={getImage(imageMap[post.frontmatter.id])}
-              className={`trans-ani w-1/2`}
-              alt={post.frontmatter.title}
-            />
-          </Link>
+        <Link to={getPostUrl(post, baseUrl)}>
+          <GatsbyImage
+            image={getImage(imageMap[post.frontmatter.id])}
+            className={`trans-ani w-1/2`}
+            alt={post.frontmatter.title}
+          />
+        </Link>
 
-          <h2 className="mt-4">
-            <ColorLink to={getPostUrl(post, baseUrl)}>
-              {post.frontmatter.title}
-            </ColorLink>
-          </h2>
-          <p className="text-sm text-gray-500">{date.format("MMM DD, YYYY")}</p>
+        <h2 className="mt-4">
+          <ColorLink to={getPostUrl(post, baseUrl)}>
+            {post.frontmatter.title}
+          </ColorLink>
+        </h2>
+        <p className="text-sm text-gray-500">{date.format("MMM DD, YYYY")}</p>
 
-          <p className="mt-4 font-light">{post.excerpt}</p>
+        <p className="mt-4 font-light">{post.excerpt}</p>
 
-          <PostTagList post={post} />
-        </div>
+        <PostTagList post={post} />
+      </div>
 
-        
       {/* </Row> */}
     </li>
   )

@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    siteTitle: `Polite Investor`,
+    siteTitle: `Antony Holmes`,
     author: {
       name: `Antony Holmes`,
-      summary: `who lives and works in New York building useful things.`,
+      summary: `Owner of this site.`,
     },
-    siteDescription: `Polite Investor financial web site.`,
-    siteUrl: `https://www.politeinvestor.com/`,
+    siteDescription: `Homepage for Antony Homes.`,
+    siteUrl: `https://www.antonyholmes.com/`,
     social: {
-      twitter: `politeinvestor`,
+      twitter: `antonybholmes`,
     },
     version: "2.0.0",
   },

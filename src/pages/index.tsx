@@ -1,11 +1,9 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import Row from "../components/row"
 import Post from "../components/posts/post"
 import useImageMap from "../utils/imagemap"
-import HeadPost from "../components/posts/headpost"
-import SubHeadingPost from "../components/posts/subheadingpost"
 import PageLayout from "../components/layouts/pagelayout"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 type DataProps = {
   posts: {
@@ -22,29 +20,22 @@ type DataProps = {
       }
     }>
   }
+  image: any
 }
 
-const IndexPage: React.FC<PageProps<DataProps>> = ({ path, data }) => {
+const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.posts.nodes
+  const image = data.image
+
   const imageMap = useImageMap(data)
 
   return (
     <PageLayout title="Home">
-      <div>
-        <HeadPost post={posts[0]} imageMap={imageMap} />
-      </div>
-
-      <Row className="mt-16" isVCentered={false}>
-        <div className="w-1/3 pr-4">
-          <SubHeadingPost post={posts[1]} imageMap={imageMap} />
-        </div>
-        <div className="w-1/3 px-2">
-          <SubHeadingPost post={posts[2]} imageMap={imageMap} />
-        </div>
-        <div className="w-1/3 pl-4">
-          <SubHeadingPost post={posts[3]} imageMap={imageMap} />
-        </div>
-      </Row>
+      <GatsbyImage
+        image={getImage(image)}
+        alt="Antony Holmes"
+        className={`w-64`}
+      />
 
       <ul className="mt-16">
         {posts.slice(4, 14).map((post: any, index: number) => {
@@ -59,16 +50,26 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
+    image: file(
+      absolutePath: { regex: "/antony-holmes/" }
+      ext: { regex: "/jpg/" }
+    ) {
+      name
+      ext
+      relativePath
+      childImageSharp {
+        gatsbyImageData(placeholder: BLURRED)
+      }
+    }
+
     posts: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/posts/" } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 10
     ) {
       nodes {
         excerpt
         frontmatter {
           id
-          author
           date
           title
           description

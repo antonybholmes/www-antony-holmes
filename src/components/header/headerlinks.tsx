@@ -22,21 +22,21 @@ const HeaderLinks: React.FC<HeaderLinksProps> = ({
       {links.map((link: { name: string; url: string }, index: number) => {
         return (
           <li
-            className={`${
+            className={`font-medium ${
               rowMode
-                ? "inline-block pl-8"
+                ? "inline-block pl-4"
                 : "py-4 border-b border-solid border-white-50"
             } `}
             key={index}
           >
             <Link
               to={link.url}
-              className={`inline-block text-sm text-white trans-ani ${
+              className={`inline-block text-sm text-white trans-ani rounded-md ${
                 rowMode
-                  ? `border-b-2 border-solid py-1 ${
+                  ? `px-3 py-2 ${
                       title == link.name
-                        ? "border-white"
-                        : "hover:border-white-50 border-transparent"
+                        ? "bg-white-10"
+                        : "hover:text-white-60 border-transparent"
                     }`
                   : ""
               }`}

@@ -48,12 +48,6 @@ type DataProps = {
 const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const publicationMap = sortByDate(data.publications.nodes)
 
-  console.log(
-    publicationMap.get(2021).map((publication, yearIndex: number) => {
-      return publication.title
-    })
-  )
-
   return (
     <PageLayout title="Publications">
       {/* <Container> */}
@@ -61,7 +55,10 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         <> */}
 
       <h3>Publications</h3>
-      <p>Scientific literature I have authored.</p>
+      <p>
+        A list of the scientific literature I have authored, mostly concerned
+        with cancer genetics in B-cell development.
+      </p>
       <section className="mt-16">
         {Array.from(publicationMap.keys())
           .sort()
@@ -74,43 +71,47 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 key={yearIndex}
                 className="mb-8"
               >
-                <div className="w-full md:w-1/10 text-center md:text-left text-gray-300 mb-2 md:pr-4">
+                <div className="w-full md:w-2/10 text-center md:text-right text-gray-300 mb-2 md:pr-4">
                   {year}
                 </div>
-                <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md p-4">
-                  {publicationMap
-                    .get(year)
-                    .map((publication: any, pubIndex: number) => {
-                      let url
+                <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md p-4">
+                  <ol>
+                    {publicationMap
+                      .get(year)
+                      .map((publication: any, pubIndex: number) => {
+                        let url
 
-                      if (publication.url !== "") {
-                        url = publication.url
-                      } else if (publication.doi !== "") {
-                        url = doiUrl(publication.doi)
-                      } else if (publication.pmid !== "") {
-                        url = pubmedUrl(publication.pmid)
-                      } else {
-                        url = ""
-                      }
+                        if (publication.url !== "") {
+                          url = publication.url
+                        } else if (publication.doi !== "") {
+                          url = doiUrl(publication.doi)
+                        } else if (publication.pmid !== "") {
+                          url = pubmedUrl(publication.pmid)
+                        } else {
+                          url = ""
+                        }
 
-                      return (
-                        <article className="mb-4">
-                          <h4 className="m-0">
-                            {url !== "" ? (
-                              <BlueLink to={url} underline={true}>
-                                {publication.title}
-                              </BlueLink>
-                            ) : (
-                              publication.title
-                            )}
-                          </h4>
-                          <section>{publication.authors}</section>
-                          <section className="text-sm">
-                            {publication.journal}. {publication.year}.
-                          </section>
-                        </article>
-                      )
-                    })}
+                        return (
+                          <li className="mb-4">
+                            <h5 className="m-0">
+                              {url !== "" ? (
+                                <BlueLink to={url} underline={true}>
+                                  {publication.title}
+                                </BlueLink>
+                              ) : (
+                                publication.title
+                              )}
+                            </h5>
+                            <section className="text-sm">
+                              {publication.authors}
+                            </section>
+                            <section className="text-sm">
+                              {publication.journal}. {publication.year}.
+                            </section>
+                          </li>
+                        )
+                      })}
+                  </ol>
                 </div>
               </Row>
             )

@@ -7,6 +7,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import BlueLink from "../components/links/bluelink"
 import getPassportPhoto from "../utils/passportphoto"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ColorLink from "../components/links/colorlink"
 
 type DataProps = {
   posts: {
@@ -41,6 +43,59 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             alt="Antony Holmes"
             className={`w-full rounded-full border border-solid border-gray-200`}
           />
+
+          <h4 className="mt-8">Antony Holmes</h4>
+
+          <ol className="mt-8">
+            <li className="mb-2">
+              <Row>
+                <div className="w-8">
+                  <FontAwesomeIcon
+                    icon={["far", "envelope"]}
+                    className="text-gray-500"
+                  />
+                </div>
+                <div>
+                  <ColorLink color="text" to="mailto:antony@antonyholmes.com">
+                    antony@antonyholmes.com
+                  </ColorLink>
+                </div>
+              </Row>
+            </li>
+            <li className="mb-2">
+              <Row>
+                <div className="w-8">
+                  <FontAwesomeIcon
+                    icon={["fas", "link"]}
+                    className="text-gray-500"
+                  />
+                </div>
+                <div>
+                  <ColorLink color="text" to="https://github.com/antonybholmes">
+                    github.com/antonybholmes
+                  </ColorLink>
+                </div>
+              </Row>
+            </li>
+            <li className="mb-2">
+              <Row>
+                <div className="w-8">
+                  <FontAwesomeIcon
+                    icon={["fab", "twitter"]}
+                    className="text-gray-500"
+                  />
+                </div>
+                <div>
+                  <ColorLink
+                    color="text"
+                    to="https://twitter.com/antonybholmes"
+                  >
+                    @antonybholmes
+                  </ColorLink>
+                </div>
+              </Row>
+            </li>
+          </ol>
         </div>
         <div className="w-full md:w-8/10 md:pl-8">
           <p>Hello, I'm Antony Holmes, and welcome to my personal web site.</p>

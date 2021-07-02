@@ -16,7 +16,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ["Poppins", "Inter", "Helvetica", "Arial", "sans-serif"],
+      sans: ["Inter", "Poppins", "Helvetica", "Arial", "sans-serif"],
     },
     fontWeight: {
       hairline: 100,

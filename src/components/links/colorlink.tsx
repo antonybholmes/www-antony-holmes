@@ -49,7 +49,7 @@ const ColorLink: React.FC<LinkProps> = ({
       cls = "text-white-98"
       break
     case "gray":
-      cls = "text-default-gray"
+      cls = "text-gray-500"
       break
     case "default":
       cls = "text-default-color"

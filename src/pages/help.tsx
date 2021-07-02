@@ -23,7 +23,7 @@ const HelpPage: React.FC<PageProps> = ({ path }) => {
     <PageLayout title="Help" path={path}>
       <MainSideCol>
         <>
-          <h4 className="font-semibold">About the {copyright} Web Site</h4>
+          <h4 className="font-semibold">About antonyholmes.com</h4>
           {/* <OutlineCard className="mt-8" autoHide={false}> */}
           <table className="w-full">
             <tbody>

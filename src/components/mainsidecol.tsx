@@ -17,11 +17,11 @@ const MainSideCol: React.FC<MainSideColProps> = ({
 }) => {
   return (
     <Row wrap={true} isVCentered={isVCentered} className={className}>
-      <div className={`w-full xl:w-8/10 6xl:w-9/10 ${cls1ext}`}>
+      <div className={`w-full xl:w-8/10 6xl:w-8/10 ${cls1ext}`}>
         {children[0]}
       </div>
 
-      <div className={`w-full xl:w-2/10 6xl:w-1/10 ${cls2ext}`}>
+      <div className={`w-full xl:w-2/10 6xl:w-2/10 ${cls2ext}`}>
         {children[1]}
       </div>
     </Row>

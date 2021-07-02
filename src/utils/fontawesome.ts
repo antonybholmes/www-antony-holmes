@@ -1,4 +1,6 @@
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faBars, faTags } from "@fortawesome/free-solid-svg-icons"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
+import { faBars, faLink, faTags } from "@fortawesome/free-solid-svg-icons"
 
-library.add(faTags, faBars)
+library.add(faTags, faBars, faEnvelope, faLink, faTwitter)

@@ -35,7 +35,7 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <PageLayout title="Articles">
+    <PageLayout title="Posts">
       <Container>
         {/* <MainSideCol>
         <> */}

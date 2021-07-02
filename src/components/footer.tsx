@@ -3,6 +3,7 @@ import getCopyright from "../utils/copyright"
 import getFooterLinks from "../utils/footerlinks"
 import getInfoLinks from "../utils/infolinks"
 import Container from "./container"
+import BlueLink from "./links/bluelink"
 import ColorLink from "./links/colorlink"
 import Row from "./row"
 
@@ -11,9 +12,9 @@ const Footer = () => {
   const infoLinks = getInfoLinks()
 
   return (
-    <footer className="py-16 bg-gray-100">
+    <footer>
       <Container>
-        <div className="text-gray-600 text-sm">
+        <div className="text-gray-600 text-sm border-t border-solid border-gray-200 py-16">
           {/* <Row isVCentered={false}>
             {links.map(
               (
@@ -46,7 +47,7 @@ const Footer = () => {
             )}
           </Row> */}
 
-          <Row className="text-xs rounded-md bg-gray-100 justify-between">
+          <Row className="text-xs rounded-md justify-between">
             <div>{getCopyright()}</div>
             <div>
               <ul className="inline-block">
@@ -57,7 +58,7 @@ const Footer = () => {
                         key={index}
                         className={`inline-block ${index > 0 ? "ml-8" : ""}`}
                       >
-                        <ColorLink to={link.url}>{link.name}</ColorLink>
+                        <BlueLink to={link.url}>{link.name}</BlueLink>
                       </li>
                     )
                   }

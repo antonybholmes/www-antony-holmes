@@ -15,11 +15,7 @@ const SiteMapPage: React.FC<PageProps> = ({ path }) => {
         <div className="font-medium">
           <Row isVCentered={false} wrap={true}>
             <div className="w-full md:w-1/3">
-              <h4 className="mt-4">About Us</h4>
-
-              <div className="mt-2">
-                <BlueLink to="/about">About</BlueLink>
-              </div>
+              <h4 className="mt-4">About</h4>
 
               <div className="mt-2">
                 <BlueLink to="/help">Help</BlueLink>

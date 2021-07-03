@@ -20,9 +20,9 @@ const renderWebsites = () => {
         ) => {
           return (
             <section key={index} className="mb-16">
-              <h2>{section.name}</h2>
+              <h4>{section.name}</h4>
 
-              <ul>
+              <ul className="border border-solid border-gray-200 rounded-md p-4">
                 {section.links.map(
                   (
                     link: { name: string; description: string; url: string },
@@ -48,10 +48,12 @@ const renderWebsites = () => {
 const WebsitesPage: React.FC<PageProps> = () => {
   return (
     <PageLayout title="Resources" description="Interesting web sites.">
-      <h1>Resources</h1>
-      <p>These are some of my favorite websites and resources.</p>
+      <Container>
+        <h3>Resources</h3>
+        <p>These are some of my favorite websites and resources.</p>
 
-      {renderWebsites()}
+        {renderWebsites()}
+      </Container>
     </PageLayout>
   )
 }

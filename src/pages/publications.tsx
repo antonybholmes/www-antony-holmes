@@ -10,6 +10,7 @@ import PageLayout from "../components/layouts/pagelayout"
 import Container from "../components/container"
 import sortByDate from "../utils/sortbydate"
 import BlueLink from "../components/links/bluelink"
+import ColorLink from "../components/links/colorlink"
 
 export const pubmedUrl = (pubmed: number) => {
   return `https://pubmed.ncbi.nlm.nih.gov/${pubmed}/` //``https://www.ncbi.nlm.nih.gov/pubmed/?term=${pubmed}`
@@ -50,32 +51,24 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <PageLayout title="Publications">
-      {/* <Container> */}
-      {/* <MainSideCol>
-        <> */}
+      <Container>
+        <h3>Publications</h3>
+        <p>
+          A list of the scientific literature I have authored, mostly concerned
+          with cancer genetics in B-cell development.
+        </p>
+        <section className="mt-16">
+          {Array.from(publicationMap.keys())
+            .sort()
+            .reverse()
+            .map((year: number, yearIndex: number) => {
+              return (
+                <section className="mb-8">
+                  <header className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 text-sm">
+                    {year}
+                  </header>
 
-      <h3>Publications</h3>
-      <p>
-        A list of the scientific literature I have authored, mostly concerned
-        with cancer genetics in B-cell development.
-      </p>
-      <section className="mt-16">
-        {Array.from(publicationMap.keys())
-          .sort()
-          .reverse()
-          .map((year: number, yearIndex: number) => {
-            return (
-              <Row
-                isVCentered={false}
-                wrap={true}
-                key={yearIndex}
-                className="mb-8"
-              >
-                <div className="w-full md:w-2/10 text-center md:text-right text-gray-300 mb-2 md:pr-4">
-                  {year}
-                </div>
-                <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md p-4">
-                  <ol>
+                  <ol className="border border-solid border-gray-200 rounded-md p-4">
                     {publicationMap
                       .get(year)
                       .map((publication: any, pubIndex: number) => {
@@ -95,9 +88,9 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                           <li className="mb-4">
                             <h5 className="m-0">
                               {url !== "" ? (
-                                <BlueLink to={url} underline={true}>
+                                <ColorLink to={url} underline={true}>
                                   {publication.title}
-                                </BlueLink>
+                                </ColorLink>
                               ) : (
                                 publication.title
                               )}
@@ -112,14 +105,11 @@ const PublicationsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                         )
                       })}
                   </ol>
-                </div>
-              </Row>
-            )
-          })}
-      </section>
-      {/*</> <></>
-      </MainSideCol> */}
-      {/* </Container> */}
+                </section>
+              )
+            })}
+        </section>
+      </Container>
     </PageLayout>
   )
 }

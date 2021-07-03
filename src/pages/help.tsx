@@ -14,16 +14,16 @@ import MainSideCol from "../components/mainsidecol"
 import PageLayout from "../components/layouts/pagelayout"
 import { PageProps } from "gatsby"
 
-const LOGO_CLASS = "h-10 xl:inline mx-8 mb-8"
+const LOGO_CLASS = "h-10 xl:inline"
 
 const HelpPage: React.FC<PageProps> = ({ path }) => {
-  const { copyright, version } = getSiteMetadata()
+  const { version } = getSiteMetadata()
 
   return (
     <PageLayout title="Help" path={path}>
       <MainSideCol>
         <>
-          <h4 className="font-semibold">About antonyholmes.com</h4>
+          <h4 className="font-semibold">antonyholmes.com</h4>
           {/* <OutlineCard className="mt-8" autoHide={false}> */}
           <table className="w-full">
             <tbody>
@@ -44,58 +44,38 @@ const HelpPage: React.FC<PageProps> = ({ path }) => {
             This web site was developed using the following technologies:
           </div>
 
-          <Row className="xl:justify-center">
-            <div>
-              <ul className="xl:inline">
-                <li className="xl:inline">
-                  <ExtLink to="https://www.npmjs.com/">
-                    <img src={npmsvg} className={LOGO_CLASS} alt="NPM logo" />
-                  </ExtLink>
-                </li>
-                <li className="lg:inline">
-                  <ExtLink to="https://reactjs.org/">
-                    <img
-                      src={reactsvg}
-                      className={LOGO_CLASS}
-                      alt="React logo"
-                    />
-                  </ExtLink>
-                </li>
-                <li className="lg:inline">
-                  <ExtLink to="https://www.gatsbyjs.org">
-                    <img
-                      src={gatsbysvg}
-                      className={LOGO_CLASS}
-                      alt="Gatsby logo"
-                    />
-                  </ExtLink>
-                </li>
-                <li className="lg:inline">
-                  <ExtLink to="https://www.w3.org/html/">
-                    <img
-                      src={htmlsvg}
-                      className={LOGO_CLASS}
-                      alt="HTML5 logo"
-                    />
-                  </ExtLink>
-                </li>
-                <li className="lg:inline">
-                  <ExtLink to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
-                    <img src={jssvg} className={LOGO_CLASS} alt="JS logo" />
-                  </ExtLink>
-                </li>
-                <li className="lg:inline">
-                  <ExtLink to="https://github.com/">
-                    <img
-                      src={githubsvg}
-                      className={LOGO_CLASS}
-                      alt="GitHub logo"
-                    />
-                  </ExtLink>
-                </li>
-              </ul>
-            </div>
-          </Row>
+          <ul className="xl:inline">
+            <li className="xl:inline mr-8 mb-8">
+              <ExtLink to="https://www.npmjs.com/">
+                <img src={npmsvg} className={LOGO_CLASS} alt="NPM logo" />
+              </ExtLink>
+            </li>
+            <li className="lg:inline mr-8 mb-8">
+              <ExtLink to="https://reactjs.org/">
+                <img src={reactsvg} className={LOGO_CLASS} alt="React logo" />
+              </ExtLink>
+            </li>
+            <li className="lg:inline mr-8 mb-8">
+              <ExtLink to="https://www.gatsbyjs.org">
+                <img src={gatsbysvg} className={LOGO_CLASS} alt="Gatsby logo" />
+              </ExtLink>
+            </li>
+            <li className="lg:inline mr-8 mb-8">
+              <ExtLink to="https://www.w3.org/html/">
+                <img src={htmlsvg} className={LOGO_CLASS} alt="HTML5 logo" />
+              </ExtLink>
+            </li>
+            <li className="lg:inline mr-8 mb-8">
+              <ExtLink to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+                <img src={jssvg} className={LOGO_CLASS} alt="JS logo" />
+              </ExtLink>
+            </li>
+            <li className="lg:inline mr-8 mb-8">
+              <ExtLink to="https://github.com/">
+                <img src={githubsvg} className={LOGO_CLASS} alt="GitHub logo" />
+              </ExtLink>
+            </li>
+          </ul>
         </>
         <></>
       </MainSideCol>

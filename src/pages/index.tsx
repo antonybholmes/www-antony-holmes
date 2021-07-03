@@ -46,10 +46,10 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 
           <h4 className="mt-8">Antony Holmes</h4>
 
-          <ol className="mt-8">
+          <ol className="mt-8 text-sm">
             <li className="mb-2">
               <Row>
-                <div className="w-8">
+                <div className="w-6">
                   <FontAwesomeIcon
                     icon={["far", "envelope"]}
                     className="text-gray-500"
@@ -64,7 +64,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             </li>
             <li className="mb-2">
               <Row>
-                <div className="w-8">
+                <div className="w-6">
                   <FontAwesomeIcon
                     icon={["fas", "link"]}
                     className="text-gray-500"
@@ -79,7 +79,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             </li>
             <li className="mb-2">
               <Row>
-                <div className="w-8">
+                <div className="w-6">
                   <FontAwesomeIcon
                     icon={["fab", "twitter"]}
                     className="text-gray-500"

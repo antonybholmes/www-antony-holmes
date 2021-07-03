@@ -25,13 +25,20 @@ type DataProps = {
 
 const getTitle = (title: string) => (
   <header className="bg-gray-100 px-3 py-3">
-    <h5 className="m-0">{title}</h5>
+    <h6 className="m-0">{title}</h6>
   </header>
 )
 
 const getLangTitle = (title: string) => <h5 className="m-0">{title}</h5>
 
 const getLangList = (s: string) => <p className="m-0 text-gray-500">{s}</p>
+
+const getYearBlock = (year: string) => (
+  <header className="flex flex-row items-center mb-4">
+    <div className="text-gray-300 whitespace-nowrap mr-4">{year}</div>
+    <hr className="border-gray-300 w-full" style={{ height: "1px" }} />
+  </header>
+)
 
 const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [records, setRecords] = useState(25)
@@ -48,12 +55,13 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
     <PageLayout title="Resume">
       {/* <Container> */}
 
-      <h3 className="uppercase">Skills</h3>
+      <h3>Skills</h3>
+
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 text-sm uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           Programming Languages
         </div>
-        <section className="w-full md:w-8/10">
+        <section className="w-full md:w-9/10">
           <ol className="flex flex-row flex-wrap -mx-2">
             <li className="inline-block w-1/2">
               <div className="mx-2 mb-4 border border-solid border-gray-200 p-3 rounded-md">
@@ -98,10 +106,10 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 text-sm uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           Services
         </div>
-        <section className="w-full md:w-8/10">
+        <section className="w-full md:w-9/10">
           <ol className="flex flex-row flex-wrap -mx-2">
             <li className="inline-block w-1/2">
               <div className="mx-2 mb-2 border border-solid border-gray-200 p-3 rounded-md">
@@ -123,12 +131,12 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
         </section>
       </Row>
 
-      <h3 className="uppercase">Experience</h3>
+      <h3>Experience</h3>
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           2015 - Present
         </div>
-        <section className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md overflow-hidden">
+        <section className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md overflow-hidden">
           {getTitle(
             "Senior Developer, Institute for Cancer Genetics Columbia University New York"
           )}
@@ -167,10 +175,10 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           2012 - 2015
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md">
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md">
           {getTitle(
             "Associate Research Scientist, Columbia University New York"
           )}
@@ -215,10 +223,10 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           2009 - 2012
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md">
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md">
           {getTitle(
             "Post Doctoral Research Scientist, Columbia University New York"
           )}
@@ -246,10 +254,10 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           2000 - 2004
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md">
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md">
           {getTitle("Bioinformatician, Unilever Research UK")}
           <p className="m-3">
             I designed data pipelines for processing single cell RNA-seq data as
@@ -271,13 +279,13 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
         </div>
       </Row>
 
-      <h3 className="uppercase">Volunteer Work</h3>
+      <h3>Volunteer Work</h3>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-left text-blue-400 mb-2 md:pr-4 text-sm">
           2017 - Present
         </div>
-        <section className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md overflow-hidden">
+        <section className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md overflow-hidden">
           {getTitle("Team Leader, New York Cares")}
           <p className="m-3">
             I am an IRS certified volunteer tax preparer and I help low income
@@ -305,16 +313,16 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
         </section>
       </Row>
 
-      <h3 className="uppercase">Education</h3>
+      <h3>Education</h3>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-right text-blue-400 mb-2 md:pr-4 text-sm">
           2009
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md p-4">
-          <h4>Ph.D in Mathematical Biology</h4>
-          <h5>University of Warwick, UK</h5>
-          <p className="m-0">
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md p-4">
+          <h5>Ph.D in Mathematical Biology</h5>
+          <p>University of Warwick, UK</p>
+          <p className="m-0 italic">
             Understanding morphogenesis in myxobacteria from a theoretical and
             experimental perspective
           </p>
@@ -322,22 +330,22 @@ const ResumePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-right text-blue-400 mb-2 md:pr-4 text-sm">
           2005
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md p-4">
-          <h4>M.Sc in Computer Science</h4>
-          <h5>University of Warwick, UK</h5>
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md p-4">
+          <h5>M.Sc in Computer Science</h5>
+          <p>University of Warwick, UK</p>
         </div>
       </Row>
 
       <Row isVCentered={false} wrap={true} className="mb-8">
-        <div className="w-full md:w-2/10 text-center md:text-right text-gray-400 mb-2 md:pr-4 uppercase">
+        <div className="w-full md:w-1/10 text-center md:text-right text-blue-400 mb-2 md:pr-4 text-sm">
           2004
         </div>
-        <div className="w-full md:w-8/10 border border-solid border-gray-200 rounded-md p-4">
-          <h4>B.Sc in Computer Science</h4>
-          <h5>University of Warwick, UK</h5>
+        <div className="w-full md:w-9/10 border border-solid border-gray-200 rounded-md p-4">
+          <h5>B.Sc in Computer Science</h5>
+          <p>University of Warwick, UK</p>
           <p className="m-0">First-class honours</p>
         </div>
       </Row>

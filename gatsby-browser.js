@@ -19,10 +19,10 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 
 // normalize CSS across browsers
-import "./assets/normalize.scss"
+//import "./assets/normalize.scss"
 
 // custom CSS styles
-import "./assets/style.scss"
+import "./assets/global.scss"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"

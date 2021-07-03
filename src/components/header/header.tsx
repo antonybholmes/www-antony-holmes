@@ -37,14 +37,14 @@ const Header = (props: { title: string }) => {
                 />
               </button>
             </ShowSmall>
-            <Link to="/">
+            <Link to="/" className="text-white hover:text-white-80 trans-ani">
               <Row>
                 <GatsbyImage
                   image={getImage(image)}
                   alt="Antony Holmes"
                   className={`w-10 rounded-full`}
                 />
-                <div className="ml-4 text-sm font-semibold text-white">
+                <div className="ml-4 text-sm font-semibold ">
                   antonyholmes.com
                 </div>
               </Row>

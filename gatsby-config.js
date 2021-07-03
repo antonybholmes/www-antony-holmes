@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     siteTitle: `Antony Holmes`,
+    siteName: `antonyholmes.com`,
+    email: "me@antonyholmes.com",
     author: {
       name: `Antony Holmes`,
       summary: `Owner of this site.`,

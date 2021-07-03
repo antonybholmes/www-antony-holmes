@@ -1,8 +1,8 @@
 {
-  "name": "www-polite-investor",
+  "name": "www-antony-holmes",
   "private": true,
-  "description": "The Polite Investor web site.",
-  "version": "0.1.0",
+  "description": "Antony holmes web site.",
+  "version": "2.0.0",
   "author": "Antony Holmes <antony@antonybholmes.com>",
   "bugs": {
     "url": "https://github.com/antonybholmes/www-polite-investor/issues"
@@ -61,15 +61,15 @@
     "prettier": "^2.3.2",
     "sass": "^1.35.1"
   },
-  "homepage": "https://www.politeinvestor.com",
+  "homepage": "https://www.antonyholmes.com",
   "keywords": [
-    "polite investor, investing, mutual funds, ETFs, money, finance"
+    "antony holmes, programming, javascript, typescript"
   ],
   "license": "0BSD",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antonybholmes/www-polite-investor.git"
+    "url": "git+https://github.com/antonybholmes/www-antony-holmes.git"
   },
   "scripts": {
     "build": "gatsby build",

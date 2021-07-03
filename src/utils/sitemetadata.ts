@@ -7,8 +7,10 @@ const getSiteMetadata = () => {
         site {
           siteMetadata {
             siteTitle
+            siteName
             siteUrl
             siteDescription
+            email
             author {
               name
               summary

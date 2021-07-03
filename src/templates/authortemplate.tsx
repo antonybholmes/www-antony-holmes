@@ -7,7 +7,7 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
-import useImageMap from "../utils/imagemap"
+import getImageMap from "../utils/imagemap"
 import Container from "../components/container"
 import Author from "../components/author"
 
@@ -41,7 +41,7 @@ const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.posts.nodes
   const author = data.author
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
-  const imageMap = useImageMap(data)
+  const imageMap = getImageMap(data)
 
   return (
     <PageLayout title={name}>

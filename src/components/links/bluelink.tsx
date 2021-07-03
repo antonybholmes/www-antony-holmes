@@ -10,7 +10,7 @@ type LinkProps = {
 
 const BlueLink: React.FC<LinkProps> = ({
   to,
-  underline = false,
+  underline = true,
   className = "",
   activeClassName = "",
   children,

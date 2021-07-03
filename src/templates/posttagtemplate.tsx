@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import MainSideCol from "../components/mainsidecol"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
-import useImageMap from "../utils/imagemap"
+import getImageMap from "../utils/imagemap"
 import PageLayout from "../components/layouts/pagelayout"
 import Row from "../components/row"
 import Container from "../components/container"
@@ -46,7 +46,7 @@ const PostTagTemplate: React.FC<PageProps<DataProps, CategoryTemplateProps>> =
 
     const tag = data.tag
 
-    const imageMap = useImageMap(data)
+    const imageMap = getImageMap(data)
 
     return (
       <PageLayout title={tag.name}>

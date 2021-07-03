@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 import Post from "../components/posts/post"
-import useImageMap from "../utils/imagemap"
+import getImageMap from "../utils/imagemap"
 import PageLayout from "../components/layouts/pagelayout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Row from "../components/row"
@@ -9,6 +9,7 @@ import BlueLink from "../components/links/bluelink"
 import getPassportPhoto from "../utils/passportphoto"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ColorLink from "../components/links/colorlink"
+import getSiteMetadata from "../utils/sitemetadata"
 
 type DataProps = {
   posts: {
@@ -31,13 +32,13 @@ type DataProps = {
 const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.posts.nodes
   const image = getPassportPhoto()
-
-  const imageMap = useImageMap(data)
+  const imageMap = getImageMap(data)
+  const { email } = getSiteMetadata()
 
   return (
     <PageLayout title="Home">
       <Row isVCentered={false} wrap={true}>
-        <div className="mb-8 w-full md:w-2/10">
+        <div className="mb-8 w-full md:w-3/10 2xl:w-2/10">
           <GatsbyImage
             image={getImage(image)}
             alt="Antony Holmes"
@@ -56,9 +57,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                   />
                 </div>
                 <div>
-                  <ColorLink color="text" to="mailto:antony@antonyholmes.com">
-                    antony@antonyholmes.com
-                  </ColorLink>
+                  <ColorLink to={`mailto:${email}`}>{email}</ColorLink>
                 </div>
               </Row>
             </li>
@@ -71,7 +70,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                   />
                 </div>
                 <div>
-                  <ColorLink color="text" to="https://github.com/antonybholmes">
+                  <ColorLink to="https://github.com/antonybholmes">
                     github.com/antonybholmes
                   </ColorLink>
                 </div>
@@ -86,10 +85,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                   />
                 </div>
                 <div>
-                  <ColorLink
-                    color="text"
-                    to="https://twitter.com/antonybholmes"
-                  >
+                  <ColorLink to="https://twitter.com/antonybholmes">
                     @antonybholmes
                   </ColorLink>
                 </div>
@@ -97,7 +93,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             </li>
           </ol>
         </div>
-        <div className="w-full md:w-8/10 md:pl-8">
+        <div className="w-full md:w-7/10 2xl:w-8/10 md:pl-8">
           <h2>Hi there!</h2>
           <p>Hello, I'm Antony Holmes, and welcome to my personal web site.</p>
           <p>
@@ -124,8 +120,8 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 GitHub
               </BlueLink>{" "}
               if you want to look at it or get ideas. Please feel free to{" "}
-              <BlueLink to="mailto:antony@antonyholmes.com">email</BlueLink> me
-              to ask questions.
+              <BlueLink to={`mailto:${email}`}>email</BlueLink> me to ask
+              questions.
             </p>
           </section>
 

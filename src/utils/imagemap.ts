@@ -1,4 +1,4 @@
-const useImageMap = (data: any, mapName: string = "postImages") => {
+const getImageMap = (data: any, mapName: string = "postImages") => {
   const imageMap: any = {}
 
   for (const node of data[mapName].nodes) {
@@ -17,4 +17,4 @@ const useImageMap = (data: any, mapName: string = "postImages") => {
   return imageMap
 }
 
-export default useImageMap
+export default getImageMap

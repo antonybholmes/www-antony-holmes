@@ -3,7 +3,7 @@ import { graphql, PageProps } from "gatsby"
 
 import Row from "../components/row"
 import Post from "../components/posts/post"
-import useImageMap from "../utils/imagemap"
+import getImageMap from "../utils/imagemap"
 import { useState } from "react"
 import BlueButton from "../components/links/bluebutton"
 import PageLayout from "../components/layouts/pagelayout"
@@ -28,7 +28,7 @@ type DataProps = {
 const AuthorsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const authors = data.authors.nodes
 
-  const imageMap = useImageMap(data, "authorImages")
+  const imageMap = getImageMap(data, "authorImages")
 
   return (
     <PageLayout title="Authors">

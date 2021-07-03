@@ -55,24 +55,20 @@ const Post: React.FC<PostProps> = ({
 
       {/* <div className="w-3/4 ml-8"> */}
       <div>
-        {showMainTagLink && (
-          <div className="mb-4">
-            <PostCategoryLink post={post} />
-          </div>
-        )}
+        {showMainTagLink && <PostCategoryLink post={post} />}
 
-        <Link to={getPostUrl(post, baseUrl)}>
+        {/* <Link to={getPostUrl(post, baseUrl)}>
           <GatsbyImage
             image={getImage(imageMap[post.frontmatter.id])}
             className={`trans-ani w-1/2`}
             alt={post.frontmatter.title}
           />
-        </Link>
+        </Link> */}
 
-        <h2 className="mt-4">
-          <ColorLink to={getPostUrl(post, baseUrl)}>
+        <h2>
+          <BlueLink to={getPostUrl(post, baseUrl)}>
             {post.frontmatter.title}
-          </ColorLink>
+          </BlueLink>
         </h2>
         <p className="text-sm text-gray-500">{date.format("MMM DD, YYYY")}</p>
 

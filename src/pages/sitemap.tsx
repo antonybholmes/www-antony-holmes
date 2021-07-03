@@ -35,10 +35,10 @@ const SiteMapPage: React.FC<PageProps> = ({ path }) => {
 
             <div className="w-full md:w-1/3">
               <h4 className="mt-4">Learn More</h4>
-              {headerLinks.map((link: any, i: number) => {
+              {headerLinks.map((link: {name:string, url:string}, i: number) => {
                 return (
                   <div className="mt-2" key={i}>
-                    <BlueLink aria-label={`Goto ${link.name}`} to={link.link}>
+                    <BlueLink aria-label={`Goto ${link.name}`} to={link.url}>
                       {link.name}
                     </BlueLink>
                   </div>

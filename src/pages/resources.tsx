@@ -1,7 +1,6 @@
 import { PageProps } from "gatsby"
 import React from "react"
-import Container from "../components/container"
-import PageLayout from "../components/layouts/pagelayout"
+import ArticleLayout from "../components/layouts/articleLayout"
 import BlueLink from "../components/links/bluelink"
 import useWebsites from "../utils/websites"
 
@@ -47,14 +46,12 @@ const renderWebsites = () => {
 
 const WebsitesPage: React.FC<PageProps> = () => {
   return (
-    <PageLayout title="Resources" description="Interesting web sites.">
-      <Container>
-        <h3>Resources</h3>
-        <p>These are some of my favorite websites and resources.</p>
+    <ArticleLayout title="Resources" description="Interesting web sites.">
+      <h3>Resources</h3>
+      <p>These are some of my favorite websites and resources.</p>
 
-        {renderWebsites()}
-      </Container>
-    </PageLayout>
+      {renderWebsites()}
+    </ArticleLayout>
   )
 }
 

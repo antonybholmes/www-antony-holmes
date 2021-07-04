@@ -1,11 +1,12 @@
 import React from "react"
-import Container from "../container"
+import ArticleContainer from "../articlecontainer"
 import FlHdDiv from "../flhddiv"
 import Layout from "./layout"
 
 type LayoutProps = {
   title?: string
   description?: string
+  page?: string
   path?: string
   isIndexed?: boolean
 }
@@ -13,6 +14,7 @@ type LayoutProps = {
 const ArticleLayout: React.FC<LayoutProps> = ({
   title = "",
   description = "",
+  page = "",
   path = "",
   isIndexed = true,
   children,
@@ -21,11 +23,12 @@ const ArticleLayout: React.FC<LayoutProps> = ({
     <Layout
       title={title}
       description={description}
+      page={page}
       path={path}
       isIndexed={isIndexed}
     >
       <FlHdDiv>
-        <Container>{children}</Container>
+        <ArticleContainer>{children}</ArticleContainer>
       </FlHdDiv>
     </Layout>
   )

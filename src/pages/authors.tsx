@@ -1,13 +1,8 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Row from "../components/row"
-import Post from "../components/posts/post"
 import getImageMap from "../utils/imagemap"
-import { useState } from "react"
-import BlueButton from "../components/links/bluebutton"
-import PageLayout from "../components/layouts/pagelayout"
-import Container from "../components/container"
+import ArticleLayout from "../components/layouts/articleLayout"
 import Author from "../components/author"
 
 type DataProps = {
@@ -31,31 +26,29 @@ const AuthorsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const imageMap = getImageMap(data, "authorImages")
 
   return (
-    <PageLayout title="Authors">
-      <Container>
-        {/* <MainSideCol>
+    <ArticleLayout title="Authors">
+      {/* <MainSideCol>
         <> */}
 
-        <h1>Authors</h1>
+      <h1>Authors</h1>
 
-        <h2>Profiles of the people who contribute to this site.</h2>
+      <h2>Profiles of the people who contribute to this site.</h2>
 
-        <ul>
-          {authors.map((author: any, index: number) => {
-            return (
-              <Author
-                author={author}
-                image={imageMap[author.frontmatter.id]}
-                key={index}
-              />
-            )
-          })}
-        </ul>
+      <ul>
+        {authors.map((author: any, index: number) => {
+          return (
+            <Author
+              author={author}
+              image={imageMap[author.frontmatter.id]}
+              key={index}
+            />
+          )
+        })}
+      </ul>
 
-        {/*</> <></>
+      {/*</> <></>
       </MainSideCol> */}
-      </Container>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

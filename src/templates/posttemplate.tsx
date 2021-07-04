@@ -1,15 +1,12 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import MainSideCol from "../components/mainsidecol"
 import dayjs from "dayjs"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import ColorLink from "../components/links/colorlink"
 import getAuthorUrl from "../utils/authorurl"
 import PostTagList from "../components/posts/posttaglist"
-import PageLayout from "../components/layouts/pagelayout"
-import getCategoryUrl from "../utils/categoryurl"
-import Container from "../components/container"
+import ArticleLayout from "../components/layouts/articleLayout"
 import PostCategoryLink from "../components/posts/postcategorylink"
 
 type DataProps = {
@@ -36,57 +33,56 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
   const name = `${author.frontmatter.firstName} ${author.frontmatter.lastName}`
 
   return (
-    <PageLayout title={post.frontmatter.title} isIndexed={isIndexed}>
-      <Container>
-        <article>
-          <header className="mb-8">
-            <PostCategoryLink post={post} />
+    <ArticleLayout title={post.frontmatter.title} isIndexed={isIndexed}>
+      <article>
+        <header className="mb-8">
+          <PostCategoryLink post={post} />
 
-            <h1 className="mt-4">{post.frontmatter.title}</h1>
+          <h1 className="mt-4">{post.frontmatter.title}</h1>
 
-            <Row className="mt-8 text-sm text-gray-500">
-              <div>{date.format("MMM DD, YYYY")}</div>
-              <div className="ml-8">{post.frontmatter.readtime} read</div>
-            </Row>
+          <Row className="mt-8 text-sm text-gray-500">
+            <div>{date.format("MMM DD, YYYY")}</div>
+            <div className="ml-8">{post.frontmatter.readtime} read</div>
+          </Row>
 
-            <Row className="mt-8">
-              <div>
-                <GatsbyImage
-                  image={getImage(data.authorImage)}
-                  alt="Author"
-                  className="w-24 rounded-full"
-                />
+          <Row className="mt-8">
+            <div>
+              <GatsbyImage
+                image={getImage(data.authorImage)}
+                alt="Author"
+                className="w-24 rounded-full"
+              />
+            </div>
+            <div className="ml-8">
+              <div className="text-sm font-medium">
+                <ColorLink
+                  color="black"
+                  color2="blue"
+                  to={getAuthorUrl(author)}
+                >
+                  {name}
+                </ColorLink>
               </div>
-              <div className="ml-8">
-                <div className="text-sm font-medium">
-                  <ColorLink
-                    color="black"
-                    color2="blue"
-                    to={getAuthorUrl(author)}
-                  >
-                    {name}
-                  </ColorLink>
-                </div>
-                <div className="text-sm font-light mt-1">
-                  {author.frontmatter.title}
-                </div>
+              <div className="text-sm font-light mt-1">
+                {author.frontmatter.title}
               </div>
-            </Row>
-          </header>
+            </div>
+          </Row>
+        </header>
 
-          <GatsbyImage
-            image={getImage(data.postImage)}
-            alt={post.frontmatter.title}
-            className="mt-8"
-          />
+        <GatsbyImage
+          image={getImage(data.postImage)}
+          alt={post.frontmatter.title}
+          className="mt-8"
+        />
 
-          <section
-            className="mt-10"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            itemProp="articleBody"
-          />
+        <section
+          className="mt-10"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          itemProp="articleBody"
+        />
 
-          {/* <Row className="mt-8 font-medium">
+        {/* <Row className="mt-8 font-medium">
                   <div className="uppercase mr-2">Posted In:</div>
 
                   <ul className="inline-block">
@@ -105,7 +101,7 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
                   </ul>
                 </Row> */}
 
-          {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
+        {/* <nav className="mt-16 pt-8 border-t border-solid border-gray-200">
                   <Row className="justify-between">
                     {previous && (
                       <Link to={getPostUrl(previous)}>
@@ -124,12 +120,11 @@ const PostTemplate: React.FC<PageProps<DataProps, ContextProps>> = ({
                     )}
                   </Row>
                 </nav> */}
-          <footer className="mt-16">
-            <PostTagList post={post} />
-          </footer>
-        </article>
-      </Container>
-    </PageLayout>
+        <footer className="mt-16">
+          <PostTagList post={post} />
+        </footer>
+      </article>
+    </ArticleLayout>
   )
 }
 

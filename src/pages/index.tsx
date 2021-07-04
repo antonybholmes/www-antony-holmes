@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, PageProps } from "gatsby"
 import Post from "../components/posts/post"
 import getImageMap from "../utils/imagemap"
-import PageLayout from "../components/layouts/pagelayout"
+import ArticleLayout from "../components/layouts/articleLayout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Row from "../components/row"
 import BlueLink from "../components/links/bluelink"
@@ -36,9 +36,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const { email } = getSiteMetadata()
 
   return (
-    <PageLayout title="Home">
+    <ArticleLayout title="Home">
       <Row isVCentered={false} wrap={true}>
-        <div className="mb-8 w-full md:w-3/10 2xl:w-2/10">
+        <div className="mb-8 w-full sm:w-9/20 md:w-4/10 2xl:w-3/10">
           <GatsbyImage
             image={getImage(image)}
             alt="Antony Holmes"
@@ -93,7 +93,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             </li>
           </ol>
         </div>
-        <div className="w-full md:w-7/10 2xl:w-8/10 md:pl-8">
+        <div className="w-full sm:w-11/20 lg:w-6/10 2xl:w-7/10 sm:pl-8">
           <h2>Hi there!</h2>
           <p>Hello, I'm Antony Holmes, and welcome to my personal web site.</p>
           <p>
@@ -134,7 +134,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           </section>
         </div>
       </Row>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

@@ -6,8 +6,7 @@ import Post from "../components/posts/post"
 import getImageMap from "../utils/imagemap"
 import { useState } from "react"
 import BlueButton from "../components/links/bluebutton"
-import PageLayout from "../components/layouts/pagelayout"
-import Container from "../components/container"
+import ArticleLayout from "../components/layouts/articleLayout"
 
 type DataProps = {
   posts: {
@@ -35,29 +34,27 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-    <PageLayout title="Posts">
-      <Container>
-        {/* <MainSideCol>
+    <ArticleLayout title="Posts">
+      {/* <MainSideCol>
         <> */}
 
-        <ul>
-          {posts.slice(0, records).map((post: any, index: number) => {
-            return <Post post={post} imageMap={imageMap} key={index} />
-          })}
-        </ul>
+      <ul>
+        {posts.slice(0, records).map((post: any, index: number) => {
+          return <Post post={post} imageMap={imageMap} key={index} />
+        })}
+      </ul>
 
-        {posts.length > records && (
-          <Row isCentered={true} className="mt-32">
-            <BlueButton onClick={handleMoreArticles}>
-              Load More Articles
-            </BlueButton>
-          </Row>
-        )}
+      {posts.length > records && (
+        <Row isCentered={true} className="mt-32">
+          <BlueButton onClick={handleMoreArticles}>
+            Load More Articles
+          </BlueButton>
+        </Row>
+      )}
 
-        {/*</> <></>
+      {/*</> <></>
       </MainSideCol> */}
-      </Container>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

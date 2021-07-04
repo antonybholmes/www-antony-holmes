@@ -11,7 +11,7 @@ import jssvg from "../../assets/images/svg/javascript-shield.svg"
 import reactsvg from "../../assets/images/svg/react.svg"
 import ExtLink from "../components/links/extlink"
 import MainSideCol from "../components/mainsidecol"
-import PageLayout from "../components/layouts/pagelayout"
+import ArticleLayout from "../components/layouts/articleLayout"
 import { PageProps } from "gatsby"
 
 const LOGO_CLASS = "h-10 xl:inline"
@@ -20,7 +20,7 @@ const HelpPage: React.FC<PageProps> = ({ path }) => {
   const { version } = getSiteMetadata()
 
   return (
-    <PageLayout title="Help" path={path}>
+    <ArticleLayout title="Help" path={path}>
       <MainSideCol>
         <>
           <h4 className="font-semibold">antonyholmes.com</h4>
@@ -79,7 +79,7 @@ const HelpPage: React.FC<PageProps> = ({ path }) => {
         </>
         <></>
       </MainSideCol>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

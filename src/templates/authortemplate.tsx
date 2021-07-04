@@ -1,14 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import PageLayout from "../components/layouts/pagelayout"
-import MainSideCol from "../components/mainsidecol"
-import { getImage, GatsbyImage } from "gatsby-plugin-image"
-import Row from "../components/row"
+import ArticleLayout from "../components/layouts/articleLayout"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
 import getImageMap from "../utils/imagemap"
-import Container from "../components/container"
 import Author from "../components/author"
 
 type DataProps = {
@@ -44,30 +40,24 @@ const AuthorTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const imageMap = getImageMap(data)
 
   return (
-    <PageLayout title={name}>
-      <Container>
-        {/* <MainSideCol>
+    <ArticleLayout title={name}>
+      {/* <MainSideCol>
         <> */}
 
-        <Author
-          author={author}
-          image={data.authorImage}
-          showAuthorLink={false}
-        />
+      <Author author={author} image={data.authorImage} showAuthorLink={false} />
 
-        <section className="border-t border-solid border-gray-200 mt-16 pt-8">
-          <ul>
-            {posts.map((post: any, index: number) => {
-              return <Post post={post} imageMap={imageMap} key={index} />
-            })}
-          </ul>
-        </section>
-        {/*         </>
+      <section className="border-t border-solid border-gray-200 mt-16 pt-8">
+        <ul>
+          {posts.map((post: any, index: number) => {
+            return <Post post={post} imageMap={imageMap} key={index} />
+          })}
+        </ul>
+      </section>
+      {/*         </>
 
         <></>
       </MainSideCol> */}
-      </Container>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

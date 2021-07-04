@@ -1,6 +1,5 @@
 import React from "react"
 import Container from "../container"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Row from "../row"
 import HeaderLinks from "./headerlinks"
 import { Link } from "gatsby"
@@ -10,6 +9,7 @@ import ShowSmall from "../showsmall"
 import { useState } from "react"
 import HideSmall from "../hidesmall"
 import { useWindowResize } from "beautiful-react-hooks"
+import MenuButton from "./menubutton"
 
 const Header = (props: { title: string }) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -29,13 +29,7 @@ const Header = (props: { title: string }) => {
         <Row className="py-4">
           <Row>
             <ShowSmall className="mr-4">
-              <button onClick={_handleClick}>
-                <FontAwesomeIcon
-                  icon={["fas", "bars"]}
-                  size="2x"
-                  className="text-white"
-                />
-              </button>
+              <MenuButton isVisible={isVisible} onClick={_handleClick} />
             </ShowSmall>
             <Link to="/" className="text-white hover:text-white-80 trans-ani">
               <Row>

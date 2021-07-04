@@ -999,7 +999,7 @@
     core-js-pure "^3.15.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.17", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.17", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.14.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
   integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
@@ -2031,7 +2031,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-helmet@^6.0.0", "@types/react-helmet@^6.1.1":
+"@types/react-helmet@^6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.1.1.tgz#4fde22cbcaa1b461642e1d719cc6162d95acb110"
   integrity sha512-VmSCMz6jp/06DABoY60vQa++h1YFt0PfAI23llxBJHbowqFgLUL0dhS1AQeVPNqYfRp9LAfokrfWACTNeobOrg==
@@ -6157,16 +6157,6 @@ gatsby-plugin-manifest@^3.8.0:
     gatsby-plugin-utils "^1.8.0"
     semver "^7.3.5"
     sharp "^0.28.1"
-
-gatsby-plugin-next-seo@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-next-seo/-/gatsby-plugin-next-seo-1.7.0.tgz#fc25a4b077611201b1b21c846a5b28342214480c"
-  integrity sha512-H3XtyubS/QwBP7shpsxkpeV8HysROm/J5ImKgcD7bDmvkUXAYFyqb8hUzMGfnUVUUUY3cWvK1zacUhKTPkafbw==
-  dependencies:
-    "@babel/runtime" "^7.10.3"
-    "@types/react-helmet" "^6.0.0"
-    schema-dts "0.6.0"
-    type-fest "^0.15.1"
 
 gatsby-plugin-offline@^4.8.0:
   version "4.8.0"
@@ -11992,11 +11982,6 @@ scheduler@^0.20.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-schema-dts@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-0.6.0.tgz#1700eadcc384d39341e0f90ad15d708504124166"
-  integrity sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw==
-
 schema-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
@@ -13397,11 +13382,6 @@ type-fest@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.11.0.tgz#97abf0872310fed88a5c466b25681576145e33f1"
   integrity sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ==
-
-type-fest@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.15.1.tgz#d2c4e73d3e4a53cf1a906396dd460a1c5178ca00"
-  integrity sha512-n+UXrN8i5ioo7kqT/nF8xsEzLaqFra7k32SEsSPwvXVGyAcRgV/FUQN/sgfptJTR1oRmmq7z4IXMFSM7im7C9A==
 
 type-fest@^0.20.2:
   version "0.20.2"

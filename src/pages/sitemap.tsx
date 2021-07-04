@@ -1,6 +1,6 @@
 import React from "react"
 import getHeaderLinks from "../utils/headerlinks"
-import PageLayout from "../components/layouts/pagelayout"
+import ArticleLayout from "../components/layouts/articleLayout"
 import BlueLink from "../components/links/bluelink"
 import Row from "../components/row"
 
@@ -8,7 +8,7 @@ const SiteMapPage = () => {
   const headerLinks = getHeaderLinks()
 
   return (
-    <PageLayout title="Site Map">
+    <ArticleLayout title="Site Map">
       <Row className="font-medium" isVCentered={false} wrap={true}>
         <div className="w-full md:w-1/3 mb-8">
           <h4 className="mt-4">About</h4>
@@ -38,7 +38,7 @@ const SiteMapPage = () => {
           })}
         </div>
       </Row>
-    </PageLayout>
+    </ArticleLayout>
   )
 }
 

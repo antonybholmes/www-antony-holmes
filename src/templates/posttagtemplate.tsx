@@ -1,12 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
-import MainSideCol from "../components/mainsidecol"
 import { PageProps } from "gatsby"
 import Post from "../components/posts/post"
 import getImageMap from "../utils/imagemap"
-import PageLayout from "../components/layouts/pagelayout"
-import Row from "../components/row"
-import Container from "../components/container"
+import ArticleLayout from "../components/layouts/articleLayout"
 
 type CategoryTemplateProps = { tag: string }
 
@@ -49,33 +46,31 @@ const PostTagTemplate: React.FC<PageProps<DataProps, CategoryTemplateProps>> =
     const imageMap = getImageMap(data)
 
     return (
-      <PageLayout title={tag.name}>
-        <Container>
-          {/* <MainSideCol>
+      <ArticleLayout title={tag.name}>
+        {/* <MainSideCol>
           <> */}
 
-          <h1>{tag.name}</h1>
+        <h1>{tag.name}</h1>
 
-          <h3>{tag.info}</h3>
+        <h3>{tag.info}</h3>
 
-          <ul className="mt-16">
-            {posts.map((post: any, index: number) => {
-              return (
-                <Post
-                  post={post}
-                  imageMap={imageMap}
-                  key={index}
-                  showMainTagLink={false}
-                />
-              )
-            })}
-          </ul>
-          {/* </>
+        <ul className="mt-16">
+          {posts.map((post: any, index: number) => {
+            return (
+              <Post
+                post={post}
+                imageMap={imageMap}
+                key={index}
+                showMainTagLink={false}
+              />
+            )
+          })}
+        </ul>
+        {/* </>
 
           <></>
         </MainSideCol> */}
-        </Container>
-      </PageLayout>
+      </ArticleLayout>
     )
   }
 

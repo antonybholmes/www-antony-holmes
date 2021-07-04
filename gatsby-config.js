@@ -10,7 +10,7 @@ module.exports = {
     siteDescription: `Homepage for Antony Homes.`,
     siteUrl: `https://www.antonyholmes.com/`,
     social: {
-      twitter: `antonybholmes`,
+      twitter: `@antonybholmes`,
     },
     version: "3.0.0",
   },
@@ -125,7 +125,6 @@ module.exports = {
         },
       },
     },
-    "gatsby-plugin-next-seo",
     "gatsby-plugin-sitemap",
     // {
     //   resolve: `gatsby-plugin-build-date`,

@@ -115,7 +115,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ isVisible, onClick }) => {
 
   return (
     <button onClick={onClick} className="px-4">
-      <div className="relative h-5 w-6">
+      <div className="relative h-4 w-6">
         <div
           id="bar1"
           className="absolute left-0 w-full bg-white"

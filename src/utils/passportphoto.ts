@@ -4,7 +4,7 @@ const getPassportPhoto = () => {
   const data = useStaticQuery(graphql`
     query {
       file(
-        absolutePath: { regex: "/antony-holmes/" }
+        relativePath: { regex: "/authors/antony-holmes/" }
         ext: { regex: "/jpg/" }
       ) {
         name

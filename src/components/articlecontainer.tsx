@@ -11,9 +11,7 @@ const ArticleContainer: React.FC<ContainerProps> = ({
   children,
 }) => (
   <div className="flex flex-row justify-center">
-    <div className="w-9/10 md:w-8/10 lg:w-6/10 xl:w-5/10 3xl:w-4/10">
-      {children}
-    </div>
+    <div className="w-9/10 md:w-8/10 lg:w-6/10 3xl:w-4/10">{children}</div>
   </div>
 )
 
